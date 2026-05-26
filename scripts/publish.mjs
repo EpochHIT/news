@@ -58,17 +58,28 @@ function branchFile(branch, path) {
   }
 }
 
-function solarBirthday(meta, year) {
-  const birthday = meta?.birthday ?? {};
+function birthdayEntries(meta) {
+  if (Array.isArray(meta?.birthdays)) {
+    return meta.birthdays;
+  }
+  if (meta?.birthday) {
+    return [meta.birthday];
+  }
+  return [];
+}
+
+function solarBirthdayCandidates(birthday, year) {
   const parsed = parseDate(birthday.date);
-  if (!parsed) return null;
+  if (!parsed) return [];
 
   if (String(birthday.calendar || "solar").toLowerCase() === "lunar") {
-    const solar = Lunar.fromYmd(year, parsed.month, parsed.day).getSolar();
-    return `${solar.getYear()}-${String(solar.getMonth()).padStart(2, "0")}-${String(solar.getDay()).padStart(2, "0")}`;
+    return [year - 1, year, year + 1].map((lunarYear) => {
+      const solar = Lunar.fromYmd(lunarYear, parsed.month, parsed.day).getSolar();
+      return `${solar.getYear()}-${String(solar.getMonth()).padStart(2, "0")}-${String(solar.getDay()).padStart(2, "0")}`;
+    });
   }
 
-  return `${year}-${String(parsed.month).padStart(2, "0")}-${String(parsed.day).padStart(2, "0")}`;
+  return [`${year}-${String(parsed.month).padStart(2, "0")}-${String(parsed.day).padStart(2, "0")}`];
 }
 
 function addDays(dateText, days) {
@@ -84,15 +95,17 @@ function pickActive(today) {
     const meta = parseFrontMatter(readme);
     if (!meta) continue;
 
-    const birthday = solarBirthday(meta, year);
-    if (!birthday) continue;
-
-    const before = Number(meta.window?.days_before ?? 0);
-    const after = Number(meta.window?.days_after ?? 6);
-    const start = addDays(birthday, -before);
-    const end = addDays(birthday, after);
-    if (start <= today && today <= end) {
-      return { branch, meta, birthday, start, end };
+    for (const entry of birthdayEntries(meta)) {
+      for (const birthday of solarBirthdayCandidates(entry, year)) {
+        const window = entry.window ?? meta.window ?? {};
+        const before = Number(window.days_before ?? 0);
+        const after = Number(window.days_after ?? 6);
+        const start = addDays(birthday, -before);
+        const end = addDays(birthday, after);
+        if (start <= today && today <= end) {
+          return { branch, meta, birthday, birthdayEntry: entry, start, end };
+        }
+      }
     }
   }
   return null;
