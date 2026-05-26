@@ -3,20 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#10151a">
+    <meta name="theme-color" content="#0b1115">
     <title>News</title>
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
   </head>
   <body>
+    <div class="aurora" aria-hidden="true"></div>
     <main class="shell">
-      <section class="hero">
-        <div>
-          <p class="eyebrow">News</p>
-          <h1>Collect the useful, keep the quiet.</h1>
-          <p class="lede">A small rotating surface for images, notes, ideas, and the occasional beautiful accident.</p>
-        </div>
+      <header class="topbar">
+        <a class="brand" href=".">NEWS</a>
         <time id="today"></time>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live Briefing</p>
+          <h1>Signal, context, and a little weather for the mind.</h1>
+          <p class="lede">AI, research, product shifts, image fields, and small daily fragments gathered into one calm surface.</p>
+        </div>
+        <aside class="radar">
+          <p class="eyebrow">Pulse</p>
+          <div class="radar-ring"><span></span></div>
+          <dl>
+            <div><dt>Stories</dt><dd id="story-count">--</dd></div>
+            <div><dt>Source</dt><dd>AI Daily</dd></div>
+            <div><dt>Visuals</dt><dd>Bing</dd></div>
+          </dl>
+        </aside>
       </section>
 
       <section id="birthday-signal" class="birthday-signal" hidden>
@@ -27,25 +41,45 @@
         <div id="birthday-list" class="birthday-list"></div>
       </section>
 
-      <section class="wall" id="wall">
-        <div class="wall-copy">
-          <p class="eyebrow">Image Field</p>
-          <h2 id="image-title">Loading today's view</h2>
-          <p id="image-caption"></p>
-        </div>
+      <section class="lead-grid">
+        <article class="feature-news" id="feature-news">
+          <p class="eyebrow">Top Story</p>
+          <a id="feature-link" href="https://news.stormzhang.ai/" target="_blank" rel="noreferrer">
+            <h2 id="feature-title">Loading today's lead story</h2>
+            <p id="feature-summary"></p>
+            <span id="feature-meta"></span>
+          </a>
+        </article>
+
+        <section class="visual-board" aria-label="Daily image board">
+          <div class="image-main" id="image-main">
+            <div>
+              <p class="eyebrow">Image Field</p>
+              <h2 id="image-title">Daily view</h2>
+              <p id="image-caption"></p>
+            </div>
+          </div>
+          <div class="thumb-row" id="thumb-row"></div>
+        </section>
       </section>
 
-      <section class="grid">
-        <article class="panel">
+      <section class="section-title">
+        <div>
           <p class="eyebrow">Hot Notes</p>
-          <ul id="notes"></ul>
-        </article>
-        <article class="panel">
+          <h2>Readable events, not just links.</h2>
+        </div>
+        <a href="https://news.stormzhang.ai/" target="_blank" rel="noreferrer">Open source</a>
+      </section>
+
+      <section class="news-grid" id="notes"></section>
+
+      <section class="soft-grid">
+        <article>
           <p class="eyebrow">Study Trace</p>
           <h2>Automation, perception, systems.</h2>
           <p>Keep one line of curiosity open: a paper, a tool, a dataset, a walk outside.</p>
         </article>
-        <article class="panel">
+        <article>
           <p class="eyebrow">Archive</p>
           <h2>Art · history · life</h2>
           <p>Small fragments age well when they are arranged with care.</p>

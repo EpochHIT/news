@@ -181,6 +181,25 @@ async function fetchText(url) {
   }
 }
 
+function decodeHtml(text) {
+  return String(text || "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractClass(block, className) {
+  const match = block.match(new RegExp(`<[^>]*class=["'][^"']*${className}[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, "i"));
+  return match ? decodeHtml(match[1]) : "";
+}
+
 async function writeDefaultFeed(today) {
   const bing = await fetchJson("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=zh-CN");
   const wallpapers = (bing?.images ?? []).map((item) => ({
@@ -190,13 +209,17 @@ async function writeDefaultFeed(today) {
   }));
 
   const html = await fetchText("https://news.stormzhang.ai/");
-  const notes = [...html.matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
-    .map(([, href, raw]) => ({
-      title: raw.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
+  const notes = [...html.matchAll(/<a class=["']item["'] href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
+    .map(([, href, block]) => ({
+      title: extractClass(block, "item-summary"),
+      summary: extractClass(block, "item-en"),
+      source: extractClass(block, "badge"),
+      time: extractClass(block, "item-time"),
+      index: extractClass(block, "item-index"),
       url: href.startsWith("/") ? `https://news.stormzhang.ai${href}` : href
     }))
-    .filter((item) => item.title.length >= 8 && item.title.length <= 90)
-    .slice(0, 8);
+    .filter((item) => item.title.length >= 8)
+    .slice(0, 12);
 
   mkdirSync(join(output, "data"), { recursive: true });
   writeFileSync(
@@ -206,10 +229,14 @@ async function writeDefaultFeed(today) {
         date: today,
         wallpapers,
         notes,
+        source: {
+          name: "AI Daily",
+          url: "https://news.stormzhang.ai/"
+        },
         fallbackNotes: [
-          { title: "读一页纸，留一张图，记录一个问题。", url: "" },
-          { title: "世界每天给出许多信号，值得慢一点筛选。", url: "" },
-          { title: "学术、风景、生活和历史，都可以在同一页相遇。", url: "" }
+          { title: "读一页纸，留一张图，记录一个问题。", summary: "A quiet fallback signal.", source: "Local", time: today, url: "" },
+          { title: "世界每天给出许多信号，值得慢一点筛选。", summary: "A small note for attention.", source: "Local", time: today, url: "" },
+          { title: "学术、风景、生活和历史，都可以在同一页相遇。", summary: "A useful page should breathe.", source: "Local", time: today, url: "" }
         ]
       },
       null,
