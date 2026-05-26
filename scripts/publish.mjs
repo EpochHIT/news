@@ -82,14 +82,26 @@ function solarBirthdayCandidates(birthday, year) {
   return [`${year}-${String(parsed.month).padStart(2, "0")}-${String(parsed.day).padStart(2, "0")}`];
 }
 
+function dateValue(dateText) {
+  const [year, month, day] = dateText.split("-").map(Number);
+  return Date.UTC(year, month - 1, day);
+}
+
+function daysBetween(from, to) {
+  return Math.round((dateValue(to) - dateValue(from)) / 86400000);
+}
+
 function addDays(dateText, days) {
   const [year, month, day] = dateText.split("-").map(Number);
   const date = new Date(Date.UTC(year, month - 1, day + days));
   return date.toISOString().slice(0, 10);
 }
 
-function pickActive(today) {
+function collectBirthdayEvents(today) {
   const year = Number(today.slice(0, 4));
+  const events = [];
+  const seen = new Set();
+
   for (const branch of branchNames()) {
     const readme = branchFile(branch, "README.md");
     const meta = parseFrontMatter(readme);
@@ -98,17 +110,37 @@ function pickActive(today) {
     for (const entry of birthdayEntries(meta)) {
       for (const birthday of solarBirthdayCandidates(entry, year)) {
         const window = entry.window ?? meta.window ?? {};
-        const before = Number(window.days_before ?? 0);
-        const after = Number(window.days_after ?? 6);
+        const before = Number(window.days_before ?? 3);
+        const after = Number(window.days_after ?? 3);
         const start = addDays(birthday, -before);
         const end = addDays(birthday, after);
         if (start <= today && today <= end) {
-          return { branch, meta, birthday, birthdayEntry: entry, start, end };
+          const offset = daysBetween(today, birthday);
+          const phase = offset > 0 ? "before" : offset === 0 ? "today" : "after";
+          const key = `${branch}:${birthday}:${entry.label ?? entry.date}`;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          events.push({
+            branch,
+            name: meta.name ?? branch,
+            relation: meta.relation ?? "",
+            birthday,
+            birthdayEntry: entry,
+            start,
+            end,
+            phase,
+            days: Math.abs(offset),
+            url: `wishes/${encodeURIComponent(branch)}/`
+          });
         }
       }
     }
   }
-  return null;
+
+  return events.sort((a, b) => {
+    const phaseOrder = { today: 0, before: 1, after: 2 };
+    return phaseOrder[a.phase] - phaseOrder[b.phase] || a.days - b.days || a.name.localeCompare(b.name, "zh-CN");
+  });
 }
 
 function resetOutput() {
@@ -120,11 +152,12 @@ function copyDefault() {
   cpSync(defaultSite, output, { recursive: true });
 }
 
-function copyBranch(branch) {
+function copyBranchTo(branch, destination) {
   git(["checkout", "--force", `origin/${branch}`]);
+  mkdirSync(destination, { recursive: true });
   for (const item of readdirSync(source, { withFileTypes: true })) {
     if (item.name === ".git") continue;
-    cpSync(join(source, item.name), join(output, item.name), { recursive: true });
+    cpSync(join(source, item.name), join(destination, item.name), { recursive: true });
   }
 }
 
@@ -185,25 +218,36 @@ async function writeDefaultFeed(today) {
   );
 }
 
-function writeMeta(mode, today, active = null) {
+function writeBirthdayData(today, events) {
+  mkdirSync(join(output, "data"), { recursive: true });
+  writeFileSync(
+    join(output, "data", "birthdays.json"),
+    JSON.stringify({ date: today, events }, null, 2)
+  );
+}
+
+function writeMeta(mode, today, events = []) {
   writeFileSync(
     join(output, "publish.json"),
-    JSON.stringify({ mode, today, active }, null, 2)
+    JSON.stringify({ mode, today, events }, null, 2)
   );
   writeFileSync(join(output, ".nojekyll"), "");
 }
 
 const today = process.env.SIGNAL_DATE || todayShanghai();
 resetOutput();
-const active = pickActive(today);
-if (active) {
-  copyBranch(active.branch);
-  writeMeta("personal", today, active);
-} else {
-  copyDefault();
-  await writeDefaultFeed(today);
-  writeMeta("default", today);
+copyDefault();
+await writeDefaultFeed(today);
+
+const events = collectBirthdayEvents(today);
+const copiedBranches = new Set();
+for (const event of events) {
+  if (copiedBranches.has(event.branch)) continue;
+  copiedBranches.add(event.branch);
+  copyBranchTo(event.branch, join(output, "wishes", encodeURIComponent(event.branch)));
 }
+writeBirthdayData(today, events);
+writeMeta(events.some((event) => event.phase === "today") ? "birthday" : "default", today, events);
 
 if (!existsSync(join(output, "index.html"))) {
   throw new Error("No index.html was generated.");

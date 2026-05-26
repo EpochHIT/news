@@ -43,4 +43,85 @@
     }
     list.append(item);
   }
+
+  let birthdayData = { events: [] };
+  try {
+    const response = await fetch("data/birthdays.json", { cache: "no-store" });
+    birthdayData = await response.json();
+  } catch {
+    birthdayData = { events: [] };
+  }
+
+  renderBirthdaySignals(birthdayData.events || []);
 })();
+
+function labelForEvent(event) {
+  if (event.phase === "today") {
+    return "今天";
+  }
+  if (event.phase === "before") {
+    return `${event.days} 天后`;
+  }
+  return `已过 ${event.days} 天`;
+}
+
+function textForEvent(event) {
+  if (event.phase === "today") {
+    return `${event.name} 今天生日`;
+  }
+  if (event.phase === "before") {
+    return `${event.name} 的生日倒计时 ${event.days} 天`;
+  }
+  return `${event.name} 的祝福仍可查看`;
+}
+
+function renderBirthdaySignals(events) {
+  const signal = document.getElementById("birthday-signal");
+  const birthdayList = document.getElementById("birthday-list");
+  const birthdayHeading = document.getElementById("birthday-heading");
+  const modal = document.getElementById("birthday-modal");
+  const modalList = document.getElementById("modal-list");
+  const modalTitle = document.getElementById("modal-title");
+  const closeButton = document.getElementById("modal-close");
+
+  if (!events.length) {
+    signal.hidden = true;
+    modal.hidden = true;
+    return;
+  }
+
+  const todayEvents = events.filter((event) => event.phase === "today");
+  signal.hidden = false;
+  birthdayHeading.textContent = todayEvents.length ? "Today's signal is bright." : "A small signal is nearby.";
+  birthdayList.innerHTML = "";
+
+  for (const event of events) {
+    const link = document.createElement("a");
+    link.className = `birthday-chip ${event.phase}`;
+    link.href = event.url;
+    link.innerHTML = `<span>${labelForEvent(event)}</span><strong>${textForEvent(event)}</strong>`;
+    birthdayList.append(link);
+  }
+
+  if (todayEvents.length) {
+    modal.hidden = false;
+    modalTitle.textContent = todayEvents.length > 1 ? "今天有几束很亮的祝福" : `${todayEvents[0].name} 今天生日`;
+    modalList.innerHTML = "";
+    for (const event of todayEvents) {
+      const link = document.createElement("a");
+      link.className = "modal-card";
+      link.href = event.url;
+      link.innerHTML = `<span>${event.birthdayEntry?.label || "生日"}</span><strong>${event.name}</strong><em>打开祝福页</em>`;
+      modalList.append(link);
+    }
+  }
+
+  closeButton.addEventListener("click", () => {
+    modal.hidden = true;
+  });
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.hidden = true;
+    }
+  });
+}

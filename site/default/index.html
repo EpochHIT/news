@@ -19,6 +19,14 @@
         <time id="today"></time>
       </section>
 
+      <section id="birthday-signal" class="birthday-signal" hidden>
+        <div>
+          <p class="eyebrow">Signal</p>
+          <h2 id="birthday-heading">Upcoming notes</h2>
+        </div>
+        <div id="birthday-list" class="birthday-list"></div>
+      </section>
+
       <section class="wall" id="wall">
         <div class="wall-copy">
           <p class="eyebrow">Image Field</p>
@@ -44,5 +52,14 @@
         </article>
       </section>
     </main>
+
+    <div id="birthday-modal" class="birthday-modal" hidden>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button id="modal-close" class="modal-close" type="button" aria-label="Close">×</button>
+        <p class="eyebrow">Today</p>
+        <h2 id="modal-title">Birthday signal</h2>
+        <div id="modal-list" class="modal-list"></div>
+      </div>
+    </div>
   </body>
 </html>
