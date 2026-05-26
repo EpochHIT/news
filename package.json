@@ -1,0 +1,12 @@
+{
+  "name": "daily-signal",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/publish.mjs"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "lunar-javascript": "^1.7.4"
+  }
+}

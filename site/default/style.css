@@ -1,0 +1,147 @@
+:root {
+  color-scheme: dark;
+  --bg: #10151a;
+  --ink: #f0f5f2;
+  --muted: #b3beb8;
+  --line: rgba(255, 255, 255, 0.16);
+  --glass: rgba(16, 21, 26, 0.66);
+  --accent: #86ead4;
+  --warm: #ffc49b;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(120deg, rgba(134, 234, 212, 0.1), transparent 38%),
+    linear-gradient(250deg, rgba(255, 196, 155, 0.1), transparent 42%),
+    var(--bg);
+  color: var(--ink);
+}
+
+.shell {
+  width: min(1160px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 52px 0;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+  align-items: end;
+  min-height: 28vh;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  font-size: clamp(3rem, 8vw, 6.6rem);
+  line-height: 0.94;
+}
+
+h2 {
+  margin-bottom: 12px;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.05;
+}
+
+.lede,
+.panel p,
+.wall-copy p,
+li {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+time {
+  color: var(--warm);
+  font-weight: 800;
+}
+
+.wall {
+  display: flex;
+  align-items: end;
+  min-height: 520px;
+  margin: 52px 0 18px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.68), transparent 62%),
+    var(--image, linear-gradient(135deg, #26333b, #11181d));
+  background-size: cover;
+  background-position: center;
+}
+
+.wall-copy {
+  max-width: 660px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  gap: 16px;
+}
+
+.panel {
+  min-height: 250px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+}
+
+ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 840px) {
+  .hero,
+  .grid {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 14vw, 4.8rem);
+  }
+
+  .wall {
+    min-height: 420px;
+  }
+}

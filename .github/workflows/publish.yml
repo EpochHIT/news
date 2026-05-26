@@ -1,0 +1,57 @@
+name: Publish Signal
+
+on:
+  schedule:
+    - cron: "5 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public shell
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare private source key
+        run: |
+          mkdir -p ~/.ssh
+          printf "%s\n" "${HAPPYBIRTHDAY_DEPLOY_KEY}" > ~/.ssh/happybirthday
+          chmod 600 ~/.ssh/happybirthday
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          HAPPYBIRTHDAY_DEPLOY_KEY: ${{ secrets.HAPPYBIRTHDAY_DEPLOY_KEY }}
+
+      - name: Clone private source
+        run: |
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/happybirthday -o IdentitiesOnly=yes" \
+            git clone --no-tags git@github.com:EpochHIT/HappyBirthday.git .source
+          cd .source
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/happybirthday -o IdentitiesOnly=yes" \
+            git fetch origin "+refs/heads/*:refs/remotes/origin/*"
+
+      - name: Build public output
+        run: npm run build
+
+      - name: Publish gh-pages
+        run: |
+          cd public
+          git init -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Publish signal"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
