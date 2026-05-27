@@ -23,7 +23,9 @@
   renderLead(notes[0]);
   renderNews(notes);
   renderImages(feed.wallpapers || []);
+  renderAcademic(feed.academic || {});
   document.getElementById("story-count").textContent = String(notes.length || "--").padStart(2, "0");
+  document.getElementById("visual-count").textContent = String((feed.wallpapers || []).length || "--").padStart(2, "0");
 
   let birthdayData = { events: [] };
   try {
@@ -87,6 +89,71 @@ function renderNews(notes) {
     `;
     grid.append(card);
   }
+}
+
+function renderAcademic(academic) {
+  const papers = academic.papers || [];
+  const resources = academic.resources?.length ? academic.resources : [
+    { label: "arXiv cs.RO", title: "Robotics preprints", url: "https://arxiv.org/list/cs.RO/recent" },
+    { label: "alphaXiv", title: "Social reading for arXiv papers", url: "https://www.alphaxiv.org/" }
+  ];
+  const awards = academic.awards?.length ? academic.awards : [
+    { label: "RSS", title: "Outstanding Paper Award archive", url: "https://roboticsfoundation.org/awards/best-paper-award/" }
+  ];
+  const lanes = academic.lanes?.length ? academic.lanes : ["Robot learning", "Embodied AI", "SLAM / VIO", "Autonomous systems"];
+
+  document.getElementById("paper-count").textContent = String(papers.length || "--").padStart(2, "0");
+
+  const paperList = document.getElementById("paper-list");
+  paperList.innerHTML = "";
+  if (!papers.length) {
+    paperList.innerHTML = `<a class="paper-card paper-empty" href="https://arxiv.org/list/cs.RO/recent" target="_blank" rel="noreferrer"><span>00</span><h3>Open the robotics stream.</h3><p>The build could not refresh papers this time, but the research lane is still here.</p><em>arXiv cs.RO</em></a>`;
+  }
+  for (const paper of papers.slice(0, 6)) {
+    const card = document.createElement("a");
+    card.className = "paper-card";
+    card.href = paper.alphaxiv || paper.arxiv || paper.pdf || "https://arxiv.org/list/cs.RO/recent";
+    card.target = "_blank";
+    card.rel = "noreferrer";
+    const authors = (paper.authors || []).join(", ");
+    const categories = (paper.categories || []).slice(0, 3).join(" / ");
+    card.innerHTML = `
+      <span>${escapeHtml(paper.index || "")}</span>
+      <h3>${escapeHtml(paper.title)}</h3>
+      <p>${escapeHtml(trimText(paper.summary, 210))}</p>
+      <em>${escapeHtml([authors, categories, paper.published].filter(Boolean).join(" · "))}</em>
+    `;
+    paperList.append(card);
+  }
+
+  renderLinkStack("resource-list", resources);
+  renderLinkStack("award-list", awards);
+
+  const laneList = document.getElementById("lane-list");
+  laneList.innerHTML = "";
+  for (const lane of lanes) {
+    const item = document.createElement("span");
+    item.textContent = lane;
+    laneList.append(item);
+  }
+}
+
+function renderLinkStack(id, links) {
+  const stack = document.getElementById(id);
+  stack.innerHTML = "";
+  for (const link of links) {
+    const item = document.createElement("a");
+    item.href = link.url || "#";
+    item.target = "_blank";
+    item.rel = "noreferrer";
+    item.innerHTML = `<span>${escapeHtml(link.label || "Link")}</span><strong>${escapeHtml(link.title || link.url || "")}</strong>`;
+    stack.append(item);
+  }
+}
+
+function trimText(text, length) {
+  const value = String(text || "").trim();
+  return value.length > length ? `${value.slice(0, length - 1)}...` : value;
 }
 
 function escapeHtml(text) {

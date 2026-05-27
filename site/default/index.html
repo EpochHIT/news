@@ -22,13 +22,16 @@
           <h1>Signal, context, and a little weather for the mind.</h1>
           <p class="lede">AI, research, product shifts, image fields, and small daily fragments gathered into one calm surface.</p>
         </div>
-        <aside class="radar">
-          <p class="eyebrow">Pulse</p>
-          <div class="radar-ring"><span></span></div>
+        <aside class="signal-card">
+          <p class="eyebrow">Brief</p>
+          <h2>Today in view.</h2>
+          <div class="signal-lines" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
           <dl>
             <div><dt>Stories</dt><dd id="story-count">--</dd></div>
-            <div><dt>Source</dt><dd>AI Daily</dd></div>
-            <div><dt>Visuals</dt><dd>Bing</dd></div>
+            <div><dt>Papers</dt><dd id="paper-count">--</dd></div>
+            <div><dt>Visuals</dt><dd id="visual-count">--</dd></div>
           </dl>
         </aside>
       </section>
@@ -73,16 +76,64 @@
 
       <section class="news-grid" id="notes"></section>
 
+      <section class="section-title research-title">
+        <div>
+          <p class="eyebrow">Research Lens</p>
+          <h2>Robotics, embodied AI, and systems worth tracking.</h2>
+        </div>
+        <a href="https://www.alphaxiv.org/" target="_blank" rel="noreferrer">Open alphaXiv</a>
+      </section>
+
+      <section class="academic-grid">
+        <article class="paper-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Paper Stream</p>
+              <h2>Recent signals from arXiv.</h2>
+            </div>
+            <a href="https://arxiv.org/list/cs.RO/recent" target="_blank" rel="noreferrer">cs.RO</a>
+          </div>
+          <div class="paper-list" id="paper-list"></div>
+        </article>
+
+        <aside class="academic-side">
+          <article>
+            <p class="eyebrow">Study Trace</p>
+            <h3>Where to keep digging.</h3>
+            <div class="link-stack" id="resource-list"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Best Paper Watch</p>
+            <h3>Awards, finalists, and benchmark taste.</h3>
+            <div class="link-stack compact" id="award-list"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Lanes</p>
+            <div class="lane-list" id="lane-list"></div>
+          </article>
+        </aside>
+      </section>
+
       <section class="soft-grid">
         <article>
           <p class="eyebrow">Study Trace</p>
           <h2>Automation, perception, systems.</h2>
           <p>Keep one line of curiosity open: a paper, a tool, a dataset, a walk outside.</p>
+          <div class="soft-links">
+            <a href="https://www.ieee-ras.org/publications/t-ro" target="_blank" rel="noreferrer">IEEE T-RO</a>
+            <a href="https://paperswithcode.com/area/robots" target="_blank" rel="noreferrer">Papers with Code</a>
+            <a href="https://huggingface.co/papers" target="_blank" rel="noreferrer">HF Papers</a>
+          </div>
         </article>
         <article>
           <p class="eyebrow">Archive</p>
           <h2>Art · history · life</h2>
           <p>Small fragments age well when they are arranged with care.</p>
+          <div class="soft-links">
+            <a href="https://www.metmuseum.org/toah/" target="_blank" rel="noreferrer">Met Timeline</a>
+            <a href="https://www.smithsonianmag.com/" target="_blank" rel="noreferrer">Smithsonian</a>
+            <a href="https://www.bing.com/spotlight" target="_blank" rel="noreferrer">Bing Spotlight</a>
+          </div>
         </article>
       </section>
     </main>

@@ -195,9 +195,57 @@ function decodeHtml(text) {
     .trim();
 }
 
+function decodeXml(text) {
+  return String(text || "")
+    .replace(/<!\[CDATA\[|\]\]>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function arxivIdFromUrl(url) {
+  return String(url || "").replace(/^https?:\/\/arxiv.org\/abs\//, "").replace(/v\d+$/, "");
+}
+
 function extractClass(block, className) {
   const match = block.match(new RegExp(`<[^>]*class=["'][^"']*${className}[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, "i"));
   return match ? decodeHtml(match[1]) : "";
+}
+
+async function fetchArxivPapers() {
+  const query = ["cat:cs.RO", "cat:cs.AI", "cat:cs.LG", "cat:cs.CV", "cat:eess.SY"].join("+OR+");
+  const url = `https://export.arxiv.org/api/query?search_query=${query}&start=0&max_results=45&sortBy=submittedDate&sortOrder=descending`;
+  const xml = await fetchText(url);
+  const include = /(robot|robotic|manipulation|navigation|slam|embodied|vision-language|multimodal|foundation model|large language model|llm|vlm|autonomous|planning|control|reinforcement|diffusion policy|world model|humanoid|sim-to-real)/i;
+  const exclude = /(protein|genomic|genome|molecule|molecular|chemistry|catalyst|battery|material|clinical trial|patient cohort|radiology|pathology|oncology|drug)/i;
+
+  return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)]
+    .map(([, entry], index) => {
+      const title = decodeXml(entry.match(/<title>([\s\S]*?)<\/title>/)?.[1]);
+      const summary = decodeXml(entry.match(/<summary>([\s\S]*?)<\/summary>/)?.[1]);
+      const idUrl = decodeXml(entry.match(/<id>([\s\S]*?)<\/id>/)?.[1]);
+      const id = arxivIdFromUrl(idUrl);
+      return {
+        index: String(index + 1).padStart(2, "0"),
+        title,
+        summary,
+        authors: [...entry.matchAll(/<author>\s*<name>([\s\S]*?)<\/name>\s*<\/author>/g)].map((match) => decodeXml(match[1])).slice(0, 4),
+        categories: [...entry.matchAll(/<category term="([^"]+)"/g)].map((match) => match[1]),
+        published: decodeXml(entry.match(/<published>([\s\S]*?)<\/published>/)?.[1]).slice(0, 10),
+        arxiv: idUrl,
+        alphaxiv: id ? `https://www.alphaxiv.org/abs/${id}` : "",
+        pdf: id ? `https://arxiv.org/pdf/${id}` : ""
+      };
+    })
+    .filter((paper) => paper.title && include.test(`${paper.title} ${paper.summary}`))
+    .filter((paper) => !exclude.test(`${paper.title} ${paper.summary}`))
+    .slice(0, 9)
+    .map((paper, index) => ({ ...paper, index: String(index + 1).padStart(2, "0") }));
 }
 
 async function writeDefaultFeed(today) {
@@ -221,6 +269,8 @@ async function writeDefaultFeed(today) {
     .filter((item) => item.title.length >= 8)
     .slice(0, 12);
 
+  const papers = await fetchArxivPapers();
+
   mkdirSync(join(output, "data"), { recursive: true });
   writeFileSync(
     join(output, "data", "feed.json"),
@@ -232,6 +282,40 @@ async function writeDefaultFeed(today) {
         source: {
           name: "AI Daily",
           url: "https://news.stormzhang.ai/"
+        },
+        academic: {
+          papers,
+          awards: [
+            {
+              label: "RSS",
+              title: "Outstanding Paper Award archive",
+              url: "https://roboticsfoundation.org/awards/best-paper-award/"
+            },
+            {
+              label: "ICRA",
+              title: "Awards and finalists",
+              url: "https://ewh.ieee.org/soc/ras/conf/fullysponsored/icra/ICRA2025/2025.ieee-icra.org/program/awards-and-finalists/index.html"
+            },
+            {
+              label: "CoRL",
+              title: "Best Paper Awards",
+              url: "https://2025.corl.org/program/awards"
+            }
+          ],
+          resources: [
+            { label: "alphaXiv", title: "Social reading for arXiv papers", url: "https://www.alphaxiv.org/" },
+            { label: "arXiv cs.RO", title: "Robotics preprints", url: "https://arxiv.org/list/cs.RO/recent" },
+            { label: "IEEE T-RO", title: "Transactions on Robotics", url: "https://www.ieee-ras.org/publications/t-ro" },
+            { label: "Papers with Code", title: "Robotics tasks and benchmarks", url: "https://paperswithcode.com/area/robots" }
+          ],
+          lanes: [
+            "Robot learning",
+            "Embodied AI",
+            "SLAM / VIO",
+            "Manipulation",
+            "Autonomous systems",
+            "VLM / LLM agents"
+          ]
         },
         fallbackNotes: [
           { title: "读一页纸，留一张图，记录一个问题。", summary: "A quiet fallback signal.", source: "Local", time: today, url: "" },
