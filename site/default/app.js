@@ -6,6 +6,7 @@
     day: "numeric",
     weekday: "long"
   });
+  setupLightMode();
 
   let feed = { wallpapers: [], notes: [], fallbackNotes: [] };
   try {
@@ -24,6 +25,7 @@
   renderNews(notes);
   renderImages(feed.wallpapers || []);
   renderAcademic(feed.academic || {});
+  renderStudyArchive(feed.academic || {}, feed.archive || {});
   document.getElementById("story-count").textContent = String(notes.length || "--").padStart(2, "0");
   document.getElementById("visual-count").textContent = String((feed.wallpapers || []).length || "--").padStart(2, "0");
 
@@ -100,6 +102,7 @@ function renderAcademic(academic) {
   const awards = academic.awards?.length ? academic.awards : [
     { label: "RSS", title: "Outstanding Paper Award archive", url: "https://roboticsfoundation.org/awards/best-paper-award/" }
   ];
+  const projects = academic.projects || [];
   const lanes = academic.lanes?.length ? academic.lanes : ["Robot learning", "Embodied AI", "SLAM / VIO", "Autonomous systems"];
 
   document.getElementById("paper-count").textContent = String(papers.length || "--").padStart(2, "0");
@@ -128,6 +131,7 @@ function renderAcademic(academic) {
 
   renderLinkStack("resource-list", resources);
   renderLinkStack("award-list", awards);
+  renderLinkStack("project-list", projects);
 
   const laneList = document.getElementById("lane-list");
   laneList.innerHTML = "";
@@ -135,6 +139,63 @@ function renderAcademic(academic) {
     const item = document.createElement("span");
     item.textContent = lane;
     laneList.append(item);
+  }
+}
+
+function renderStudyArchive(academic, archive) {
+  const studySources = [
+    ...(academic.resources || []),
+    ...(academic.projects || [])
+  ];
+  renderSourceGrid("study-source-grid", studySources.slice(0, 8));
+  renderSourceGrid("archive-source-grid", archive.sources || []);
+  renderArchiveGrid(archive.items || []);
+}
+
+function renderSourceGrid(id, links) {
+  const grid = document.getElementById(id);
+  grid.innerHTML = "";
+  for (const link of links) {
+    const item = document.createElement("a");
+    item.href = link.url || "#";
+    item.target = "_blank";
+    item.rel = "noreferrer";
+    item.className = "source-card";
+    item.innerHTML = `
+      <span>${escapeHtml(link.label || "Source")}</span>
+      <strong>${escapeHtml(link.title || link.url || "")}</strong>
+      <p>${escapeHtml(link.summary || "Structured source for the daily page.")}</p>
+    `;
+    grid.append(item);
+  }
+}
+
+function renderArchiveGrid(items) {
+  const grid = document.getElementById("archive-grid");
+  grid.innerHTML = "";
+  const fallback = [
+    {
+      label: "Archive",
+      title: "Open a public collection",
+      summary: "The workflow could not refresh archive cards this time, so the page keeps a stable public source ready.",
+      url: "https://publicdomainreview.org/"
+    }
+  ];
+
+  for (const item of (items.length ? items : fallback)) {
+    const card = document.createElement("a");
+    card.className = `archive-card${item.image ? " has-image" : ""}`;
+    card.href = item.url || "#";
+    card.target = "_blank";
+    card.rel = "noreferrer";
+    if (item.image) card.style.setProperty("--image", `url("${item.image}")`);
+    card.innerHTML = `
+      <span>${escapeHtml(item.label || "Archive")}</span>
+      <h3>${escapeHtml(item.title || "")}</h3>
+      <p>${escapeHtml(trimText(item.summary, 180))}</p>
+      <em>${escapeHtml(item.meta || "")}</em>
+    `;
+    grid.append(card);
   }
 }
 
@@ -146,9 +207,23 @@ function renderLinkStack(id, links) {
     item.href = link.url || "#";
     item.target = "_blank";
     item.rel = "noreferrer";
-    item.innerHTML = `<span>${escapeHtml(link.label || "Link")}</span><strong>${escapeHtml(link.title || link.url || "")}</strong>`;
+    item.innerHTML = `<span>${escapeHtml(link.label || "Link")}</span><strong>${escapeHtml(link.title || link.url || "")}</strong>${link.summary ? `<p>${escapeHtml(link.summary)}</p>` : ""}`;
     stack.append(item);
   }
+}
+
+function setupLightMode() {
+  const button = document.getElementById("light-toggle");
+  if (!button) return;
+
+  button.addEventListener("mouseenter", () => document.body.classList.add("field-light-preview"));
+  button.addEventListener("mouseleave", () => document.body.classList.remove("field-light-preview"));
+  button.addEventListener("focus", () => document.body.classList.add("field-light-preview"));
+  button.addEventListener("blur", () => document.body.classList.remove("field-light-preview"));
+  button.addEventListener("click", () => {
+    document.body.classList.toggle("field-light");
+    button.setAttribute("aria-pressed", document.body.classList.contains("field-light") ? "true" : "false");
+  });
 }
 
 function trimText(text, length) {

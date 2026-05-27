@@ -212,6 +212,18 @@ function arxivIdFromUrl(url) {
   return String(url || "").replace(/^https?:\/\/arxiv.org\/abs\//, "").replace(/v\d+$/, "");
 }
 
+function dayIndex(today, length, salt = 0) {
+  if (!length) return 0;
+  const [year, month, day] = today.split("-").map(Number);
+  const value = Date.UTC(year, month - 1, day) / 86400000;
+  return Math.abs(Math.floor(value + salt)) % length;
+}
+
+function compactText(text, length = 220) {
+  const value = decodeHtml(text);
+  return value.length > length ? `${value.slice(0, length - 1)}...` : value;
+}
+
 function extractClass(block, className) {
   const match = block.match(new RegExp(`<[^>]*class=["'][^"']*${className}[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, "i"));
   return match ? decodeHtml(match[1]) : "";
@@ -248,6 +260,88 @@ async function fetchArxivPapers() {
     .map((paper, index) => ({ ...paper, index: String(index + 1).padStart(2, "0") }));
 }
 
+async function fetchMetObject(today) {
+  const queries = ["landscape", "sea", "sunset", "garden", "mountain", "study", "machine", "map"];
+  const query = queries[dayIndex(today, queries.length, 11)];
+  const search = await fetchJson(`https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=${encodeURIComponent(query)}`);
+  const ids = search?.objectIDs ?? [];
+
+  for (let offset = 0; offset < Math.min(ids.length, 12); offset++) {
+    const id = ids[(dayIndex(today, ids.length, offset) + offset) % ids.length];
+    const item = await fetchJson(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
+    if (!item?.primaryImageSmall) continue;
+    if (String(item.title || "").length > 96) continue;
+    if (/(book|catalog|catalogue|coin|fragment|textile|sample|plate)/i.test(`${item.objectName || ""} ${item.classification || ""}`)) continue;
+    return {
+      label: "Met Open Access",
+      title: item.title || "Met collection object",
+      summary: [item.artistDisplayName, item.objectDate, item.medium].filter(Boolean).join(" · "),
+      image: item.primaryImageSmall,
+      url: item.objectURL || `https://www.metmuseum.org/art/collection/search/${id}`,
+      meta: item.department || "The Metropolitan Museum of Art"
+    };
+  }
+  return null;
+}
+
+async function fetchArticArtwork(today) {
+  const queries = ["landscape", "architecture", "light", "water", "study", "city", "history"];
+  const query = queries[dayIndex(today, queries.length, 23)];
+  const url = `https://api.artic.edu/api/v1/artworks/search?q=${encodeURIComponent(query)}&query[term][is_public_domain]=true&limit=12&fields=id,title,image_id,artist_title,date_display,thumbnail`;
+  const search = await fetchJson(url);
+  const items = (search?.data ?? []).filter((item) => item.image_id);
+  const item = items[dayIndex(today, items.length, 5)];
+  if (!item) return null;
+  return {
+    label: "Art Institute",
+    title: item.title || "Public domain artwork",
+    summary: [item.artist_title, item.date_display, item.thumbnail?.alt_text].filter(Boolean).join(" · "),
+    image: `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`,
+    url: `https://www.artic.edu/artworks/${item.id}`,
+    meta: "Art Institute of Chicago"
+  };
+}
+
+async function fetchApod() {
+  const item = await fetchJson("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true");
+  if (!item?.url) return null;
+  return {
+    label: "NASA APOD",
+    title: item.title || "Astronomy Picture of the Day",
+    summary: compactText(item.explanation, 190),
+    image: item.media_type === "image" ? item.url : item.thumbnail_url,
+    url: item.hdurl || item.url || "https://apod.nasa.gov/apod/astropix.html",
+    meta: item.date || "Astronomy Picture of the Day"
+  };
+}
+
+async function fetchOnThisDay(today) {
+  const [, month, day] = today.split("-");
+  const data = await fetchJson(`https://en.wikipedia.org/api/rest_v1/feed/onthisday/selected/${month}/${day}`);
+  const events = data?.selected ?? [];
+  const event = events[dayIndex(today, events.length, 31)];
+  if (!event) return null;
+  const page = event.pages?.[0];
+  return {
+    label: "On This Day",
+    title: `${event.year}: ${page?.titles?.normalized || "A historical signal"}`,
+    summary: compactText(event.text, 190),
+    image: page?.thumbnail?.source || "",
+    url: page?.content_urls?.desktop?.page || "https://en.wikipedia.org/wiki/Main_Page",
+    meta: "Wikipedia selected events"
+  };
+}
+
+async function fetchArchiveItems(today) {
+  const items = await Promise.all([
+    fetchMetObject(today),
+    fetchArticArtwork(today),
+    fetchApod(),
+    fetchOnThisDay(today)
+  ]);
+  return items.filter(Boolean);
+}
+
 async function writeDefaultFeed(today) {
   const bing = await fetchJson("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=zh-CN");
   const wallpapers = (bing?.images ?? []).map((item) => ({
@@ -270,6 +364,7 @@ async function writeDefaultFeed(today) {
     .slice(0, 12);
 
   const papers = await fetchArxivPapers();
+  const archiveItems = await fetchArchiveItems(today);
 
   mkdirSync(join(output, "data"), { recursive: true });
   writeFileSync(
@@ -306,7 +401,29 @@ async function writeDefaultFeed(today) {
             { label: "alphaXiv", title: "Social reading for arXiv papers", url: "https://www.alphaxiv.org/" },
             { label: "arXiv cs.RO", title: "Robotics preprints", url: "https://arxiv.org/list/cs.RO/recent" },
             { label: "IEEE T-RO", title: "Transactions on Robotics", url: "https://www.ieee-ras.org/publications/t-ro" },
-            { label: "Papers with Code", title: "Robotics tasks and benchmarks", url: "https://paperswithcode.com/area/robots" }
+            { label: "Papers with Code", title: "Robotics tasks and benchmarks", url: "https://paperswithcode.com/area/robots" },
+            { label: "Semantic Scholar", title: "Citation graph and paper metadata", url: "https://www.semanticscholar.org/product/api" },
+            { label: "Hugging Face", title: "Daily ML paper reading surface", url: "https://huggingface.co/papers" }
+          ],
+          projects: [
+            {
+              label: "MCP",
+              title: "academic-search-mcp",
+              summary: "Multi-source academic search as an MCP server; useful as a design reference for future deeper search.",
+              url: "https://github.com/Linductor-alkaid/academic-search-mcp"
+            },
+            {
+              label: "Graph",
+              title: "OpenAlex",
+              summary: "Open scholarly graph for works, authors, venues, institutions, and topic exploration.",
+              url: "https://openalex.org/"
+            },
+            {
+              label: "Benchmarks",
+              title: "Papers with Code",
+              summary: "Task pages and benchmark tables make papers easier to compare after the first skim.",
+              url: "https://paperswithcode.com/"
+            }
           ],
           lanes: [
             "Robot learning",
@@ -315,6 +432,41 @@ async function writeDefaultFeed(today) {
             "Manipulation",
             "Autonomous systems",
             "VLM / LLM agents"
+          ]
+        },
+        archive: {
+          items: archiveItems,
+          sources: [
+            {
+              label: "Met Timeline",
+              title: "Curator-written art history essays",
+              summary: "Reliable long-form context for art, objects, places, and eras.",
+              url: "https://www.metmuseum.org/toah/"
+            },
+            {
+              label: "ArtIC API",
+              title: "Public-domain artworks with IIIF images",
+              summary: "Good for daily visual cards because metadata and images are structured.",
+              url: "https://api.artic.edu/docs/"
+            },
+            {
+              label: "Wikimedia",
+              title: "On-this-day historical events",
+              summary: "Daily historical hooks that can connect the page to memory and time.",
+              url: "https://api.wikimedia.org/wiki/Feed_API/Reference/On_this_day"
+            },
+            {
+              label: "NASA APOD",
+              title: "Astronomy image and explanation",
+              summary: "A daily image source that keeps the archive feeling open and planetary.",
+              url: "https://api.nasa.gov/"
+            },
+            {
+              label: "Public Domain Review",
+              title: "Essays and collections from cultural archives",
+              summary: "A human-curated reading source for strange, beautiful archival material.",
+              url: "https://publicdomainreview.org/"
+            }
           ]
         },
         fallbackNotes: [

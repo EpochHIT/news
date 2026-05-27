@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="aurora" aria-hidden="true"></div>
-    <main class="shell">
+    <main class="shell" id="top">
       <header class="topbar">
         <a class="brand" href=".">NEWS</a>
         <time id="today"></time>
@@ -25,6 +25,13 @@
         <aside class="signal-card">
           <p class="eyebrow">Brief</p>
           <h2>Today in view.</h2>
+          <nav class="brief-nav" aria-label="Page sections">
+            <a href="#lead" data-tip="Lead story and daily image field.">Lead</a>
+            <a href="#hot-notes" data-tip="Readable links from the daily news stream.">Notes</a>
+            <a href="#research" data-tip="arXiv robotics and AI papers refreshed by workflow.">Research</a>
+            <a href="#study-archive" data-tip="Study sources, open projects, artworks, history, and daily archive signals.">Trace</a>
+            <button id="light-toggle" type="button" data-tip="Hover to preview daylight. Click to keep the bright field.">Light</button>
+          </nav>
           <div class="signal-lines" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
@@ -44,7 +51,7 @@
         <div id="birthday-list" class="birthday-list"></div>
       </section>
 
-      <section class="lead-grid">
+      <section class="lead-grid" id="lead">
         <article class="feature-news" id="feature-news">
           <p class="eyebrow">Top Story</p>
           <a id="feature-link" href="https://news.stormzhang.ai/" target="_blank" rel="noreferrer">
@@ -66,7 +73,7 @@
         </section>
       </section>
 
-      <section class="section-title">
+      <section class="section-title" id="hot-notes">
         <div>
           <p class="eyebrow">Hot Notes</p>
           <h2>Readable events, not just links.</h2>
@@ -76,7 +83,7 @@
 
       <section class="news-grid" id="notes"></section>
 
-      <section class="section-title research-title">
+      <section class="section-title research-title" id="research">
         <div>
           <p class="eyebrow">Research Lens</p>
           <h2>Robotics, embodied AI, and systems worth tracking.</h2>
@@ -103,6 +110,11 @@
             <div class="link-stack" id="resource-list"></div>
           </article>
           <article>
+            <p class="eyebrow">Open Projects</p>
+            <h3>Ideas worth borrowing carefully.</h3>
+            <div class="link-stack compact" id="project-list"></div>
+          </article>
+          <article>
             <p class="eyebrow">Best Paper Watch</p>
             <h3>Awards, finalists, and benchmark taste.</h3>
             <div class="link-stack compact" id="award-list"></div>
@@ -114,26 +126,29 @@
         </aside>
       </section>
 
-      <section class="soft-grid">
-        <article>
-          <p class="eyebrow">Study Trace</p>
-          <h2>Automation, perception, systems.</h2>
-          <p>Keep one line of curiosity open: a paper, a tool, a dataset, a walk outside.</p>
-          <div class="soft-links">
-            <a href="https://www.ieee-ras.org/publications/t-ro" target="_blank" rel="noreferrer">IEEE T-RO</a>
-            <a href="https://paperswithcode.com/area/robots" target="_blank" rel="noreferrer">Papers with Code</a>
-            <a href="https://huggingface.co/papers" target="_blank" rel="noreferrer">HF Papers</a>
+      <section class="study-archive" id="study-archive">
+        <article class="trace-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Study Trace</p>
+              <h2>Automation, perception, systems.</h2>
+              <p>Keep one line of curiosity open: a paper, a tool, a dataset, a walk outside.</p>
+            </div>
+            <a href="#research">Back to research</a>
           </div>
+          <div class="source-grid" id="study-source-grid"></div>
         </article>
-        <article>
-          <p class="eyebrow">Archive</p>
-          <h2>Art · history · life</h2>
-          <p>Small fragments age well when they are arranged with care.</p>
-          <div class="soft-links">
-            <a href="https://www.metmuseum.org/toah/" target="_blank" rel="noreferrer">Met Timeline</a>
-            <a href="https://www.smithsonianmag.com/" target="_blank" rel="noreferrer">Smithsonian</a>
-            <a href="https://www.bing.com/spotlight" target="_blank" rel="noreferrer">Bing Spotlight</a>
+        <article class="archive-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Archive</p>
+              <h2>Art · history · life</h2>
+              <p>Small fragments age well when they are arranged with care.</p>
+            </div>
+            <a href="https://publicdomainreview.org/" target="_blank" rel="noreferrer">Open archive</a>
           </div>
+          <div class="archive-grid" id="archive-grid"></div>
+          <div class="source-grid compact" id="archive-source-grid"></div>
         </article>
       </section>
     </main>
