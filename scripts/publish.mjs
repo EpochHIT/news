@@ -224,6 +224,15 @@ function compactText(text, length = 220) {
   return value.length > length ? `${value.slice(0, length - 1)}...` : value;
 }
 
+function percentChange(first, last) {
+  if (!Number.isFinite(first) || !Number.isFinite(last) || first === 0) return 0;
+  return ((last - first) / first) * 100;
+}
+
+function lastFinite(values) {
+  return [...values].reverse().find((value) => Number.isFinite(value)) ?? 0;
+}
+
 function extractClass(block, className) {
   const match = block.match(new RegExp(`<[^>]*class=["'][^"']*${className}[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, "i"));
   return match ? decodeHtml(match[1]) : "";
@@ -258,6 +267,102 @@ async function fetchArxivPapers() {
     .filter((paper) => !exclude.test(`${paper.title} ${paper.summary}`))
     .slice(0, 9)
     .map((paper, index) => ({ ...paper, index: String(index + 1).padStart(2, "0") }));
+}
+
+async function fetchYahooSeries(item) {
+  const encoded = encodeURIComponent(item.symbol);
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encoded}?range=1mo&interval=1d`;
+  const data = await fetchJson(url);
+  const result = data?.chart?.result?.[0];
+  const quote = result?.indicators?.quote?.[0];
+  const rows = (quote?.close ?? [])
+    .map((close, index) => ({
+      open: quote?.open?.[index],
+      high: quote?.high?.[index],
+      low: quote?.low?.[index],
+      close
+    }))
+    .filter((row) => [row.open, row.high, row.low, row.close].every(Number.isFinite));
+  const closes = rows.map((row) => row.close);
+  if (closes.length < 2) return null;
+
+  return {
+    ...item,
+    price: lastFinite(closes),
+    currency: result?.meta?.currency || item.currency || "",
+    change: percentChange(closes[0], lastFinite(closes)),
+    closes: closes.slice(-22).map((value) => Number(value.toFixed(3))),
+    candles: rows.slice(-12).map((row) => ({
+      open: Number(row.open.toFixed(3)),
+      high: Number(row.high.toFixed(3)),
+      low: Number(row.low.toFixed(3)),
+      close: Number(row.close.toFixed(3))
+    })),
+    source: "Yahoo Finance chart"
+  };
+}
+
+async function fetchFinance(notes) {
+  const instruments = [
+    { symbol: "^GSPC", label: "S&P 500", group: "US", url: "https://finance.yahoo.com/quote/%5EGSPC/" },
+    { symbol: "^IXIC", label: "Nasdaq", group: "US", url: "https://finance.yahoo.com/quote/%5EIXIC/" },
+    { symbol: "NVDA", label: "NVIDIA", group: "AI", url: "https://finance.yahoo.com/quote/NVDA/" },
+    { symbol: "MSFT", label: "Microsoft", group: "AI", url: "https://finance.yahoo.com/quote/MSFT/" },
+    { symbol: "BABA", label: "Alibaba ADR", group: "China", url: "https://finance.yahoo.com/quote/BABA/" },
+    { symbol: "0700.HK", label: "Tencent", group: "HK", url: "https://finance.yahoo.com/quote/0700.HK/" },
+    { symbol: "1810.HK", label: "Xiaomi", group: "HK", url: "https://finance.yahoo.com/quote/1810.HK/" },
+    { symbol: "002594.SZ", label: "BYD", group: "CN", url: "https://finance.yahoo.com/quote/002594.SZ/" },
+    { symbol: "300750.SZ", label: "CATL", group: "CN", url: "https://finance.yahoo.com/quote/300750.SZ/" },
+    { symbol: "CNH=X", label: "USD/CNH", group: "Macro", url: "https://finance.yahoo.com/quote/CNH=X/" },
+    { symbol: "GC=F", label: "Gold", group: "Macro", url: "https://finance.yahoo.com/quote/GC=F/" },
+    { symbol: "CL=F", label: "Crude Oil", group: "Macro", url: "https://finance.yahoo.com/quote/CL=F/" }
+  ];
+
+  const markets = (await Promise.all(instruments.map(fetchYahooSeries))).filter(Boolean);
+  const text = (notes || []).map((note) => `${note.title} ${note.summary}`).join(" ").toLowerCase();
+  const keywordMap = [
+    ["ai", "AI"],
+    ["openai", "OpenAI"],
+    ["nvidia", "NVIDIA"],
+    ["deepseek", "DeepSeek"],
+    ["robot", "Robotics"],
+    ["unitree", "Unitree"],
+    ["spacex", "SpaceX"],
+    ["tesla", "Tesla"],
+    ["china", "China"],
+    ["rate", "Rates"],
+    ["tariff", "Tariffs"],
+    ["chip", "Chips"]
+  ];
+  const keywords = keywordMap.filter(([needle]) => text.includes(needle)).map(([, label]) => label).slice(0, 8);
+
+  return {
+    markets,
+    keywords,
+    privateWatch: [
+      {
+        label: "DeepSeek",
+        summary: "Private AI company: track model releases, compute cost narratives, and China AI ecosystem signals.",
+        url: "https://www.deepseek.com/"
+      },
+      {
+        label: "Unitree",
+        summary: "Private robotics company: track humanoid demos, developer kits, and embodied-AI adoption.",
+        url: "https://www.unitree.com/"
+      },
+      {
+        label: "SpaceX",
+        summary: "Private aerospace company: track launch cadence, Starship milestones, Starlink economics, and policy signals.",
+        url: "https://www.spacex.com/"
+      }
+    ],
+    sources: [
+      { label: "Yahoo Chart", title: "Daily market series for mini charts", url: "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=1mo&interval=1d" },
+      { label: "FRED", title: "US macro data source for a future deeper panel", url: "https://fred.stlouisfed.org/" },
+      { label: "World Bank", title: "Long-run country macro indicators", url: "https://data.worldbank.org/" },
+      { label: "Stooq", title: "Historical market data reference", url: "https://stooq.com/db/h/" }
+    ]
+  };
 }
 
 async function fetchMetObject(today) {
@@ -364,7 +469,16 @@ async function writeDefaultFeed(today) {
     .slice(0, 12);
 
   const papers = await fetchArxivPapers();
+  const finance = await fetchFinance(notes);
   const archiveItems = await fetchArchiveItems(today);
+  const archiveVisuals = archiveItems
+    .filter((item) => item.image)
+    .map((item) => ({
+      title: item.title,
+      caption: [item.label, item.meta].filter(Boolean).join(" · "),
+      url: item.image
+    }));
+  const visualWallpapers = [...wallpapers.slice(0, 5), ...archiveVisuals].slice(0, 9);
 
   mkdirSync(join(output, "data"), { recursive: true });
   writeFileSync(
@@ -372,7 +486,7 @@ async function writeDefaultFeed(today) {
     JSON.stringify(
       {
         date: today,
-        wallpapers,
+        wallpapers: visualWallpapers,
         notes,
         source: {
           name: "AI Daily",
@@ -434,6 +548,7 @@ async function writeDefaultFeed(today) {
             "VLM / LLM agents"
           ]
         },
+        finance,
         archive: {
           items: archiveItems,
           sources: [

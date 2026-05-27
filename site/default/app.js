@@ -24,10 +24,12 @@
   renderLead(notes[0]);
   renderNews(notes);
   renderImages(feed.wallpapers || []);
+  renderFinance(feed.finance || {});
   renderAcademic(feed.academic || {});
   renderStudyArchive(feed.academic || {}, feed.archive || {});
   document.getElementById("story-count").textContent = String(notes.length || "--").padStart(2, "0");
   document.getElementById("visual-count").textContent = String((feed.wallpapers || []).length || "--").padStart(2, "0");
+  document.getElementById("market-count").textContent = String((feed.finance?.markets || []).length || "--").padStart(2, "0");
 
   let birthdayData = { events: [] };
   try {
@@ -140,6 +142,89 @@ function renderAcademic(academic) {
     item.textContent = lane;
     laneList.append(item);
   }
+}
+
+function renderFinance(finance) {
+  const markets = finance.markets || [];
+  const grid = document.getElementById("ticker-grid");
+  grid.innerHTML = "";
+
+  for (const item of markets.slice(0, 12)) {
+    const card = document.createElement("a");
+    const up = Number(item.change || 0) >= 0;
+    card.className = `ticker-card ${up ? "up" : "down"}`;
+    card.href = item.url || "https://finance.yahoo.com/markets/";
+    card.target = "_blank";
+    card.rel = "noreferrer";
+    card.innerHTML = `
+      <span>${escapeHtml(item.group || item.symbol)}</span>
+      <h3>${escapeHtml(item.label || item.symbol)}</h3>
+      <strong>${formatPrice(item.price, item.currency)}</strong>
+      <em>${up ? "+" : ""}${Number(item.change || 0).toFixed(2)}% · 1M</em>
+      ${sparklineSvg(item.closes || [], up)}
+      ${candlesSvg(item.candles || [], up)}
+    `;
+    grid.append(card);
+  }
+
+  renderChipList("finance-keywords", finance.keywords?.length ? finance.keywords : ["AI", "Rates", "China", "Chips"]);
+  renderLinkStack("private-watch", finance.privateWatch || []);
+  renderLinkStack("finance-sources", finance.sources || []);
+}
+
+function renderChipList(id, items) {
+  const list = document.getElementById(id);
+  list.innerHTML = "";
+  for (const item of items) {
+    const chip = document.createElement("span");
+    chip.textContent = item;
+    list.append(chip);
+  }
+}
+
+function formatPrice(value, currency) {
+  const number = Number(value || 0);
+  const formatted = number >= 1000 ? number.toLocaleString("en-US", { maximumFractionDigits: 1 }) : number.toFixed(number >= 10 ? 2 : 3);
+  return `${formatted}${currency ? ` ${currency}` : ""}`;
+}
+
+function sparklineSvg(values, up) {
+  if (!values.length) return "";
+  const width = 220;
+  const height = 58;
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const span = max - min || 1;
+  const points = values.map((value, index) => {
+    const x = (index / Math.max(1, values.length - 1)) * width;
+    const y = height - ((value - min) / span) * (height - 8) - 4;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(" ");
+  return `<svg class="sparkline" viewBox="0 0 ${width} ${height}" aria-hidden="true"><polyline points="${points}" class="${up ? "line-up" : "line-down"}"></polyline></svg>`;
+}
+
+function candlesSvg(candles, up) {
+  if (!candles.length) return "";
+  const width = 220;
+  const height = 54;
+  const lows = candles.map((item) => item.low);
+  const highs = candles.map((item) => item.high);
+  const min = Math.min(...lows);
+  const max = Math.max(...highs);
+  const span = max - min || 1;
+  const step = width / candles.length;
+  const bars = candles.map((item, index) => {
+    const x = index * step + step / 2;
+    const high = height - ((item.high - min) / span) * (height - 8) - 4;
+    const low = height - ((item.low - min) / span) * (height - 8) - 4;
+    const open = height - ((item.open - min) / span) * (height - 8) - 4;
+    const close = height - ((item.close - min) / span) * (height - 8) - 4;
+    const rising = item.close >= item.open;
+    const bodyTop = Math.min(open, close);
+    const bodyHeight = Math.max(2, Math.abs(close - open));
+    return `<g class="${rising ? "candle-up" : "candle-down"}"><line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${high.toFixed(1)}" y2="${low.toFixed(1)}"></line><rect x="${(x - 3).toFixed(1)}" y="${bodyTop.toFixed(1)}" width="6" height="${bodyHeight.toFixed(1)}"></rect></g>`;
+  }).join("");
+  return `<svg class="candles" viewBox="0 0 ${width} ${height}" aria-hidden="true">${bars}</svg>`;
 }
 
 function renderStudyArchive(academic, archive) {

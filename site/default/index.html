@@ -28,6 +28,7 @@
           <nav class="brief-nav" aria-label="Page sections">
             <a href="#lead" data-tip="Lead story and daily image field.">Lead</a>
             <a href="#hot-notes" data-tip="Readable links from the daily news stream.">Notes</a>
+            <a href="#markets" data-tip="Global market pulse, China-US economy, AI companies, and macro instruments.">Markets</a>
             <a href="#research" data-tip="arXiv robotics and AI papers refreshed by workflow.">Research</a>
             <a href="#study-archive" data-tip="Study sources, open projects, artworks, history, and daily archive signals.">Trace</a>
             <button id="light-toggle" type="button" data-tip="Hover to preview daylight. Click to keep the bright field.">Light</button>
@@ -39,6 +40,7 @@
             <div><dt>Stories</dt><dd id="story-count">--</dd></div>
             <div><dt>Papers</dt><dd id="paper-count">--</dd></div>
             <div><dt>Visuals</dt><dd id="visual-count">--</dd></div>
+            <div><dt>Markets</dt><dd id="market-count">--</dd></div>
           </dl>
         </aside>
       </section>
@@ -82,6 +84,44 @@
       </section>
 
       <section class="news-grid" id="notes"></section>
+
+      <section class="section-title market-title" id="markets">
+        <div>
+          <p class="eyebrow">World Economy</p>
+          <h2>Markets, companies, and macro signals.</h2>
+        </div>
+        <a href="https://finance.yahoo.com/markets/" target="_blank" rel="noreferrer">Open markets</a>
+      </section>
+
+      <section class="market-grid">
+        <article class="market-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">K-Line Pulse</p>
+              <h2>AI, China, US, Hong Kong, commodities.</h2>
+            </div>
+            <span id="market-updated">Daily refresh</span>
+          </div>
+          <div class="ticker-grid" id="ticker-grid"></div>
+        </article>
+
+        <aside class="market-side">
+          <article>
+            <p class="eyebrow">News Coupling</p>
+            <h3>Keywords from today's stream.</h3>
+            <div class="lane-list finance-keywords" id="finance-keywords"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Private Watch</p>
+            <h3>Not listed, still important.</h3>
+            <div class="link-stack compact" id="private-watch"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Data Sources</p>
+            <div class="link-stack compact" id="finance-sources"></div>
+          </article>
+        </aside>
+      </section>
 
       <section class="section-title research-title" id="research">
         <div>
