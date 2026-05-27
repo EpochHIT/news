@@ -51,6 +51,23 @@ body.field-light-preview {
     var(--bg);
 }
 
+body.field-light.field-dark-preview {
+  color-scheme: dark;
+  --bg: #0b1115;
+  --ink: #f4fbf8;
+  --muted: #a9bbb8;
+  --line: rgba(214, 246, 237, 0.16);
+  --panel: rgba(12, 20, 24, 0.76);
+  --accent: #72f0c8;
+  --blue: #72c7ff;
+  --warm: #ffc883;
+  background:
+    linear-gradient(115deg, rgba(255, 200, 131, 0.12), transparent 28%),
+    linear-gradient(230deg, rgba(114, 199, 255, 0.1), transparent 44%),
+    linear-gradient(180deg, #0a1014, #10171a 48%, #090e12),
+    var(--bg);
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -88,6 +105,15 @@ body.field-light-preview .aurora {
     linear-gradient(90deg, rgba(252, 243, 220, 0.65), rgba(214, 242, 238, 0.3));
   background-size: 336px 336px, 420px 420px, auto;
   opacity: 0.98;
+}
+
+body.field-light.field-dark-preview .aurora {
+  background:
+    repeating-linear-gradient(100deg, transparent 0 84px, rgba(114, 240, 200, 0.08) 84px 86px, transparent 86px 168px),
+    repeating-linear-gradient(24deg, transparent 0 120px, rgba(255, 200, 131, 0.07) 120px 121px, transparent 121px 210px),
+    linear-gradient(90deg, rgba(7, 20, 25, 0.52), rgba(18, 18, 15, 0.2));
+  background-size: 336px 336px, 420px 420px, auto;
+  opacity: 0.7;
 }
 
 @keyframes fieldShift {
@@ -840,11 +866,21 @@ body.field-light-preview .source-card {
   background: rgba(255, 255, 255, 0.42);
 }
 
+body.field-light.field-dark-preview .source-card {
+  background: rgba(0, 0, 0, 0.14);
+}
+
 body.field-light .ticker-card,
 body.field-light-preview .ticker-card {
   background:
     linear-gradient(145deg, rgba(0, 111, 168, 0.08), transparent 42%),
     rgba(255, 255, 255, 0.42);
+}
+
+body.field-light.field-dark-preview .ticker-card {
+  background:
+    linear-gradient(145deg, rgba(114, 199, 255, 0.08), transparent 42%),
+    rgba(0, 0, 0, 0.16);
 }
 
 .birthday-signal {

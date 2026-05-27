@@ -301,14 +301,33 @@ function setupLightMode() {
   const button = document.getElementById("light-toggle");
   if (!button) return;
 
-  button.addEventListener("mouseenter", () => document.body.classList.add("field-light-preview"));
-  button.addEventListener("mouseleave", () => document.body.classList.remove("field-light-preview"));
-  button.addEventListener("focus", () => document.body.classList.add("field-light-preview"));
-  button.addEventListener("blur", () => document.body.classList.remove("field-light-preview"));
+  const updateButton = () => {
+    const isLight = document.body.classList.contains("field-light");
+    button.textContent = isLight ? "Dark" : "Light";
+    button.dataset.tip = isLight
+      ? "Hover to preview night. Click to keep the dark field."
+      : "Hover to preview daylight. Click to keep the bright field.";
+    button.setAttribute("aria-pressed", isLight ? "true" : "false");
+  };
+  const addPreview = () => {
+    const isLight = document.body.classList.contains("field-light");
+    document.body.classList.toggle("field-dark-preview", isLight);
+    document.body.classList.toggle("field-light-preview", !isLight);
+  };
+  const removePreview = () => {
+    document.body.classList.remove("field-light-preview", "field-dark-preview");
+  };
+
+  button.addEventListener("mouseenter", addPreview);
+  button.addEventListener("mouseleave", removePreview);
+  button.addEventListener("focus", addPreview);
+  button.addEventListener("blur", removePreview);
   button.addEventListener("click", () => {
+    removePreview();
     document.body.classList.toggle("field-light");
-    button.setAttribute("aria-pressed", document.body.classList.contains("field-light") ? "true" : "false");
+    updateButton();
   });
+  updateButton();
 }
 
 function trimText(text, length) {
