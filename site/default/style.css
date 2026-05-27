@@ -968,6 +968,26 @@ body.field-light-preview .ticker-card {
   font-style: normal;
 }
 
+.view-counter {
+  position: fixed;
+  right: 12px;
+  bottom: 10px;
+  z-index: 12;
+  display: inline-flex;
+  opacity: 0.48;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.view-counter:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.view-counter img {
+  display: block;
+  height: 20px;
+}
+
 @media (max-width: 920px) {
   .hero,
   .lead-grid,
@@ -1049,5 +1069,11 @@ body.field-light-preview .ticker-card {
 
   .news-card {
     min-height: auto;
+  }
+
+  .view-counter {
+    right: 8px;
+    bottom: 8px;
+    opacity: 0.36;
   }
 }
