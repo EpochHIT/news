@@ -19,28 +19,27 @@
     <section class="intro panel-dark">
       <div class="intro-lid intro-lid-top"></div>
       <div class="intro-lid intro-lid-bottom"></div>
-      <p class="intro-word">FIELD</p>
+      <div class="intro-grid" aria-hidden="true"></div>
+      <p class="intro-word" data-text="FIELD">FIELD</p>
+      <div class="intro-status">
+        <span>DAILY REFRESH</span>
+        <span id="machine-count">00 MACHINES</span>
+        <span id="file-count">00 FILES</span>
+      </div>
       <p class="intro-count">000</p>
     </section>
 
-    <section class="ledger chapter panel-light" id="ledger">
-      <div class="pin ledger-stage">
-        <p class="section-tag">01 / FUNDS</p>
-        <div class="ledger-display">
-          <p>PUBLIC DEBT SERIES</p>
-          <strong id="debt-total">LOADING</strong>
-          <span id="debt-change"></span>
-          <div id="indicator-list" class="indicator-list"></div>
-        </div>
+    <section class="machines panel-dark" id="machines">
+      <div class="machines-pin">
+        <header>
+          <p class="section-tag">01 / MACHINES</p>
+          <div id="machine-kinds" class="machine-kinds"></div>
+        </header>
+        <div id="machine-track" class="machine-track"></div>
       </div>
     </section>
 
-    <section class="machines panel-dark" id="machines">
-      <header><p class="section-tag">02 / MACHINES</p></header>
-      <div id="machine-track" class="machine-track"></div>
-    </section>
-
-    <section class="wall panel-light" id="wall">
+    <section class="wall panel-dark" id="wall">
       <div class="wall-pin">
         <div class="wall-tilt">
           <div class="wall-col"></div>
@@ -52,7 +51,7 @@
 
     <section class="archive-field panel-dark" id="archive">
       <div class="archive-pin">
-        <p class="section-tag archive-tag">03 / FILES + SOURCES</p>
+        <p class="section-tag archive-tag">02 / FILES + SOURCES</p>
         <div class="archive-viewport" id="archive-viewport">
           <div id="archive-orbit" class="archive-orbit"></div>
           <button class="archive-core" id="archive-core" type="button">

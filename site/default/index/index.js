@@ -4,17 +4,22 @@ let orbitRotation = 0;
 let orbitScrollRotation = 0;
 let dragStart = null;
 let dragged = false;
+let introIndex = 0;
+let archiveVisible = false;
 
 (async function () {
   const data = await fetch("../data/public-index.json", { cache: "no-store" }).then((response) => response.json());
   const machines = data.machines || data.motorsport || [];
-  setIntroImage(machines);
-  renderLedger(data.ledger || {});
+  const files = [...(data.policies || []), ...(data.sources || []).map((item) => ({ ...item, title: item.label, type: "SOURCE", date: "ORIGINAL" }))];
+  document.getElementById("machine-count").textContent = `${String(machines.length).padStart(2, "0")} MACHINES`;
+  document.getElementById("file-count").textContent = `${String(files.length).padStart(2, "0")} FILES`;
+  startIntro(machines);
   renderMachines(machines);
   renderWall(machines);
-  renderArchive([...(data.policies || []), ...(data.sources || []).map((item) => ({ ...item, title: item.label, type: "SOURCE", date: "ORIGINAL" }))]);
+  renderArchive(files);
   setupScroll();
   setupArchiveControls();
+  startAmbientMotion();
 
   let count = 0;
   const timer = setInterval(() => {
@@ -27,25 +32,24 @@ let dragged = false;
   }, 20);
 })();
 
-function setIntroImage(items) {
-  const images = items.slice(0, 5).map((item) => `url("${String(item.image || "").replace(/"/g, "%22")}")`).join(",");
-  document.querySelector(".intro-word").style.setProperty("--intro-images", images || "none");
-}
-
-function renderLedger(ledger) {
-  document.getElementById("debt-total").textContent = money(ledger.debt);
-  document.getElementById("debt-change").textContent = `${ledger.debtDate || ""} · ${signedMoney(ledger.dailyChange)}`;
-  const list = document.getElementById("indicator-list");
-  (ledger.indicators || []).forEach((item) => {
-    const row = document.createElement("div");
-    row.className = "indicator-row";
-    row.innerHTML = `<span>${escapeHtml(item.country?.value || item.countryiso3code)} / ${escapeHtml(item.date)}</span><strong>${compactMoney(item.value)}</strong>`;
-    list.append(row);
-  });
+function startIntro(items) {
+  const word = document.querySelector(".intro-word");
+  const setImages = () => {
+    const selected = Array.from({ length: 5 }, (_, offset) => items[(introIndex + offset * 5) % Math.max(items.length, 1)]);
+    const images = selected.map((item) => `url("${String(item?.image || "").replace(/"/g, "%22")}")`).join(",");
+    word.style.setProperty("--intro-images", images || "none");
+    word.classList.remove("is-shifting");
+    requestAnimationFrame(() => word.classList.add("is-shifting"));
+    introIndex = (introIndex + 1) % Math.max(items.length, 1);
+  };
+  setImages();
+  setInterval(setImages, 2400);
 }
 
 function renderMachines(items) {
   const track = document.getElementById("machine-track");
+  const kinds = [...new Set(items.map((item) => item.kind))];
+  document.getElementById("machine-kinds").innerHTML = kinds.map((kind) => `<span>${escapeHtml(kind)}</span>`).join("");
   items.forEach((item, index) => {
     const card = document.createElement("a");
     card.className = "machine-card";
@@ -53,7 +57,8 @@ function renderMachines(items) {
     card.target = "_blank";
     card.rel = "noreferrer";
     card.style.setProperty("--rot", `${[-6, 4, -3, 7, -5, 3][index % 6]}deg`);
-    card.innerHTML = `<img src="${escapeAttr(item.image)}" alt=""><span>${String(index + 1).padStart(2, "0")} / ${escapeHtml(item.kind || "MACHINE")}</span><h2>${escapeHtml(item.title)}</h2>`;
+    card.style.setProperty("--delay", `${index * -0.37}s`);
+    card.innerHTML = `<div class="machine-image"><img src="${escapeAttr(item.image)}" alt=""></div><span>${String(index + 1).padStart(2, "0")} / ${escapeHtml(item.kind || "MACHINE")}</span><h2>${escapeHtml(item.title)}</h2>`;
     track.append(card);
   });
 }
@@ -165,6 +170,7 @@ function setupScroll() {
 
     const archiveRect = archive.getBoundingClientRect();
     const archiveProgress = Math.max(0, Math.min(1, -archiveRect.top / Math.max(1, archiveRect.height - innerHeight)));
+    archiveVisible = archiveRect.top < innerHeight && archiveRect.bottom > 0;
     orbitScrollRotation = archiveProgress * Math.PI * 2.2;
     positionArchive();
   };
@@ -173,15 +179,18 @@ function setupScroll() {
   addEventListener("resize", update);
 }
 
-function money(value) {
-  return Number(value || 0).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-}
-function signedMoney(value) { return `${Number(value || 0) >= 0 ? "+" : ""}${money(value)}`; }
-function compactMoney(value) {
-  const number = Number(value || 0);
-  if (Math.abs(number) >= 1e12) return `$${(number / 1e12).toFixed(2)}T`;
-  if (Math.abs(number) >= 1e9) return `$${(number / 1e9).toFixed(2)}B`;
-  return money(number);
+function startAmbientMotion() {
+  let last = performance.now();
+  const tick = (now) => {
+    const delta = Math.min(40, now - last);
+    last = now;
+    if (archiveVisible && !dragStart) {
+      orbitRotation += delta * 0.000035;
+      positionArchive();
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
 }
 function escapeHtml(value) { return String(value || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]); }
 function escapeAttr(value) { return escapeHtml(value); }

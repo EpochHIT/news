@@ -385,23 +385,11 @@ async function fetchPublicIndex(today) {
   const machineRequests = machineQueries.map(([, query]) =>
     fetchJson(`https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url%7Cextmetadata&iiurlwidth=1400&format=json&origin=*`)
   );
-  const [treasury, worldBank, chinaPolicies, register, ...machineSearches] = await Promise.all([
-    fetchJson("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=2"),
-    fetchJson("https://api.worldbank.org/v2/country/CHN;USA/indicator/NY.GDP.MKTP.CD?format=json&per_page=140"),
+  const [chinaPolicies, register, ...machineSearches] = await Promise.all([
     fetchJson("https://www.gov.cn/zhengce/zuixin/ZUIXINZHENGCE.json"),
     fetchJson("https://www.federalregister.gov/api/v1/documents.json?per_page=14&order=newest"),
     ...machineRequests
   ]);
-
-  const debtRows = treasury?.data || [];
-  const latestDebt = Number(debtRows[0]?.tot_pub_debt_out_amt || 0);
-  const previousDebt = Number(debtRows[1]?.tot_pub_debt_out_amt || 0);
-  const indicators = (worldBank?.[1] || [])
-    .filter((item) => item.value != null)
-    .reduce((items, item) => {
-      if (!items.some((entry) => entry.countryiso3code === item.countryiso3code)) items.push(item);
-      return items;
-    }, []);
 
   const policyA = (chinaPolicies || []).slice(0, 14).map((item) => ({
     title: item.TITLE,
@@ -420,7 +408,7 @@ async function fetchPublicIndex(today) {
     .map((search, searchIndex) => Object.values(search?.query?.pages || {}).map((item) => {
         const info = item.imageinfo?.[0];
         return {
-          title: String(item.title || "").replace(/^File:/, ""),
+          title: String(item.title || "").replace(/^File:/, "").replace(/\.(jpe?g|png|webp|gif|tiff?)$/i, ""),
           image: info?.thumburl || info?.url || "",
           kind: machineQueries[searchIndex][0],
           url: info?.descriptionurl || ""
@@ -435,19 +423,11 @@ async function fetchPublicIndex(today) {
 
   return {
     date: today,
-    ledger: {
-      debt: latestDebt,
-      debtDate: debtRows[0]?.record_date || "",
-      dailyChange: latestDebt - previousDebt,
-      indicators
-    },
     policies: interleave(policyA, policyB, 24),
     machines,
     sources: [
-      { label: "PUBLIC DEBT DATA", url: "https://fiscaldata.treasury.gov/" },
       { label: "POLICY FILES / SOURCE A", url: "https://www.gov.cn/zhengce/zuixin/" },
       { label: "POLICY FILES / SOURCE B", url: "https://www.federalregister.gov/developers/documentation/api/v1" },
-      { label: "WORLD ECONOMIC INDICATORS", url: "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information" },
       { label: "OPEN MACHINE ARCHIVE", url: "https://commons.wikimedia.org/" }
     ]
   };
