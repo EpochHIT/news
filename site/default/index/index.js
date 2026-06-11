@@ -1,12 +1,20 @@
+let orbitItems = [];
+let orbitCards = [];
+let orbitRotation = 0;
+let orbitScrollRotation = 0;
+let dragStart = null;
+let dragged = false;
+
 (async function () {
   const data = await fetch("../data/public-index.json", { cache: "no-store" }).then((response) => response.json());
-  buildWord(data.motorsport || []);
+  const machines = data.machines || data.motorsport || [];
+  setIntroImage(machines);
   renderLedger(data.ledger || {});
-  renderPolicyOrbit(data.policies || []);
-  renderMotorsport(data.motorsport || []);
-  renderWall(data.motorsport || []);
-  renderSources(data.sources || []);
+  renderMachines(machines);
+  renderWall(machines);
+  renderArchive([...(data.policies || []), ...(data.sources || []).map((item) => ({ ...item, title: item.label, type: "SOURCE", date: "ORIGINAL" }))]);
   setupScroll();
+  setupArchiveControls();
 
   let count = 0;
   const timer = setInterval(() => {
@@ -19,83 +27,33 @@
   }, 20);
 })();
 
-function buildWord(images) {
-  const wrap = document.querySelector(".word-cells");
-  "FIELD".split("").forEach((letter, index) => {
-    const cell = document.createElement("div");
-    cell.className = "word-cell";
-    const image = images[index % Math.max(images.length, 1)]?.image || "";
-    cell.style.setProperty("--image", `url("${image.replace(/"/g, "%22")}")`);
-    cell.innerHTML = `<span>${letter}</span>`;
-    wrap.append(cell);
-    cell.addEventListener("mouseenter", () => light(index));
-  });
-  let active = -1;
-  function light(index) {
-    [...wrap.children].forEach((cell, cellIndex) => cell.classList.toggle("is-lit", cellIndex === index));
-    active = index;
-  }
-  light(0);
-  setInterval(() => light((active + 1) % 5), 1600);
+function setIntroImage(items) {
+  const images = items.slice(0, 5).map((item) => `url("${String(item.image || "").replace(/"/g, "%22")}")`).join(",");
+  document.querySelector(".intro-word").style.setProperty("--intro-images", images || "none");
 }
 
 function renderLedger(ledger) {
   document.getElementById("debt-total").textContent = money(ledger.debt);
-  document.getElementById("debt-change").textContent = `${ledger.debtDate || ""} · DAILY CHANGE ${signedMoney(ledger.dailyChange)}`;
+  document.getElementById("debt-change").textContent = `${ledger.debtDate || ""} · ${signedMoney(ledger.dailyChange)}`;
   const list = document.getElementById("indicator-list");
   (ledger.indicators || []).forEach((item) => {
     const row = document.createElement("div");
     row.className = "indicator-row";
-    row.innerHTML = `<div><span>${escapeHtml(item.country?.value || item.countryiso3code)}</span><strong>${escapeHtml(item.date)}</strong></div><strong>${compactMoney(item.value)}</strong>`;
+    row.innerHTML = `<span>${escapeHtml(item.country?.value || item.countryiso3code)} / ${escapeHtml(item.date)}</span><strong>${compactMoney(item.value)}</strong>`;
     list.append(row);
   });
 }
 
-function renderPolicyOrbit(items) {
-  const orbit = document.getElementById("policy-orbit");
-  document.getElementById("policy-count").textContent = String(items.length).padStart(2, "0");
-  const rings = [
-    { count: 7, rx: 24, ry: 20, offset: -1.45 },
-    { count: 9, rx: 39, ry: 31, offset: -1.25 },
-    { count: Math.max(0, items.length - 16), rx: 55, ry: 43, offset: -1.05 }
-  ];
-  let itemIndex = 0;
-  rings.forEach((ring, ringIndex) => {
-    for (let position = 0; position < ring.count && itemIndex < items.length; position++, itemIndex++) {
-      const item = items[itemIndex];
-      const angle = ring.offset + (Math.PI * 2 * position) / Math.max(1, ring.count);
-      const card = document.createElement("a");
-      card.className = `policy-card policy-card-${itemIndex % 5}`;
-      card.href = item.url;
-      card.target = "_blank";
-      card.rel = "noreferrer";
-      card.style.left = `${50 + Math.cos(angle) * ring.rx}%`;
-      card.style.top = `${52 + Math.sin(angle) * ring.ry}%`;
-      card.style.setProperty("--rot", `${Math.sin(angle) * 11 + (ringIndex - 1) * 2}deg`);
-      card.style.setProperty("--delay", `${itemIndex * -0.18}s`);
-      card.innerHTML = `
-        <span>${String(itemIndex + 1).padStart(2, "0")} / ${escapeHtml(item.type)}</span>
-        <strong>${escapeHtml(item.title)}</strong>
-        <small>${escapeHtml(item.date)}</small>`;
-      card.addEventListener("mouseenter", () => {
-        document.querySelector(".policy-core span").textContent = item.type || "POLICY FILE";
-        document.querySelector(".policy-core small").textContent = item.date || "OPEN FILE";
-      });
-      orbit.append(card);
-    }
-  });
-}
-
-function renderMotorsport(items) {
-  const track = document.getElementById("motorsport-track");
+function renderMachines(items) {
+  const track = document.getElementById("machine-track");
   items.forEach((item, index) => {
     const card = document.createElement("a");
-    card.className = "motorsport-card";
+    card.className = "machine-card";
     card.href = item.url;
     card.target = "_blank";
     card.rel = "noreferrer";
     card.style.setProperty("--rot", `${[-6, 4, -3, 7, -5, 3][index % 6]}deg`);
-    card.innerHTML = `<img src="${escapeAttr(item.image)}" alt=""><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.meta)}</p>`;
+    card.innerHTML = `<img src="${escapeAttr(item.image)}" alt=""><span>${String(index + 1).padStart(2, "0")} / ${escapeHtml(item.kind || "MACHINE")}</span><h2>${escapeHtml(item.title)}</h2>`;
     track.append(card);
   });
 }
@@ -106,7 +64,7 @@ function renderWall(items) {
   columns.forEach((column, columnIndex) => {
     [...items, ...items].forEach((item, index) => {
       const image = document.createElement("img");
-      image.src = items[(index + columnIndex * 2) % items.length]?.image || item.image;
+      image.src = items[(index + columnIndex * 3) % items.length]?.image || item.image;
       image.alt = "";
       image.loading = "lazy";
       column.append(image);
@@ -114,34 +72,89 @@ function renderWall(items) {
   });
 }
 
-function renderSources(items) {
-  const list = document.getElementById("source-list");
-  items.forEach((item, index) => {
-    const row = document.createElement("li");
-    row.innerHTML = `<a href="${escapeAttr(item.url)}" target="_blank" rel="noreferrer"><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(item.label)}</strong><span>OPEN ORIGINAL ↗</span></a>`;
-    list.append(row);
+function renderArchive(items) {
+  orbitItems = items;
+  const orbit = document.getElementById("archive-orbit");
+  document.getElementById("archive-count").textContent = String(items.length).padStart(2, "0");
+  orbitCards = items.map((item, index) => {
+    const card = document.createElement("button");
+    card.className = `archive-card archive-card-${index % 5}`;
+    card.type = "button";
+    card.innerHTML = `<span>${String(index + 1).padStart(2, "0")} / ${escapeHtml(item.type)}</span><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.date)}</small>`;
+    card.addEventListener("click", () => {
+      if (!dragged) inspectItem(item);
+    });
+    orbit.append(card);
+    return card;
+  });
+  positionArchive();
+}
+
+function positionArchive() {
+  const width = innerWidth;
+  const radius = Math.min(width * (width < 800 ? 0.25 : 0.34), 520);
+  orbitCards.forEach((card, index) => {
+    const ring = index % 3;
+    const ringItems = orbitCards.filter((_, itemIndex) => itemIndex % 3 === ring).length;
+    const ringPosition = Math.floor(index / 3);
+    const angle = orbitRotation + orbitScrollRotation + (ringPosition / ringItems) * Math.PI * 2 + ring * 0.22;
+    const x = Math.sin(angle) * radius;
+    const z = Math.cos(angle) * radius;
+    const y = (ring - 1) * Math.min(innerHeight * 0.22, 190) + Math.sin(angle * 2) * 28;
+    const depth = (z + radius) / (radius * 2);
+    card.style.transform = `translate3d(${x}px,${y}px,${z}px) rotateY(${-Math.sin(angle) * 22}deg)`;
+    card.style.opacity = String(0.28 + depth * 0.72);
+    card.style.zIndex = String(Math.round(depth * 100));
+    card.style.setProperty("--blur", `${(1 - depth) * 1.7}px`);
+  });
+}
+
+function inspectItem(item) {
+  const panel = document.getElementById("inspect-panel");
+  document.getElementById("inspect-type").textContent = item.type || "FILE";
+  document.getElementById("inspect-title").textContent = item.title || item.label;
+  document.getElementById("inspect-date").textContent = item.date || "ORIGINAL";
+  document.getElementById("inspect-open").href = item.url;
+  panel.hidden = false;
+}
+
+function setupArchiveControls() {
+  const viewport = document.getElementById("archive-viewport");
+  viewport.addEventListener("pointerdown", (event) => {
+    dragStart = { x: event.clientX, rotation: orbitRotation };
+    dragged = false;
+    viewport.setPointerCapture(event.pointerId);
+  });
+  viewport.addEventListener("pointermove", (event) => {
+    if (!dragStart) return;
+    if (Math.abs(event.clientX - dragStart.x) > 5) dragged = true;
+    orbitRotation = dragStart.rotation + (event.clientX - dragStart.x) * 0.006;
+    positionArchive();
+  });
+  viewport.addEventListener("pointerup", () => {
+    dragStart = null;
+    setTimeout(() => { dragged = false; }, 0);
+  });
+  viewport.addEventListener("pointercancel", () => { dragStart = null; });
+  document.getElementById("inspect-close").addEventListener("click", () => {
+    document.getElementById("inspect-panel").hidden = true;
   });
 }
 
 function setupScroll() {
   const progress = document.getElementById("progress");
-  const track = document.querySelector(".motorsport-track");
+  const track = document.querySelector(".machine-track");
   const wall = document.querySelector(".wall");
   const wallColumns = [...document.querySelectorAll(".wall-col")];
-  const policySection = document.querySelector(".policy-field");
-  const orbit = document.getElementById("policy-orbit");
+  const archive = document.querySelector(".archive-field");
   const update = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     const ratio = max > 0 ? scrollY / max : 0;
     progress.textContent = String(Math.round(ratio * 100)).padStart(3, "0");
 
-    const policyRect = policySection.getBoundingClientRect();
-    const policyProgress = Math.max(0, Math.min(1, -policyRect.top / Math.max(1, policyRect.height - innerHeight)));
-    orbit.style.transform = `scale(${0.82 + policyProgress * 0.3}) rotate(${(policyProgress - 0.5) * 7}deg)`;
-
-    const section = document.querySelector(".motorsport").getBoundingClientRect();
-    const p = Math.max(0, Math.min(1, -section.top / Math.max(1, section.height - innerHeight)));
-    track.style.transform = `translateX(${-p * Math.max(0, track.scrollWidth - innerWidth + 80)}px)`;
+    const machineRect = document.querySelector(".machines").getBoundingClientRect();
+    const machineProgress = Math.max(0, Math.min(1, -machineRect.top / Math.max(1, machineRect.height - innerHeight)));
+    track.style.transform = `translateX(${-machineProgress * Math.max(0, track.scrollWidth - innerWidth + 80)}px)`;
 
     const wallRect = wall.getBoundingClientRect();
     const wallProgress = Math.max(0, Math.min(1, -wallRect.top / Math.max(1, wallRect.height - innerHeight)));
@@ -149,6 +162,11 @@ function setupScroll() {
       const direction = index === 1 ? 1 : -1;
       column.style.transform = `translateY(${direction * wallProgress * 34 - (index === 1 ? 34 : 0)}%)`;
     });
+
+    const archiveRect = archive.getBoundingClientRect();
+    const archiveProgress = Math.max(0, Math.min(1, -archiveRect.top / Math.max(1, archiveRect.height - innerHeight)));
+    orbitScrollRotation = archiveProgress * Math.PI * 2.2;
+    positionArchive();
   };
   update();
   addEventListener("scroll", update, { passive: true });

@@ -23,24 +23,11 @@
       <p class="intro-count">000</p>
     </section>
 
-    <section class="works panel-dark" id="works">
-      <p class="kicker">01 — FROM NUMBERS TO MACHINES</p>
-      <div class="word-cells" aria-label="FIELD"></div>
-      <div class="works-foot">
-        <h1>数字变化，<br>规则跟进，<br>机器响应。</h1>
-        <p>先看公开数据如何变化，再读随之出现的政策文件，最后看规则如何进入工程与赛车。</p>
-      </div>
-    </section>
-
     <section class="ledger chapter panel-light" id="ledger">
-      <div class="pin two-col">
-        <div class="chapter-copy">
-          <p class="kicker">02 — NUMBERS MOVE</p>
-          <h2>数字<br>变化</h2>
-          <p>汇总公开财政与经济指标。来源和地区信息保留在每条数据与原始链接中。</p>
-        </div>
+      <div class="pin ledger-stage">
+        <p class="section-tag">01 / FUNDS</p>
         <div class="ledger-display">
-          <p>LATEST PUBLIC DEBT SERIES</p>
+          <p>PUBLIC DEBT SERIES</p>
           <strong id="debt-total">LOADING</strong>
           <span id="debt-change"></span>
           <div id="indicator-list" class="indicator-list"></div>
@@ -48,43 +35,9 @@
       </div>
     </section>
 
-    <section class="bridge panel-dark">
-      <p>NUMBERS BECOME FILES</p>
-      <h2>数字出现变化，<br>文件给出方向。</h2>
-    </section>
-
-    <section class="policy-field panel-light" id="policy">
-      <div class="policy-orbit-pin">
-        <header class="orbit-head">
-          <p class="kicker">03 — RULES FOLLOW</p>
-          <h2>政策文件</h2>
-          <p>不同发布机构的新文件放在同一张图里。点击任一文件，查看发布源与全文。</p>
-        </header>
-        <div class="policy-orbit-stage">
-          <div id="policy-orbit" class="policy-orbit"></div>
-          <div class="policy-core">
-            <span>POLICY FILES</span>
-            <strong id="policy-count">00</strong>
-            <small>CLICK A FILE</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="river panel-dark" aria-label="Story transition">
-      <div class="river-track">
-        <span>DATA</span><i>→</i><span>FILES</span><i>→</i><span>RULES</span><i>→</i><span>MACHINES</span><i>→</i>
-        <span>DATA</span><i>→</i><span>FILES</span><i>→</i><span>RULES</span><i>→</i><span>MACHINES</span><i>→</i>
-      </div>
-    </section>
-
-    <section class="motorsport panel-light" id="motorsport">
-      <header>
-        <p class="kicker">04 — MACHINES RESPOND</p>
-        <h2>RACE<br>MACHINES</h2>
-        <p>赛车把规则、预算与工程选择压缩成一台能被看见的机器。图片来自开放档案，点击查看原始来源。</p>
-      </header>
-      <div id="motorsport-track" class="motorsport-track"></div>
+    <section class="machines panel-dark" id="machines">
+      <header><p class="section-tag">02 / MACHINES</p></header>
+      <div id="machine-track" class="machine-track"></div>
     </section>
 
     <section class="wall panel-light" id="wall">
@@ -97,17 +50,25 @@
       </div>
     </section>
 
-    <section class="finale panel-dark">
-      <p class="kicker">FIELD / ONE CONTINUOUS LINE</p>
-      <h2><span>DATA</span><span>RULES</span><span>FORM</span></h2>
-    </section>
-
-    <section class="source-index panel-dark">
-      <div class="source-head">
-        <p class="kicker">05 — ORIGINAL SOURCES</p>
-        <h2>SOURCE LINKS</h2>
+    <section class="archive-field panel-dark" id="archive">
+      <div class="archive-pin">
+        <p class="section-tag archive-tag">03 / FILES + SOURCES</p>
+        <div class="archive-viewport" id="archive-viewport">
+          <div id="archive-orbit" class="archive-orbit"></div>
+          <button class="archive-core" id="archive-core" type="button">
+            <span>ARCHIVE</span>
+            <strong id="archive-count">00</strong>
+            <small>DRAG / CLICK</small>
+          </button>
+        </div>
+        <aside class="inspect-panel" id="inspect-panel" hidden>
+          <button id="inspect-close" type="button">CLOSE ×</button>
+          <span id="inspect-type"></span>
+          <h2 id="inspect-title"></h2>
+          <p id="inspect-date"></p>
+          <a id="inspect-open" target="_blank" rel="noreferrer">OPEN ORIGINAL ↗</a>
+        </aside>
       </div>
-      <ol id="source-list"></ol>
     </section>
 
     <footer class="panel-dark">

@@ -375,12 +375,22 @@ function interleave(left, right, limit) {
 }
 
 async function fetchPublicIndex(today) {
-  const [treasury, worldBank, chinaPolicies, register, motorsportSearch] = await Promise.all([
+  const machineQueries = [
+    ["RACE", "Le Mans racing car"],
+    ["FERRARI", "Ferrari supercar"],
+    ["HELLCAT", "Dodge Challenger SRT Hellcat"],
+    ["RALLY", "World Rally Championship car"],
+    ["ROCKET", "rocket launch spacecraft"]
+  ];
+  const machineRequests = machineQueries.map(([, query]) =>
+    fetchJson(`https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url%7Cextmetadata&iiurlwidth=1400&format=json&origin=*`)
+  );
+  const [treasury, worldBank, chinaPolicies, register, ...machineSearches] = await Promise.all([
     fetchJson("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=2"),
     fetchJson("https://api.worldbank.org/v2/country/CHN;USA/indicator/NY.GDP.MKTP.CD?format=json&per_page=140"),
     fetchJson("https://www.gov.cn/zhengce/zuixin/ZUIXINZHENGCE.json"),
     fetchJson("https://www.federalregister.gov/api/v1/documents.json?per_page=14&order=newest"),
-    fetchJson("https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=Formula%20One%20racing%20car&gsrnamespace=6&gsrlimit=24&prop=imageinfo&iiprop=url%7Cextmetadata&iiurlwidth=1400&format=json&origin=*")
+    ...machineRequests
   ]);
 
   const debtRows = treasury?.data || [];
@@ -406,19 +416,22 @@ async function fetchPublicIndex(today) {
     url: item.html_url
   }));
 
-  const motorsport = Object.values(motorsportSearch?.query?.pages || {})
-    .map((item) => {
-      const info = item.imageinfo?.[0];
-      const metadata = info?.extmetadata || {};
-      return {
-        title: String(item.title || "").replace(/^File:/, ""),
-        image: info?.thumburl || info?.url || "",
-        meta: decodeHtml(metadata.ImageDescription?.value || metadata.Credit?.value || "Wikimedia Commons"),
-        url: info?.descriptionurl || ""
-      };
-    })
-    .filter((item) => item.image && item.url)
-    .slice(0, 12);
+  const machineGroups = machineSearches
+    .map((search, searchIndex) => Object.values(search?.query?.pages || {}).map((item) => {
+        const info = item.imageinfo?.[0];
+        return {
+          title: String(item.title || "").replace(/^File:/, ""),
+          image: info?.thumburl || info?.url || "",
+          kind: machineQueries[searchIndex][0],
+          url: info?.descriptionurl || ""
+        };
+      }).filter((item) => item.image && item.url));
+  const machines = Array.from({ length: 8 }, (_, itemIndex) =>
+    machineGroups.map((group) => group[itemIndex]).filter(Boolean)
+  )
+    .flat()
+    .filter((item, index, items) => items.findIndex((entry) => entry.image === item.image) === index)
+    .slice(0, 25);
 
   return {
     date: today,
@@ -429,13 +442,13 @@ async function fetchPublicIndex(today) {
       indicators
     },
     policies: interleave(policyA, policyB, 24),
-    motorsport,
+    machines,
     sources: [
       { label: "PUBLIC DEBT DATA", url: "https://fiscaldata.treasury.gov/" },
       { label: "POLICY FILES / SOURCE A", url: "https://www.gov.cn/zhengce/zuixin/" },
       { label: "POLICY FILES / SOURCE B", url: "https://www.federalregister.gov/developers/documentation/api/v1" },
       { label: "WORLD ECONOMIC INDICATORS", url: "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information" },
-      { label: "OPEN MOTORSPORT ARCHIVE", url: "https://commons.wikimedia.org/wiki/Category:Formula_One" }
+      { label: "OPEN MACHINE ARCHIVE", url: "https://commons.wikimedia.org/" }
     ]
   };
 }
