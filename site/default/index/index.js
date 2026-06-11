@@ -5,6 +5,7 @@
   renderPolicy(data.policies || []);
   renderMotion(data.motion);
   renderFashion(data.fashion || []);
+  renderWall(data.fashion || []);
   renderSources(data.sources || []);
   setupScroll();
   let count = 0;
@@ -80,6 +81,19 @@ function renderFashion(items) {
   });
 }
 
+function renderWall(items) {
+  const columns = [...document.querySelectorAll(".wall-col")];
+  columns.forEach((column, columnIndex) => {
+    [...items, ...items].forEach((item, index) => {
+      const image = document.createElement("img");
+      image.src = items[(index + columnIndex * 2) % items.length]?.image || item.image;
+      image.alt = "";
+      image.loading = "lazy";
+      column.append(image);
+    });
+  });
+}
+
 function renderSources(items) {
   const list = document.getElementById("source-list");
   items.forEach((item, index) => {
@@ -92,6 +106,8 @@ function renderSources(items) {
 function setupScroll() {
   const progress = document.getElementById("progress");
   const track = document.querySelector(".fashion-track");
+  const wall = document.querySelector(".wall");
+  const wallColumns = [...document.querySelectorAll(".wall-col")];
   const update = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     const ratio = max > 0 ? scrollY / max : 0;
@@ -99,6 +115,12 @@ function setupScroll() {
     const section = document.querySelector(".dress").getBoundingClientRect();
     const p = Math.max(0, Math.min(1, -section.top / Math.max(1, section.height - innerHeight)));
     track.style.transform = `translateX(${-p * Math.max(0, track.scrollWidth - innerWidth + 80)}px)`;
+    const wallRect = wall.getBoundingClientRect();
+    const wallProgress = Math.max(0, Math.min(1, -wallRect.top / Math.max(1, wallRect.height - innerHeight)));
+    wallColumns.forEach((column, index) => {
+      const direction = index === 1 ? 1 : -1;
+      column.style.transform = `translateY(${direction * wallProgress * 34 - (index === 1 ? 34 : 0)}%)`;
+    });
   };
   update();
   addEventListener("scroll", update, { passive: true });
