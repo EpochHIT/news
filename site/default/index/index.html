@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000000">
-  <title>Public Index</title>
+  <title>Field</title>
   <link rel="stylesheet" href="index.css">
   <script src="index.js" defer></script>
 </head>
 <body>
   <header class="chrome">
     <a href="../">NEWS / HOME</a>
-    <span>PUBLIC INDEX®</span>
+    <span>FIELD®</span>
     <span id="progress">000</span>
   </header>
 
@@ -19,36 +19,28 @@
     <section class="intro panel-dark">
       <div class="intro-lid intro-lid-top"></div>
       <div class="intro-lid intro-lid-bottom"></div>
-      <p class="intro-word">PUBLIC INDEX</p>
+      <p class="intro-word">FIELD</p>
       <p class="intro-count">000</p>
     </section>
 
-    <section class="brand panel-light">
-      <div class="brand-lockup">
-        <h1>公共索引</h1>
-        <div></div>
-        <p>PUBLIC DATA · POLICY FILES · RACE CALENDAR</p>
-      </div>
-    </section>
-
     <section class="works panel-dark" id="works">
-      <p class="kicker">01 — WHAT THIS PAGE TRACKS</p>
-      <div class="word-cells" aria-label="INDEX"></div>
+      <p class="kicker">01 — FROM NUMBERS TO MACHINES</p>
+      <div class="word-cells" aria-label="FIELD"></div>
       <div class="works-foot">
-        <h2>三条线，<br>按日更新。</h2>
-        <p>公共数据看数字；政策文件看原文；赛车日历看下一站。</p>
+        <h1>数字变化，<br>规则跟进，<br>机器响应。</h1>
+        <p>先看公开数据如何变化，再读随之出现的政策文件，最后看规则如何进入工程与赛车。</p>
       </div>
     </section>
 
     <section class="ledger chapter panel-light" id="ledger">
       <div class="pin two-col">
         <div class="chapter-copy">
-          <p class="kicker">02 — PUBLIC LEDGER</p>
-          <h2>公共<br>数据</h2>
-          <p>美国财政部每日债务数据，以及世界银行公布的中美 GDP 数据。</p>
+          <p class="kicker">02 — NUMBERS MOVE</p>
+          <h2>数字<br>变化</h2>
+          <p>汇总公开财政与经济指标。来源和地区信息保留在每条数据与原始链接中。</p>
         </div>
         <div class="ledger-display">
-          <p>US TOTAL PUBLIC DEBT</p>
+          <p>LATEST PUBLIC DEBT SERIES</p>
           <strong id="debt-total">LOADING</strong>
           <span id="debt-change"></span>
           <div id="indicator-list" class="indicator-list"></div>
@@ -56,39 +48,41 @@
       </div>
     </section>
 
-    <section class="policy chapter panel-dark" id="policy">
-      <div class="policy-pin pin">
-        <div class="chapter-copy">
-          <p class="kicker">03 — POLICY DOCUMENTS</p>
-          <h2>政策<br>文件</h2>
-          <p>按发布日期列出美国政府最新规则与通知，点击标题查看文件全文。</p>
+    <section class="bridge panel-dark">
+      <p>NUMBERS BECOME FILES</p>
+      <h2>数字出现变化，<br>文件给出方向。</h2>
+    </section>
+
+    <section class="policy-field panel-light" id="policy">
+      <div class="policy-orbit-pin">
+        <header class="orbit-head">
+          <p class="kicker">03 — RULES FOLLOW</p>
+          <h2>政策文件</h2>
+          <p>不同发布机构的新文件放在同一张图里。点击任一文件，查看发布源与全文。</p>
+        </header>
+        <div class="policy-orbit-stage">
+          <div id="policy-orbit" class="policy-orbit"></div>
+          <div class="policy-core">
+            <span>POLICY FILES</span>
+            <strong id="policy-count">00</strong>
+            <small>CLICK A FILE</small>
+          </div>
         </div>
-        <ol id="policy-list" class="policy-list"></ol>
       </div>
     </section>
 
-    <section class="river panel-light" aria-label="Public index lanes">
+    <section class="river panel-dark" aria-label="Story transition">
       <div class="river-track">
-        <span>PUBLIC DATA</span><i>·</i><span>POLICY FILES</span><i>·</i><span>RACE CALENDAR</span><i>·</i>
-        <span>PUBLIC DATA</span><i>·</i><span>POLICY FILES</span><i>·</i><span>RACE CALENDAR</span><i>·</i>
-      </div>
-    </section>
-
-    <section class="motion chapter panel-dark" id="motion">
-      <div class="pin race-stage">
-        <p class="kicker">04 — RACE CALENDAR</p>
-        <div class="race-ring"><i></i><i></i><i></i></div>
-        <p class="race-round" id="race-round">NEXT ROUND</p>
-        <h2>NEXT RACE</h2>
-        <p id="race-meta"></p>
+        <span>DATA</span><i>→</i><span>FILES</span><i>→</i><span>RULES</span><i>→</i><span>MACHINES</span><i>→</i>
+        <span>DATA</span><i>→</i><span>FILES</span><i>→</i><span>RULES</span><i>→</i><span>MACHINES</span><i>→</i>
       </div>
     </section>
 
     <section class="motorsport panel-light" id="motorsport">
       <header>
-        <p class="kicker">05 — MOTORSPORT ARCHIVE</p>
+        <p class="kicker">04 — MACHINES RESPOND</p>
         <h2>RACE<br>MACHINES</h2>
-        <p>来自 Wikimedia Commons 的赛车图片，点击查看图片来源与授权信息。</p>
+        <p>赛车把规则、预算与工程选择压缩成一台能被看见的机器。图片来自开放档案，点击查看原始来源。</p>
       </header>
       <div id="motorsport-track" class="motorsport-track"></div>
     </section>
@@ -104,20 +98,20 @@
     </section>
 
     <section class="finale panel-dark">
-      <p class="kicker">PUBLIC INDEX / THREE LINES</p>
-      <h2><span>DATA</span><span>FILES</span><span>RACES</span></h2>
+      <p class="kicker">FIELD / ONE CONTINUOUS LINE</p>
+      <h2><span>DATA</span><span>RULES</span><span>FORM</span></h2>
     </section>
 
     <section class="source-index panel-dark">
       <div class="source-head">
-        <p class="kicker">06 — DATA SOURCES</p>
+        <p class="kicker">05 — ORIGINAL SOURCES</p>
         <h2>SOURCE LINKS</h2>
       </div>
       <ol id="source-list"></ol>
     </section>
 
     <footer class="panel-dark">
-      <span>PUBLIC INDEX®</span>
+      <span>FIELD®</span>
       <a href="../">RETURN TO NEWS ↑</a>
     </footer>
   </main>
