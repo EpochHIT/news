@@ -302,6 +302,88 @@ async function fetchYahooSeries(item) {
   };
 }
 
+const watchedCompanies = [
+  {
+    label: "DeepSeek",
+    aliases: ["DeepSeek", "Hangzhou DeepSeek Artificial Intelligence Basic Technology Research"],
+    summary: "Track whether an exchange and ticker appear in public registries.",
+    url: "https://www.deepseek.com/"
+  },
+  {
+    label: "Unitree",
+    aliases: ["Unitree", "Hangzhou Yushu Technology", "Unitree Robotics"],
+    summary: "Track whether an exchange and ticker appear in public registries.",
+    url: "https://www.unitree.com/"
+  },
+  {
+    label: "SpaceX",
+    aliases: ["SpaceX", "Space Exploration Technologies"],
+    summary: "Track whether an exchange and ticker appear in public registries.",
+    url: "https://www.spacex.com/"
+  }
+];
+
+function normalizedCompanyName(value) {
+  return String(value || "").toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]/g, "");
+}
+
+async function fetchSecListings() {
+  const data = await fetchJson("https://www.sec.gov/files/company_tickers.json");
+  return Object.values(data || {}).map((item) => ({
+    symbol: item.ticker,
+    name: item.title,
+    exchange: "US / SEC",
+    source: "SEC company tickers",
+    url: `https://www.sec.gov/edgar/browse/?CIK=${String(item.cik_str || "").padStart(10, "0")}`
+  }));
+}
+
+async function fetchWikidataListing(company) {
+  const query = encodeURIComponent(company.label);
+  const search = await fetchJson(`https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${query}&language=en&format=json&limit=5&origin=*`);
+  for (const item of search?.search || []) {
+    const text = normalizedCompanyName(`${item.label} ${item.description}`);
+    if (!company.aliases.some((alias) => text.includes(normalizedCompanyName(alias)))) continue;
+    const entity = await fetchJson(`https://www.wikidata.org/wiki/Special:EntityData/${item.id}.json`);
+    const claims = entity?.entities?.[item.id]?.claims || {};
+    const ticker = claims.P249?.[0]?.mainsnak?.datavalue?.value;
+    const exchangeId = claims.P414?.[0]?.mainsnak?.datavalue?.value?.id;
+    if (!ticker || !exchangeId) continue;
+    const exchangeMap = {
+      Q739514: { label: "Shanghai Stock Exchange", suffix: ".SS" },
+      Q517750: { label: "Shenzhen Stock Exchange", suffix: ".SZ" },
+      Q496672: { label: "Hong Kong Stock Exchange", suffix: ".HK", pad: 4 },
+      Q108556204: { label: "Beijing Stock Exchange", suffix: ".BJ" },
+      Q13677: { label: "New York Stock Exchange", suffix: "" },
+      Q82059: { label: "Nasdaq", suffix: "" }
+    };
+    const exchange = exchangeMap[exchangeId] || { label: exchangeId, suffix: "" };
+    const normalizedTicker = exchange.pad ? String(ticker).padStart(exchange.pad, "0") : String(ticker);
+    return {
+      symbol: `${normalizedTicker}${exchange.suffix}`,
+      rawSymbol: String(ticker),
+      name: item.label,
+      exchange: exchange.label,
+      source: "Wikidata exchange and ticker claims",
+      url: `https://www.wikidata.org/wiki/${item.id}`
+    };
+  }
+  return null;
+}
+
+async function discoverPublicListings() {
+  const secListings = await fetchSecListings();
+  return Promise.all(watchedCompanies.map(async (company) => {
+    const sec = secListings.find((listing) => company.aliases.some((alias) => {
+      const left = normalizedCompanyName(listing.name);
+      const right = normalizedCompanyName(alias);
+      return left === right || left.includes(right) || right.includes(left);
+    }));
+    const listing = sec || await fetchWikidataListing(company);
+    return { ...company, listing };
+  }));
+}
+
 async function fetchFinance(notes) {
   const instruments = [
     { symbol: "^GSPC", label: "S&P 500", group: "US", url: "https://finance.yahoo.com/quote/%5EGSPC/" },
@@ -318,7 +400,19 @@ async function fetchFinance(notes) {
     { symbol: "CL=F", label: "Crude Oil", group: "Macro", url: "https://finance.yahoo.com/quote/CL=F/" }
   ];
 
-  const markets = (await Promise.all(instruments.map(fetchYahooSeries))).filter(Boolean);
+  const discoveries = await discoverPublicListings();
+  const discoveredMarkets = (await Promise.all(discoveries
+    .filter((item) => item.listing?.symbol)
+    .map((item) => fetchYahooSeries({
+      symbol: item.listing.symbol,
+      label: item.label,
+      group: "New listing",
+      url: item.listing.url
+    })))).filter(Boolean);
+  const markets = [
+    ...(await Promise.all(instruments.map(fetchYahooSeries))).filter(Boolean),
+    ...discoveredMarkets
+  ];
   const text = (notes || []).map((note) => `${note.title} ${note.summary}`).join(" ").toLowerCase();
   const keywordMap = [
     ["ai", "AI"],
@@ -339,28 +433,101 @@ async function fetchFinance(notes) {
   return {
     markets,
     keywords,
-    privateWatch: [
-      {
-        label: "DeepSeek",
-        summary: "Private AI company: track model releases, compute cost narratives, and China AI ecosystem signals.",
-        url: "https://www.deepseek.com/"
-      },
-      {
-        label: "Unitree",
-        summary: "Private robotics company: track humanoid demos, developer kits, and embodied-AI adoption.",
-        url: "https://www.unitree.com/"
-      },
-      {
-        label: "SpaceX",
-        summary: "Private aerospace company: track launch cadence, Starship milestones, Starlink economics, and policy signals.",
-        url: "https://www.spacex.com/"
-      }
-    ],
+    privateWatch: discoveries
+      .filter((item) => !item.listing || !discoveredMarkets.some((market) => market.label === item.label))
+      .map((item) => ({
+        label: item.label,
+        summary: item.listing
+          ? `A registry now reports ${item.listing.symbol}, but a usable market series was not verified yet.`
+          : item.summary,
+        url: item.listing?.url || item.url,
+        checked: ["SEC company tickers", "Wikidata exchange/ticker claims"]
+      })),
+    listingChecks: discoveries.map((item) => ({
+      label: item.label,
+      status: item.listing ? "listing-candidate-found" : "no-listing-found",
+      symbol: item.listing?.symbol || "",
+      source: item.listing?.source || "SEC + Wikidata"
+    })),
     sources: [
       { label: "Yahoo Chart", title: "Daily market series for mini charts", url: "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=1mo&interval=1d" },
       { label: "FRED", title: "US macro data source for a future deeper panel", url: "https://fred.stlouisfed.org/" },
       { label: "World Bank", title: "Long-run country macro indicators", url: "https://data.worldbank.org/" },
       { label: "Stooq", title: "Historical market data reference", url: "https://stooq.com/db/h/" }
+    ]
+  };
+}
+
+async function fetchPublicIndex(today) {
+  const [treasury, federalRegister, nextRace, worldBank, fashionSearch] = await Promise.all([
+    fetchJson("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=2"),
+    fetchJson("https://www.federalregister.gov/api/v1/documents.json?per_page=8&order=newest"),
+    fetchJson("https://api.jolpi.ca/ergast/f1/current/next.json"),
+    fetchJson("https://api.worldbank.org/v2/country/CHN;USA/indicator/NY.GDP.MKTP.CD?format=json&per_page=140"),
+    fetchJson("https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=8&hasImages=true&q=dress")
+  ]);
+
+  const debtRows = treasury?.data || [];
+  const latestDebt = Number(debtRows[0]?.tot_pub_debt_out_amt || 0);
+  const previousDebt = Number(debtRows[1]?.tot_pub_debt_out_amt || 0);
+  const race = nextRace?.MRData?.RaceTable?.Races?.[0] || null;
+  const indicators = (worldBank?.[1] || [])
+    .filter((item) => item.value != null)
+    .reduce((items, item) => {
+      if (!items.some((entry) => entry.countryiso3code === item.countryiso3code)) items.push(item);
+      return items;
+    }, []);
+
+  const fashionIds = fashionSearch?.objectIDs || [];
+  const fashionStart = dayIndex(today, Math.max(fashionIds.length, 1), 41);
+  const fashionCandidates = await Promise.all(Array.from(
+    { length: Math.min(fashionIds.length, 36) },
+    (_, offset) => fetchJson(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${fashionIds[(fashionStart + offset) % fashionIds.length]}`)
+  ));
+  const fashionObjects = fashionCandidates
+    .filter((item) => item?.primaryImageSmall && /Costume Institute/i.test(item.department || ""))
+    .slice(0, 6)
+    .map((item) => ({
+      title: item.title,
+      image: item.primaryImageSmall,
+      meta: [item.objectDate, item.culture, item.medium].filter(Boolean).join(" · "),
+      url: item.objectURL
+    }));
+
+  return {
+    date: today,
+    ledger: {
+      debt: latestDebt,
+      debtDate: debtRows[0]?.record_date || "",
+      dailyChange: latestDebt - previousDebt,
+      indicators
+    },
+    policies: (federalRegister?.results || []).map((item) => ({
+      title: item.title,
+      type: item.type,
+      date: item.publication_date,
+      agencies: (item.agencies || []).map((agency) => agency.name).slice(0, 2),
+      url: item.html_url
+    })),
+    motion: race ? {
+      round: race.round,
+      name: race.raceName,
+      circuit: race.Circuit?.circuitName,
+      locality: race.Circuit?.Location?.locality,
+      country: race.Circuit?.Location?.country,
+      date: race.date,
+      time: race.time,
+      url: race.url
+    } : null,
+    fashion: fashionObjects,
+    sources: [
+      { label: "US TREASURY", url: "https://fiscaldata.treasury.gov/" },
+      { label: "FEDERAL REGISTER", url: "https://www.federalregister.gov/developers/documentation/api/v1" },
+      { label: "WORLD BANK", url: "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information" },
+      { label: "CHINA NBS", url: "https://data.stats.gov.cn/" },
+      { label: "CHINA POLICY", url: "https://www.gov.cn/zhengce/" },
+      { label: "JOLPICA F1", url: "https://api.jolpi.ca/ergast/" },
+      { label: "MET OPEN ACCESS", url: "https://metmuseum.github.io/" }
     ]
   };
 }
@@ -470,6 +637,7 @@ async function writeDefaultFeed(today) {
 
   const papers = await fetchArxivPapers();
   const finance = await fetchFinance(notes);
+  const publicIndex = await fetchPublicIndex(today);
   const archiveItems = await fetchArchiveItems(today);
   const archiveVisuals = archiveItems
     .filter((item) => item.image)
@@ -481,6 +649,7 @@ async function writeDefaultFeed(today) {
   const visualWallpapers = [...wallpapers.slice(0, 5), ...archiveVisuals].slice(0, 9);
 
   mkdirSync(join(output, "data"), { recursive: true });
+  writeFileSync(join(output, "data", "public-index.json"), JSON.stringify(publicIndex, null, 2));
   writeFileSync(
     join(output, "data", "feed.json"),
     JSON.stringify(

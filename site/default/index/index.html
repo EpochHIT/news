@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>Public Index</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <header class="chrome">
+    <a href="../">NEWS / HOME</a>
+    <span>PUBLIC INDEX®</span>
+    <span id="progress">000</span>
+  </header>
+
+  <main>
+    <section class="intro panel-dark">
+      <div class="intro-lid intro-lid-top"></div>
+      <div class="intro-lid intro-lid-bottom"></div>
+      <p class="intro-word">PUBLIC INDEX</p>
+      <p class="intro-count">000</p>
+    </section>
+
+    <section class="brand panel-light">
+      <div class="brand-lockup">
+        <h1>公共索引</h1>
+        <div></div>
+        <p>PUBLIC MONEY · POLICY · MOTION · DRESS</p>
+      </div>
+    </section>
+
+    <section class="works panel-dark" id="works">
+      <p class="kicker">01 — LIVE PUBLIC SOURCES</p>
+      <div class="word-cells" aria-label="INDEX"></div>
+      <div class="works-foot">
+        <h2>不是新闻副本。<br>这是可验证的公共世界切片。</h2>
+        <p>滚动进入账本、政策、速度与开放馆藏。每日构建，独立来源。</p>
+      </div>
+    </section>
+
+    <section class="ledger chapter panel-light" id="ledger">
+      <div class="pin two-col">
+        <div class="chapter-copy">
+          <p class="kicker">02 — PUBLIC LEDGER</p>
+          <h2>账面<br>不是背景。</h2>
+          <p>美国财政部每日债务数据，以及世界银行可比较指标。</p>
+        </div>
+        <div class="ledger-display">
+          <p>US TOTAL PUBLIC DEBT</p>
+          <strong id="debt-total">LOADING</strong>
+          <span id="debt-change"></span>
+          <div id="indicator-list" class="indicator-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="policy chapter panel-dark" id="policy">
+      <div class="policy-pin pin">
+        <div class="chapter-copy">
+          <p class="kicker">03 — POLICY DOCUMENTS</p>
+          <h2>WHAT<br>CHANGED?</h2>
+          <p>Federal Register 最新公开文件，不转述，直接读原件。</p>
+        </div>
+        <ol id="policy-list" class="policy-list"></ol>
+      </div>
+    </section>
+
+    <section class="motion chapter panel-dark" id="motion">
+      <div class="pin race-stage">
+        <p class="kicker">04 — MOTION</p>
+        <div class="race-ring"><i></i><i></i><i></i></div>
+        <p class="race-round" id="race-round">NEXT ROUND</p>
+        <h2 id="race-name">FORMULA ONE</h2>
+        <p id="race-meta"></p>
+      </div>
+    </section>
+
+    <section class="dress panel-light" id="dress">
+      <header>
+        <p class="kicker">05 — DRESS ARCHIVE</p>
+        <h2>OPEN<br>COLLECTION</h2>
+        <p>Met Open Access 公共领域服饰与材质档案。</p>
+      </header>
+      <div id="fashion-track" class="fashion-track"></div>
+    </section>
+
+    <section class="source-index panel-dark">
+      <div class="source-head">
+        <p class="kicker">06 — SOURCE INDEX</p>
+        <h2>OPEN THE ORIGINAL.</h2>
+      </div>
+      <ol id="source-list"></ol>
+    </section>
+
+    <footer class="panel-dark">
+      <span>PUBLIC INDEX®</span>
+      <a href="../">RETURN TO NEWS ↑</a>
+    </footer>
+  </main>
+</body>
+</html>
