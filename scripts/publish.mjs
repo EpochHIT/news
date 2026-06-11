@@ -459,12 +459,12 @@ async function fetchFinance(notes) {
 }
 
 async function fetchPublicIndex(today) {
-  const [treasury, federalRegister, nextRace, worldBank, fashionSearch] = await Promise.all([
+  const [treasury, federalRegister, nextRace, worldBank, motorsportSearch] = await Promise.all([
     fetchJson("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=2"),
     fetchJson("https://www.federalregister.gov/api/v1/documents.json?per_page=8&order=newest"),
     fetchJson("https://api.jolpi.ca/ergast/f1/current/next.json"),
     fetchJson("https://api.worldbank.org/v2/country/CHN;USA/indicator/NY.GDP.MKTP.CD?format=json&per_page=140"),
-    fetchJson("https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=8&hasImages=true&q=dress")
+    fetchJson("https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=Formula%20One%20racing%20car&gsrnamespace=6&gsrlimit=24&prop=imageinfo&iiprop=url%7Cextmetadata&iiurlwidth=1400&format=json&origin=*")
   ]);
 
   const debtRows = treasury?.data || [];
@@ -478,21 +478,19 @@ async function fetchPublicIndex(today) {
       return items;
     }, []);
 
-  const fashionIds = fashionSearch?.objectIDs || [];
-  const fashionStart = dayIndex(today, Math.max(fashionIds.length, 1), 41);
-  const fashionCandidates = await Promise.all(Array.from(
-    { length: Math.min(fashionIds.length, 36) },
-    (_, offset) => fetchJson(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${fashionIds[(fashionStart + offset) % fashionIds.length]}`)
-  ));
-  const fashionObjects = fashionCandidates
-    .filter((item) => item?.primaryImageSmall && /Costume Institute/i.test(item.department || ""))
-    .slice(0, 6)
-    .map((item) => ({
-      title: item.title,
-      image: item.primaryImageSmall,
-      meta: [item.objectDate, item.culture, item.medium].filter(Boolean).join(" · "),
-      url: item.objectURL
-    }));
+  const motorsportObjects = Object.values(motorsportSearch?.query?.pages || {})
+    .map((item) => {
+      const info = item.imageinfo?.[0];
+      const metadata = info?.extmetadata || {};
+      return {
+        title: String(item.title || "").replace(/^File:/, ""),
+        image: info?.thumburl || info?.url || "",
+        meta: decodeHtml(metadata.ImageDescription?.value || metadata.Credit?.value || "Wikimedia Commons"),
+        url: info?.descriptionurl || ""
+      };
+    })
+    .filter((item) => item.image && item.url)
+    .slice(0, 9);
 
   return {
     date: today,
@@ -511,7 +509,6 @@ async function fetchPublicIndex(today) {
     })),
     motion: race ? {
       round: race.round,
-      name: race.raceName,
       circuit: race.Circuit?.circuitName,
       locality: race.Circuit?.Location?.locality,
       country: race.Circuit?.Location?.country,
@@ -519,7 +516,7 @@ async function fetchPublicIndex(today) {
       time: race.time,
       url: race.url
     } : null,
-    fashion: fashionObjects,
+    motorsport: motorsportObjects,
     sources: [
       { label: "US TREASURY", url: "https://fiscaldata.treasury.gov/" },
       { label: "FEDERAL REGISTER", url: "https://www.federalregister.gov/developers/documentation/api/v1" },
@@ -527,7 +524,7 @@ async function fetchPublicIndex(today) {
       { label: "CHINA NBS", url: "https://data.stats.gov.cn/" },
       { label: "CHINA POLICY", url: "https://www.gov.cn/zhengce/" },
       { label: "JOLPICA F1", url: "https://api.jolpi.ca/ergast/" },
-      { label: "MET OPEN ACCESS", url: "https://metmuseum.github.io/" }
+      { label: "WIKIMEDIA MOTORSPORT", url: "https://commons.wikimedia.org/wiki/Category:Formula_One" }
     ]
   };
 }

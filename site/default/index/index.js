@@ -1,11 +1,11 @@
 (async function () {
   const data = await fetch("../data/public-index.json", { cache: "no-store" }).then((response) => response.json());
-  buildWord(data.fashion || []);
+  buildWord(data.motorsport || []);
   renderLedger(data.ledger || {});
   renderPolicy(data.policies || []);
   renderMotion(data.motion);
-  renderFashion(data.fashion || []);
-  renderWall(data.fashion || []);
+  renderMotorsport(data.motorsport || []);
+  renderWall(data.motorsport || []);
   renderSources(data.sources || []);
   setupScroll();
   let count = 0;
@@ -63,15 +63,14 @@ function renderPolicy(items) {
 function renderMotion(race) {
   if (!race) return;
   document.getElementById("race-round").textContent = `ROUND ${race.round} · ${race.date}`;
-  document.getElementById("race-name").textContent = race.name;
   document.getElementById("race-meta").textContent = `${race.circuit} · ${race.locality}, ${race.country}`;
 }
 
-function renderFashion(items) {
-  const track = document.getElementById("fashion-track");
+function renderMotorsport(items) {
+  const track = document.getElementById("motorsport-track");
   items.forEach((item, index) => {
     const card = document.createElement("a");
-    card.className = "fashion-card";
+    card.className = "motorsport-card";
     card.href = item.url;
     card.target = "_blank";
     card.rel = "noreferrer";
@@ -105,14 +104,14 @@ function renderSources(items) {
 
 function setupScroll() {
   const progress = document.getElementById("progress");
-  const track = document.querySelector(".fashion-track");
+  const track = document.querySelector(".motorsport-track");
   const wall = document.querySelector(".wall");
   const wallColumns = [...document.querySelectorAll(".wall-col")];
   const update = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     const ratio = max > 0 ? scrollY / max : 0;
     progress.textContent = String(Math.round(ratio * 100)).padStart(3, "0");
-    const section = document.querySelector(".dress").getBoundingClientRect();
+    const section = document.querySelector(".motorsport").getBoundingClientRect();
     const p = Math.max(0, Math.min(1, -section.top / Math.max(1, section.height - innerHeight)));
     track.style.transform = `translateX(${-p * Math.max(0, track.scrollWidth - innerWidth + 80)}px)`;
     const wallRect = wall.getBoundingClientRect();
