@@ -366,6 +366,24 @@ function birthdayMeta(event) {
   return [event.relation, event.stage, event.born ? `${event.born} 生` : "", event.birthday].filter(Boolean).join(" · ");
 }
 
+const birthdayWords = [
+  "世界辽阔",
+  "万事胜意",
+  "前程明亮",
+  "心有所往",
+  "日日有光",
+  "岁岁欢喜",
+  "Many happy returns",
+  "The world is wide",
+  "Stay bright",
+  "A year of wonder"
+];
+
+function birthdayWordSet(event) {
+  const seed = Array.from(`${event.name || ""}${event.birthday || ""}`).reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  return [0, 3, 7].map((offset) => birthdayWords[(seed + offset) % birthdayWords.length]);
+}
+
 function renderBirthdaySignals(events) {
   const signal = document.getElementById("birthday-signal");
   const birthdayList = document.getElementById("birthday-list");
@@ -384,7 +402,7 @@ function renderBirthdaySignals(events) {
   const todayEvents = events.filter((event) => event.phase === "today");
   signal.hidden = false;
   signal.classList.toggle("is-today", Boolean(todayEvents.length));
-  birthdayHeading.textContent = todayEvents.length ? "今天有人值得被认真祝福" : "生日信号已经靠近";
+  birthdayHeading.textContent = todayEvents.length ? "今天这页专门亮给 TA" : "有一份祝福正在靠近";
   birthdayList.innerHTML = "";
 
   for (const event of events) {
@@ -408,6 +426,9 @@ function renderBirthdaySignals(events) {
       const link = document.createElement("a");
       link.className = "modal-card";
       link.href = event.url;
+      const words = birthdayWordSet(event)
+        .map((word) => `<b>${escapeHtml(word)}</b>`)
+        .join("");
       const links = (event.links || [])
         .slice(0, 2)
         .map((item) => `<small>${escapeHtml(item.label || item.url || "")}</small>`)
@@ -415,8 +436,9 @@ function renderBirthdaySignals(events) {
       link.innerHTML = `
         <span>${escapeHtml(labelForEvent(event))}</span>
         <strong>${escapeHtml(textForEvent(event))}</strong>
+        <div class="modal-wishes">${words}</div>
         <p>${escapeHtml(event.message || birthdaySubtitle(event))}</p>
-        <em>打开完整祝福页</em>
+        <em>祝 TA 生日快乐~</em>
         ${links}
       `;
       modalList.append(link);

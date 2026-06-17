@@ -1124,6 +1124,21 @@ body.field-light.field-dark-preview .ticker-card {
   line-height: 1.55;
 }
 
+.modal-wishes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modal-wishes b {
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 232, 160, 0.28);
+  background: rgba(255, 232, 160, 0.1);
+  color: #fff1bf;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
 .modal-card small {
   font-size: 0.78rem;
 }
