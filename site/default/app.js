@@ -344,15 +344,26 @@ function escapeHtml(text) {
 }
 
 function labelForEvent(event) {
-  if (event.phase === "today") return "今天";
-  if (event.phase === "before") return `${event.days} 天后`;
-  return `已过 ${event.days} 天`;
+  const label = event.label || event.birthdayEntry?.label || "生日";
+  if (event.phase === "today") return `${label} · 今天`;
+  if (event.phase === "before") return `${label} · ${event.days} 天后`;
+  return `${label} · 已过 ${event.days} 天`;
 }
 
 function textForEvent(event) {
-  if (event.phase === "today") return `${event.name} 今天生日`;
+  if (event.phase === "today") return `祝 ${event.name} 生日快乐`;
   if (event.phase === "before") return `${event.name} 的生日倒计时 ${event.days} 天`;
-  return `${event.name} 的祝福仍可查看`;
+  return `${event.name} 的祝福还在这里`;
+}
+
+function birthdaySubtitle(event) {
+  if (event.phase === "today") return "今天这页不只是提醒，是专门亮起来的一束祝福。";
+  if (event.phase === "before") return "生日快到了，祝福页已经提前准备好。";
+  return "生日刚过去，祝福页仍然可以打开。";
+}
+
+function birthdayMeta(event) {
+  return [event.relation, event.stage, event.born ? `${event.born} 生` : "", event.birthday].filter(Boolean).join(" · ");
 }
 
 function renderBirthdaySignals(events) {
@@ -372,26 +383,42 @@ function renderBirthdaySignals(events) {
 
   const todayEvents = events.filter((event) => event.phase === "today");
   signal.hidden = false;
-  birthdayHeading.textContent = todayEvents.length ? "Today's signal is bright." : "A small signal is nearby.";
+  signal.classList.toggle("is-today", Boolean(todayEvents.length));
+  birthdayHeading.textContent = todayEvents.length ? "今天有人值得被认真祝福" : "生日信号已经靠近";
   birthdayList.innerHTML = "";
 
   for (const event of events) {
     const link = document.createElement("a");
     link.className = `birthday-chip ${event.phase}`;
     link.href = event.url;
-    link.innerHTML = `<span>${labelForEvent(event)}</span><strong>${textForEvent(event)}</strong>`;
+    const meta = birthdayMeta(event);
+    link.innerHTML = `
+      <span>${escapeHtml(labelForEvent(event))}</span>
+      <strong>${escapeHtml(textForEvent(event))}</strong>
+      <em>${escapeHtml(meta || birthdaySubtitle(event))}</em>
+    `;
     birthdayList.append(link);
   }
 
   if (todayEvents.length) {
     modal.hidden = false;
-    modalTitle.textContent = todayEvents.length > 1 ? "今天有几束很亮的祝福" : `${todayEvents[0].name} 今天生日`;
+    modalTitle.textContent = todayEvents.length > 1 ? "今天有几束很亮的祝福" : `${todayEvents[0].name}，生日快乐`;
     modalList.innerHTML = "";
     for (const event of todayEvents) {
       const link = document.createElement("a");
       link.className = "modal-card";
       link.href = event.url;
-      link.innerHTML = `<span>${event.birthdayEntry?.label || "生日"}</span><strong>${event.name}</strong><em>打开祝福页</em>`;
+      const links = (event.links || [])
+        .slice(0, 2)
+        .map((item) => `<small>${escapeHtml(item.label || item.url || "")}</small>`)
+        .join("");
+      link.innerHTML = `
+        <span>${escapeHtml(labelForEvent(event))}</span>
+        <strong>${escapeHtml(textForEvent(event))}</strong>
+        <p>${escapeHtml(event.message || birthdaySubtitle(event))}</p>
+        <em>打开完整祝福页</em>
+        ${links}
+      `;
       modalList.append(link);
     }
   }

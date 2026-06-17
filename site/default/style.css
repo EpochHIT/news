@@ -907,12 +907,18 @@ body.field-light.field-dark-preview .ticker-card {
 }
 
 .birthday-signal {
+  position: relative;
+  overflow: hidden;
   grid-template-columns: 1fr auto;
   align-items: center;
   margin: 18px 0 20px;
-  padding: 18px;
-  border-color: rgba(255, 200, 131, 0.26);
-  background: rgba(255, 255, 255, 0.055);
+  padding: 22px;
+  border-color: rgba(255, 211, 118, 0.42);
+  background:
+    linear-gradient(110deg, rgba(255, 214, 102, 0.14), transparent 34%),
+    linear-gradient(250deg, rgba(255, 104, 104, 0.16), transparent 42%),
+    rgba(255, 255, 255, 0.06);
+  box-shadow: 0 22px 70px rgba(255, 149, 64, 0.08);
 }
 
 .birthday-signal h2 {
@@ -920,7 +926,34 @@ body.field-light.field-dark-preview .ticker-card {
   font-size: clamp(1.35rem, 3vw, 2rem);
 }
 
+.birthday-signal::before,
+.birthday-signal::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 10%, rgba(255, 230, 139, 0.42) 10% 11%, transparent 11% 24%, rgba(255, 132, 132, 0.38) 24% 25%, transparent 25% 42%, rgba(114, 240, 200, 0.3) 42% 43%, transparent 43% 100%);
+  opacity: 0.18;
+  transform: rotate(-9deg);
+  animation: birthdayRibbon 13s linear infinite;
+}
+
+.birthday-signal::after {
+  animation-duration: 18s;
+  animation-direction: reverse;
+  opacity: 0.12;
+  transform: rotate(13deg);
+}
+
+.birthday-signal.is-today {
+  border-color: rgba(255, 216, 117, 0.72);
+  box-shadow: 0 26px 90px rgba(255, 102, 73, 0.18);
+}
+
 .birthday-list {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -929,11 +962,22 @@ body.field-light.field-dark-preview .ticker-card {
 
 .birthday-chip {
   display: grid;
-  gap: 4px;
-  min-width: 180px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.18);
+  gap: 6px;
+  min-width: 220px;
+  max-width: 360px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 211, 118, 0.28);
+  background:
+    linear-gradient(145deg, rgba(255, 211, 118, 0.12), rgba(255, 255, 255, 0.04)),
+    rgba(0, 0, 0, 0.18);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.birthday-chip:hover,
+.birthday-chip:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(255, 211, 118, 0.72);
+  box-shadow: 0 16px 36px rgba(255, 130, 69, 0.14);
 }
 
 .birthday-chip span {
@@ -943,13 +987,23 @@ body.field-light.field-dark-preview .ticker-card {
 }
 
 .birthday-chip.today {
-  border-color: rgba(223, 77, 77, 0.72);
-  background: linear-gradient(135deg, rgba(160, 30, 36, 0.9), rgba(255, 200, 131, 0.22));
+  border-color: rgba(255, 218, 124, 0.82);
+  background:
+    linear-gradient(135deg, rgba(178, 24, 24, 0.92), rgba(255, 191, 87, 0.24)),
+    rgba(31, 10, 11, 0.94);
+  animation: birthdayGlow 2.6s ease-in-out infinite;
 }
 
 .birthday-chip.before,
 .birthday-chip.after {
   opacity: 0.86;
+}
+
+.birthday-chip em {
+  color: rgba(244, 251, 248, 0.74);
+  font-size: 0.82rem;
+  font-style: normal;
+  line-height: 1.45;
 }
 
 .birthday-modal {
@@ -959,8 +1013,11 @@ body.field-light.field-dark-preview .ticker-card {
   display: grid;
   place-items: center;
   padding: 18px;
-  background: rgba(5, 8, 10, 0.72);
-  backdrop-filter: blur(12px);
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 218, 124, 0.18), transparent 22%),
+    radial-gradient(circle at 78% 18%, rgba(255, 95, 95, 0.18), transparent 24%),
+    rgba(5, 8, 10, 0.76);
+  backdrop-filter: blur(14px);
 }
 
 .birthday-modal[hidden],
@@ -970,16 +1027,40 @@ body.field-light.field-dark-preview .ticker-card {
 
 .modal-panel {
   position: relative;
+  overflow: hidden;
   width: min(680px, 100%);
-  padding: 30px;
-  border: 1px solid rgba(255, 209, 92, 0.38);
+  padding: 34px;
+  border: 1px solid rgba(255, 221, 129, 0.62);
   background:
-    linear-gradient(135deg, rgba(178, 24, 24, 0.86), rgba(32, 12, 14, 0.94) 58%, rgba(255, 196, 155, 0.18)),
+    linear-gradient(135deg, rgba(190, 29, 32, 0.92), rgba(32, 12, 14, 0.94) 58%, rgba(255, 196, 104, 0.24)),
     #160c0e;
-  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.46);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.46), 0 0 80px rgba(255, 161, 63, 0.18);
+  animation: modalRise 360ms ease-out both;
+}
+
+.modal-panel::before,
+.modal-panel::after {
+  content: "";
+  position: absolute;
+  inset: -18% -10% auto;
+  height: 42%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255, 234, 162, 0.82) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(114, 240, 200, 0.5) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255, 128, 128, 0.64) 0 2px, transparent 3px);
+  background-size: 52px 48px, 76px 66px, 88px 70px;
+  animation: confettiFall 5.4s linear infinite;
+}
+
+.modal-panel::after {
+  inset: auto -10% -20%;
+  animation-direction: reverse;
+  opacity: 0.48;
 }
 
 .modal-panel h2 {
+  position: relative;
   max-width: 560px;
   margin-bottom: 18px;
   font-size: clamp(2rem, 5vw, 4.1rem);
@@ -1000,16 +1081,24 @@ body.field-light.field-dark-preview .ticker-card {
 }
 
 .modal-list {
+  position: relative;
   display: grid;
   gap: 12px;
 }
 
 .modal-card {
   display: grid;
-  gap: 5px;
-  padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
+  gap: 7px;
+  padding: 18px;
+  border: 1px solid rgba(255, 232, 160, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.modal-card:hover,
+.modal-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 232, 160, 0.7);
 }
 
 .modal-card span {
@@ -1023,8 +1112,46 @@ body.field-light.field-dark-preview .ticker-card {
 }
 
 .modal-card em {
-  color: var(--muted);
+  color: #ffd98b;
   font-style: normal;
+  font-weight: 900;
+}
+
+.modal-card p,
+.modal-card small {
+  margin: 0;
+  color: rgba(244, 251, 248, 0.78);
+  line-height: 1.55;
+}
+
+.modal-card small {
+  font-size: 0.78rem;
+}
+
+@keyframes birthdayGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 211, 118, 0); }
+  50% { box-shadow: 0 0 30px rgba(255, 211, 118, 0.22); }
+}
+
+@keyframes birthdayRibbon {
+  from { background-position: 0 0; }
+  to { background-position: 480px 0; }
+}
+
+@keyframes modalRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes confettiFall {
+  from { transform: translateY(-18px); }
+  to { transform: translateY(38px); }
 }
 
 .view-counter {

@@ -40,6 +40,29 @@ function parseFrontMatter(text) {
   return yaml.load(match[1]);
 }
 
+function markdownExcerpt(text) {
+  return String(text || "")
+    .replace(/^---\s*\n[\s\S]*?\n---/, "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("#"))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .slice(0, 180);
+}
+
+function safePathSegment(value) {
+  const ascii = String(value || "")
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  if (ascii) return ascii;
+  return `p-${Buffer.from(String(value || "birthday"), "utf8").toString("hex").slice(0, 24)}`;
+}
+
 function branchNames() {
   const refs = git(["for-each-ref", "refs/remotes/origin", "--format=%(refname:short)"]);
   return refs
@@ -106,6 +129,9 @@ function collectBirthdayEvents(today) {
     const readme = branchFile(branch, "README.md");
     const meta = parseFrontMatter(readme);
     if (!meta) continue;
+    const slug = safePathSegment(meta.slug || branch);
+    const excerpt = markdownExcerpt(readme);
+    const pageLede = extractClass(branchFile(branch, "index.html"), "lede");
 
     for (const entry of birthdayEntries(meta)) {
       for (const birthday of solarBirthdayCandidates(entry, year)) {
@@ -122,15 +148,22 @@ function collectBirthdayEvents(today) {
           seen.add(key);
           events.push({
             branch,
+            slug,
             name: meta.name ?? branch,
             relation: meta.relation ?? "",
+            stage: meta.stage ?? "",
+            born: meta.born ?? entry.born ?? null,
             birthday,
             birthdayEntry: entry,
+            label: entry.label ?? meta.label ?? "生日",
+            calendar: entry.calendar ?? meta.calendar ?? "solar",
+            message: entry.message ?? meta.message ?? meta.wish ?? pageLede ?? excerpt,
+            links: Array.isArray(meta.links) ? meta.links : [],
             start,
             end,
             phase,
             days: Math.abs(offset),
-            url: `wishes/${encodeURIComponent(branch)}/`
+            url: `wishes/${slug}/`
           });
         }
       }
@@ -692,7 +725,7 @@ const copiedBranches = new Set();
 for (const event of events) {
   if (copiedBranches.has(event.branch)) continue;
   copiedBranches.add(event.branch);
-  copyBranchTo(event.branch, join(output, "wishes", encodeURIComponent(event.branch)));
+  copyBranchTo(event.branch, join(output, "wishes", event.slug));
 }
 writeBirthdayData(today, events);
 writeMeta(events.some((event) => event.phase === "today") ? "birthday" : "default", today, events);
