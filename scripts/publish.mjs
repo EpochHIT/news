@@ -271,6 +271,13 @@ function extractClass(block, className) {
   return match ? decodeHtml(match[1]) : "";
 }
 
+function extractArxivAuthors(entry) {
+  return [...entry.matchAll(/<author\b[\s\S]*?<\/author>/g)]
+    .map(([author]) => decodeXml(author.match(/<name>([\s\S]*?)<\/name>/)?.[1] || ""))
+    .filter(Boolean)
+    .slice(0, 4);
+}
+
 async function fetchArxivPapers() {
   const query = ["cat:cs.RO", "cat:cs.AI", "cat:cs.LG", "cat:cs.CV", "cat:eess.SY"].join("+OR+");
   const url = `https://export.arxiv.org/api/query?search_query=${query}&start=0&max_results=45&sortBy=submittedDate&sortOrder=descending`;
@@ -288,7 +295,7 @@ async function fetchArxivPapers() {
         index: String(index + 1).padStart(2, "0"),
         title,
         summary,
-        authors: [...entry.matchAll(/<author>\s*<name>([\s\S]*?)<\/name>\s*<\/author>/g)].map((match) => decodeXml(match[1])).slice(0, 4),
+        authors: extractArxivAuthors(entry),
         categories: [...entry.matchAll(/<category term="([^"]+)"/g)].map((match) => match[1]),
         published: decodeXml(entry.match(/<published>([\s\S]*?)<\/published>/)?.[1]).slice(0, 10),
         arxiv: idUrl,

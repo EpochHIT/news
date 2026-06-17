@@ -37,7 +37,9 @@ function startIntro(items) {
   const setImages = () => {
     const selected = Array.from({ length: 5 }, (_, offset) => items[(introIndex + offset * 5) % Math.max(items.length, 1)]);
     const images = selected.map((item) => `url("${String(item?.image || "").replace(/"/g, "%22")}")`).join(",");
+    const sizes = selected.map(() => "auto 118%").join(",");
     word.style.setProperty("--intro-images", images || "none");
+    word.style.setProperty("--intro-sizes", sizes || "auto 118%");
     word.classList.remove("is-shifting");
     requestAnimationFrame(() => word.classList.add("is-shifting"));
     introIndex = (introIndex + 1) % Math.max(items.length, 1);
@@ -86,8 +88,11 @@ function renderArchive(items) {
     card.className = `archive-card archive-card-${index % 5}`;
     card.type = "button";
     card.innerHTML = `<span>${String(index + 1).padStart(2, "0")} / ${escapeHtml(item.type)}</span><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.date)}</small>`;
+    card.addEventListener("pointerdown", (event) => {
+      event.stopPropagation();
+    });
     card.addEventListener("click", () => {
-      if (!dragged) inspectItem(item);
+      inspectItem(item, card);
     });
     orbit.append(card);
     return card;
@@ -114,8 +119,9 @@ function positionArchive() {
   });
 }
 
-function inspectItem(item) {
+function inspectItem(item, card) {
   const panel = document.getElementById("inspect-panel");
+  orbitCards.forEach((entry) => entry.classList.toggle("is-selected", entry === card));
   document.getElementById("inspect-type").textContent = item.type || "FILE";
   document.getElementById("inspect-title").textContent = item.title || item.label;
   document.getElementById("inspect-date").textContent = item.date || "ORIGINAL";
@@ -126,6 +132,7 @@ function inspectItem(item) {
 function setupArchiveControls() {
   const viewport = document.getElementById("archive-viewport");
   viewport.addEventListener("pointerdown", (event) => {
+    if (event.target.closest(".archive-card")) return;
     dragStart = { x: event.clientX, rotation: orbitRotation };
     dragged = false;
     viewport.setPointerCapture(event.pointerId);
@@ -143,6 +150,7 @@ function setupArchiveControls() {
   viewport.addEventListener("pointercancel", () => { dragStart = null; });
   document.getElementById("inspect-close").addEventListener("click", () => {
     document.getElementById("inspect-panel").hidden = true;
+    orbitCards.forEach((entry) => entry.classList.remove("is-selected"));
   });
 }
 
