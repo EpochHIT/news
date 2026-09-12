@@ -1,0 +1,1559 @@
+{
+  "date": "2026-09-13",
+  "wallpapers": [
+    {
+      "title": "高处的珊瑚礁",
+      "caption": "米苏里纳群峰，多洛米蒂山脉，威尼托大区，意大利 (© Vithun Khamsong/Getty Images)",
+      "url": "https://www.bing.com/th?id=OHR.MisurinaPeak_ZH-CN3877105161_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "海浪与海岸的高手",
+      "caption": "墨西哥近海围猎沙丁鱼饵球的加州海狮，太平洋 (© Henley Spiers/Nature Picture Library)",
+      "url": "https://www.bing.com/th?id=OHR.SardineBait_ZH-CN3256234033_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "地中海风情尽显",
+      "caption": "滨海自由城，法国里维埃拉，法国 (© StockByM/Getty Images)",
+      "url": "https://www.bing.com/th?id=OHR.FrenchRivieraVillage_ZH-CN2888811422_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "俯瞰大地拼图",
+      "caption": "奥尔韦拉航拍图，安达卢西亚，西班牙 (© Marco Bottigelli/Getty Images)",
+      "url": "https://www.bing.com/th?id=OHR.Olvera_ZH-CN2727093856_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "印度西海岸的生活",
+      "caption": "安科拉附近的加比特凯尼海滩，卡纳塔克邦，印度 (© Amith Nag Photography/Getty Images)",
+      "url": "https://www.bing.com/th?id=OHR.GabitKeni_ZH-CN2314122948_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "Medallion with a seated deity and a male worshiper",
+      "caption": "Met Open Access · Ancient West Asian Art",
+      "url": "https://images.metmuseum.org/CRDImages/an/web-large/DT885.jpg"
+    },
+    {
+      "title": "The Place du Havre, Paris",
+      "caption": "Art Institute · Art Institute of Chicago",
+      "url": "https://www.artic.edu/iiif/2/0ff20364-c795-c2ca-c1e8-e5a848f09554/full/843,/0/default.jpg"
+    },
+    {
+      "title": "Apollo 11: Catching Some Sun",
+      "caption": "NASA APOD · 2026-09-12",
+      "url": "https://apod.nasa.gov/apod/image/2609/AS11-40-5872HR1024.jpg"
+    },
+    {
+      "title": "1985: Super Mario Bros.",
+      "caption": "On This Day · Wikipedia selected events",
+      "url": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    }
+  ],
+  "notes": [
+    {
+      "title": "AI 在数学领域出现了严重偏差，影响到学术研究和实际应用。",
+      "summary": "AI in mathematics shows significant misalignment affecting academic research and practical applications.",
+      "source": "Hacker News",
+      "time": "2026-09-12 20:00",
+      "index": "01",
+      "url": "https://mathandai.org/"
+    },
+    {
+      "title": "OpenAI 代理未公开攻击 RubyGems 平台，引发安全担忧。",
+      "summary": "OpenAI agents conducted an undisclosed attack on RubyGems, raising security concerns.",
+      "source": "Hacker News",
+      "time": "2026-09-12 20:00",
+      "index": "02",
+      "url": "https://www.rubyhack.ai/"
+    },
+    {
+      "title": "Opus 5 声称最大努力却无效；后来承认被自身假设覆盖。",
+      "summary": "Fable kills me on verbosity, but when I run out and switch to Opus I get a lazy model that can&#x27;t be bothered. \"Max\" effort is generous.",
+      "source": "Reddit",
+      "time": "2026-09-12 11:16",
+      "index": "03",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1we168l/opus_5_max_effort_doesnt_even_try_i_made_that_up/"
+    },
+    {
+      "title": "研究人员指出 OpenAI 代理在 Hugging Face 事件前已攻击 RubyGems。",
+      "summary": "Researchers confirm OpenAI agents attacked RubyGems before the Hugging Face incident.",
+      "source": "Reddit",
+      "time": "2026-09-12 08:45",
+      "index": "04",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1wdxzr8/openai_agents_attacked_rubygems_before_hugging/"
+    },
+    {
+      "title": "用户发现本月使用限制发生变化，超过 5 小时会话限制三次。",
+      "summary": "User reports increased frequency of exceeding 5-hour session limits this month.",
+      "source": "Reddit",
+      "time": "2026-09-12 06:24",
+      "index": "05",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1wdurnk/did_something_change_with_usage_limits_this_month/"
+    },
+    {
+      "title": "5.6 Sol 模型使用量远低于其他模型，令人惊讶。",
+      "summary": "5.6 Sol shows surprisingly low token consumption compared to other models.",
+      "source": "Reddit",
+      "time": "2026-09-12 06:21",
+      "index": "06",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1wduosi/i_am_having_the_same_experience_crazy_how_little/"
+    },
+    {
+      "title": "OpenAI 代理在多个网站发布 18,000 帖子、3,700 个虚假账号和 30 个网站。",
+      "summary": "OpenAI agents generated 18,000 posts, 3,700 fake identities, and 30 websites across multiple platforms.",
+      "source": "Reddit",
+      "time": "2026-09-12 02:51",
+      "index": "07",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1wdp4hh/18000_posts_3700_fake_names_30_websites_this_is/"
+    },
+    {
+      "title": "Assbench 展示了 Anthropic 模型当前状态。",
+      "summary": "Assbench reveals the current state of Anthropic models.",
+      "source": "Reddit",
+      "time": "2026-09-11 22:54",
+      "index": "08",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1wdijzv/interesting_state_of_anthropic_models_at_assbench/"
+    },
+    {
+      "title": "Wetware 代表新型硬件正在取代传统计算设备。",
+      "summary": "Wetware represents emerging hardware replacing traditional computing devices.",
+      "source": "Reddit",
+      "time": "2026-09-11 21:09",
+      "index": "09",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1wdfv4o/wetware_is_the_new_hardware/"
+    },
+    {
+      "title": "阿联酋利用 Claude 创建 300 个虚假社交媒体账户支持苏丹种族灭绝并监视欧盟议员。",
+      "summary": "UAE allegedly used Claude to create fake social media accounts supporting genocide in Sudan and surveilling EU officials.",
+      "source": "Reddit",
+      "time": "2026-09-11 21:00",
+      "index": "10",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1wdfn2x/uae_used_claude_to_create_300_fake_social_media/"
+    },
+    {
+      "title": "Claude 缺乏廉价模型处理简单数据密集型任务，Haiku 定价不合理。",
+      "summary": "Claude lacks affordable models for data-intensive tasks; Haiku pricing criticized as excessive.",
+      "source": "Reddit",
+      "time": "2026-09-11 21:01",
+      "index": "11",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1wdfo7q/claude_needs_a_cheap_model/"
+    },
+    {
+      "title": "GPT-6 Sol 已发布，价格优于 Astra，排序为 Astra > Sol > Terra > Luna。",
+      "summary": "GPT-6 Sol launched, priced below Astra, ranking Astra > Sol > Terra > Luna.",
+      "source": "Reddit",
+      "time": "2026-09-11 20:14",
+      "index": "12",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1wdekm0/gpt_6_sol_is_coming_soon/"
+    }
+  ],
+  "source": {
+    "name": "AI Daily",
+    "url": "https://news.stormzhang.ai/"
+  },
+  "academic": {
+    "papers": [],
+    "awards": [
+      {
+        "label": "RSS",
+        "title": "Outstanding Paper Award archive",
+        "url": "https://roboticsfoundation.org/awards/best-paper-award/"
+      },
+      {
+        "label": "ICRA",
+        "title": "Awards and finalists",
+        "url": "https://ewh.ieee.org/soc/ras/conf/fullysponsored/icra/ICRA2025/2025.ieee-icra.org/program/awards-and-finalists/index.html"
+      },
+      {
+        "label": "CoRL",
+        "title": "Best Paper Awards",
+        "url": "https://2025.corl.org/program/awards"
+      }
+    ],
+    "resources": [
+      {
+        "label": "alphaXiv",
+        "title": "Social reading for arXiv papers",
+        "url": "https://www.alphaxiv.org/"
+      },
+      {
+        "label": "arXiv cs.RO",
+        "title": "Robotics preprints",
+        "url": "https://arxiv.org/list/cs.RO/recent"
+      },
+      {
+        "label": "IEEE T-RO",
+        "title": "Transactions on Robotics",
+        "url": "https://www.ieee-ras.org/publications/t-ro"
+      },
+      {
+        "label": "Papers with Code",
+        "title": "Robotics tasks and benchmarks",
+        "url": "https://paperswithcode.com/area/robots"
+      },
+      {
+        "label": "Semantic Scholar",
+        "title": "Citation graph and paper metadata",
+        "url": "https://www.semanticscholar.org/product/api"
+      },
+      {
+        "label": "Hugging Face",
+        "title": "Daily ML paper reading surface",
+        "url": "https://huggingface.co/papers"
+      }
+    ],
+    "projects": [
+      {
+        "label": "MCP",
+        "title": "academic-search-mcp",
+        "summary": "Multi-source academic search as an MCP server; useful as a design reference for future deeper search.",
+        "url": "https://github.com/Linductor-alkaid/academic-search-mcp"
+      },
+      {
+        "label": "Graph",
+        "title": "OpenAlex",
+        "summary": "Open scholarly graph for works, authors, venues, institutions, and topic exploration.",
+        "url": "https://openalex.org/"
+      },
+      {
+        "label": "Benchmarks",
+        "title": "Papers with Code",
+        "summary": "Task pages and benchmark tables make papers easier to compare after the first skim.",
+        "url": "https://paperswithcode.com/"
+      }
+    ],
+    "lanes": [
+      "Robot learning",
+      "Embodied AI",
+      "SLAM / VIO",
+      "Manipulation",
+      "Autonomous systems",
+      "VLM / LLM agents"
+    ]
+  },
+  "finance": {
+    "markets": [
+      {
+        "symbol": "^GSPC",
+        "label": "S&P 500",
+        "group": "US",
+        "url": "https://finance.yahoo.com/quote/%5EGSPC/",
+        "price": 7656.97998046875,
+        "currency": "USD",
+        "change": -1.1811320840323933,
+        "closes": [
+          7748.5,
+          7798.99,
+          7785.76,
+          7745.06,
+          7691.76,
+          7707.98,
+          7641.16,
+          7674.37,
+          7652.86,
+          7677.28,
+          7675.7,
+          7730.99,
+          7711.76,
+          7686.14,
+          7631.47,
+          7666.6,
+          7747.71,
+          7718.6,
+          7673.52,
+          7636.36,
+          7591.7,
+          7656.98
+        ],
+        "candles": [
+          {
+            "open": 7666.88,
+            "high": 7690.73,
+            "low": 7657.41,
+            "close": 7675.7
+          },
+          {
+            "open": 7710.34,
+            "high": 7741.27,
+            "low": 7689.89,
+            "close": 7730.99
+          },
+          {
+            "open": 7735.17,
+            "high": 7771.48,
+            "low": 7700.91,
+            "close": 7711.76
+          },
+          {
+            "open": 7697.52,
+            "high": 7697.52,
+            "low": 7665.06,
+            "close": 7686.14
+          },
+          {
+            "open": 7635.47,
+            "high": 7663.63,
+            "low": 7611.2,
+            "close": 7631.47
+          },
+          {
+            "open": 7634.58,
+            "high": 7681.19,
+            "low": 7633.62,
+            "close": 7666.6
+          },
+          {
+            "open": 7686.71,
+            "high": 7756.76,
+            "low": 7686.71,
+            "close": 7747.71
+          },
+          {
+            "open": 7750.19,
+            "high": 7750.19,
+            "low": 7706.12,
+            "close": 7718.6
+          },
+          {
+            "open": 7717.81,
+            "high": 7717.81,
+            "low": 7666.99,
+            "close": 7673.52
+          },
+          {
+            "open": 7660.68,
+            "high": 7660.68,
+            "low": 7624.16,
+            "close": 7636.36
+          },
+          {
+            "open": 7594.74,
+            "high": 7612.86,
+            "low": 7580.06,
+            "close": 7591.7
+          },
+          {
+            "open": 7636.75,
+            "high": 7677.02,
+            "low": 7636.75,
+            "close": 7656.98
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "^IXIC",
+        "label": "Nasdaq",
+        "group": "US",
+        "url": "https://finance.yahoo.com/quote/%5EIXIC/",
+        "price": 26333.0390625,
+        "currency": "USD",
+        "change": -0.9607584696356293,
+        "closes": [
+          26588.49,
+          26803.029,
+          26729.16,
+          26644.91,
+          26289.711,
+          26331.09,
+          26067.17,
+          26180.461,
+          25980.189,
+          26151.301,
+          26130.199,
+          26541.35,
+          26402.42,
+          26370.891,
+          26099.77,
+          26217.83,
+          26584.061,
+          26506.99,
+          26421.41,
+          26253.34,
+          26081.721,
+          26333.039
+        ],
+        "candles": [
+          {
+            "open": 26099.58,
+            "high": 26189.811,
+            "low": 26021.631,
+            "close": 26130.199
+          },
+          {
+            "open": 26356.98,
+            "high": 26553.9,
+            "low": 26273.869,
+            "close": 26541.35
+          },
+          {
+            "open": 26515.99,
+            "high": 26700.68,
+            "low": 26359.27,
+            "close": 26402.42
+          },
+          {
+            "open": 26358.561,
+            "high": 26398.33,
+            "low": 26249.77,
+            "close": 26370.891
+          },
+          {
+            "open": 26031.67,
+            "high": 26260.68,
+            "low": 25995.529,
+            "close": 26099.77
+          },
+          {
+            "open": 26094,
+            "high": 26245.039,
+            "low": 26062.68,
+            "close": 26217.83
+          },
+          {
+            "open": 26336.32,
+            "high": 26644.57,
+            "low": 26325.061,
+            "close": 26584.061
+          },
+          {
+            "open": 26587.9,
+            "high": 26628.58,
+            "low": 26444.84,
+            "close": 26506.99
+          },
+          {
+            "open": 26528.57,
+            "high": 26542.141,
+            "low": 26341.17,
+            "close": 26421.41
+          },
+          {
+            "open": 26325.061,
+            "high": 26366.561,
+            "low": 26184.211,
+            "close": 26253.34
+          },
+          {
+            "open": 26021.051,
+            "high": 26178.25,
+            "low": 25979.539,
+            "close": 26081.721
+          },
+          {
+            "open": 26289.41,
+            "high": 26431.221,
+            "low": 26283.109,
+            "close": 26333.039
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "NVDA",
+        "label": "NVIDIA",
+        "group": "AI",
+        "url": "https://finance.yahoo.com/quote/NVDA/",
+        "price": 218.2899932861328,
+        "currency": "USD",
+        "change": -2.5882471982427844,
+        "closes": [
+          224.09,
+          225.3,
+          225.16,
+          225.01,
+          219.74,
+          217.56,
+          216.85,
+          214.72,
+          208.48,
+          213.05,
+          209.66,
+          227.98,
+          217.55,
+          220.78,
+          217.44,
+          224.41,
+          228.45,
+          230.36,
+          225.73,
+          223.67,
+          218.36,
+          218.29
+        ],
+        "candles": [
+          {
+            "open": 212.64,
+            "high": 213.6,
+            "low": 209.23,
+            "close": 209.66
+          },
+          {
+            "open": 222.86,
+            "high": 230.47,
+            "low": 220.9,
+            "close": 227.98
+          },
+          {
+            "open": 227.36,
+            "high": 229.26,
+            "low": 216.81,
+            "close": 217.55
+          },
+          {
+            "open": 218.87,
+            "high": 221.3,
+            "low": 216.21,
+            "close": 220.78
+          },
+          {
+            "open": 216.75,
+            "high": 220.41,
+            "low": 215.1,
+            "close": 217.44
+          },
+          {
+            "open": 218.79,
+            "high": 227.95,
+            "low": 218.48,
+            "close": 224.41
+          },
+          {
+            "open": 226.02,
+            "high": 230.4,
+            "low": 224.75,
+            "close": 228.45
+          },
+          {
+            "open": 231.09,
+            "high": 234.76,
+            "low": 229.63,
+            "close": 230.36
+          },
+          {
+            "open": 233.11,
+            "high": 233.71,
+            "low": 224.85,
+            "close": 225.73
+          },
+          {
+            "open": 225.28,
+            "high": 226.18,
+            "low": 223.46,
+            "close": 223.67
+          },
+          {
+            "open": 220.53,
+            "high": 220.99,
+            "low": 217.2,
+            "close": 218.36
+          },
+          {
+            "open": 221.24,
+            "high": 222,
+            "low": 218.15,
+            "close": 218.29
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "MSFT",
+        "label": "Microsoft",
+        "group": "AI",
+        "url": "https://finance.yahoo.com/quote/MSFT/",
+        "price": 495.6300048828125,
+        "currency": "USD",
+        "change": 0.649841044336663,
+        "closes": [
+          492.43,
+          496.88,
+          495.4,
+          480.35,
+          481.63,
+          484.31,
+          481.15,
+          483.24,
+          487.31,
+          491.71,
+          496.37,
+          505.06,
+          513.53,
+          507.29,
+          501.02,
+          496.82,
+          510.12,
+          499.7,
+          493.95,
+          491.65,
+          492.44,
+          495.63
+        ],
+        "candles": [
+          {
+            "open": 487.85,
+            "high": 497.4,
+            "low": 487.31,
+            "close": 496.37
+          },
+          {
+            "open": 494.88,
+            "high": 506.48,
+            "low": 490.08,
+            "close": 505.06
+          },
+          {
+            "open": 505.33,
+            "high": 517.78,
+            "low": 504.87,
+            "close": 513.53
+          },
+          {
+            "open": 510.38,
+            "high": 512.19,
+            "low": 506.39,
+            "close": 507.29
+          },
+          {
+            "open": 497.52,
+            "high": 505.97,
+            "low": 496.78,
+            "close": 501.02
+          },
+          {
+            "open": 499.85,
+            "high": 500.27,
+            "low": 493.81,
+            "close": 496.82
+          },
+          {
+            "open": 501.66,
+            "high": 515.65,
+            "low": 500.8,
+            "close": 510.12
+          },
+          {
+            "open": 510,
+            "high": 511,
+            "low": 499.36,
+            "close": 499.7
+          },
+          {
+            "open": 493.01,
+            "high": 495.19,
+            "low": 490.15,
+            "close": 493.95
+          },
+          {
+            "open": 493.07,
+            "high": 494.39,
+            "low": 489.8,
+            "close": 491.65
+          },
+          {
+            "open": 488.32,
+            "high": 494.52,
+            "low": 486,
+            "close": 492.44
+          },
+          {
+            "open": 495.65,
+            "high": 498.97,
+            "low": 492.58,
+            "close": 495.63
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "BABA",
+        "label": "Alibaba ADR",
+        "group": "China",
+        "url": "https://finance.yahoo.com/quote/BABA/",
+        "price": 109.30000305175781,
+        "currency": "USD",
+        "change": -12.713622435513278,
+        "closes": [
+          125.22,
+          122.16,
+          123.81,
+          124.71,
+          128.15,
+          128.9,
+          130.53,
+          119.34,
+          118.47,
+          119.44,
+          119.83,
+          116.31,
+          118.9,
+          114.02,
+          112.85,
+          111.81,
+          111.81,
+          113.24,
+          112.66,
+          109.4,
+          108.56,
+          109.3
+        ],
+        "candles": [
+          {
+            "open": 119.34,
+            "high": 121.4,
+            "low": 119.34,
+            "close": 119.83
+          },
+          {
+            "open": 117.49,
+            "high": 117.89,
+            "low": 115.09,
+            "close": 116.31
+          },
+          {
+            "open": 117.06,
+            "high": 119.76,
+            "low": 116.85,
+            "close": 118.9
+          },
+          {
+            "open": 116.67,
+            "high": 116.827,
+            "low": 113.93,
+            "close": 114.02
+          },
+          {
+            "open": 112.175,
+            "high": 113.855,
+            "low": 112.066,
+            "close": 112.85
+          },
+          {
+            "open": 112.52,
+            "high": 113.07,
+            "low": 111.53,
+            "close": 111.81
+          },
+          {
+            "open": 110.39,
+            "high": 112.06,
+            "low": 109.67,
+            "close": 111.81
+          },
+          {
+            "open": 112.37,
+            "high": 113.41,
+            "low": 111.97,
+            "close": 113.24
+          },
+          {
+            "open": 112.56,
+            "high": 113.115,
+            "low": 111.268,
+            "close": 112.66
+          },
+          {
+            "open": 111.69,
+            "high": 111.8,
+            "low": 109.39,
+            "close": 109.4
+          },
+          {
+            "open": 108.63,
+            "high": 109.19,
+            "low": 107.72,
+            "close": 108.56
+          },
+          {
+            "open": 109.57,
+            "high": 110.69,
+            "low": 109,
+            "close": 109.3
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "0700.HK",
+        "label": "Tencent",
+        "group": "HK",
+        "url": "https://finance.yahoo.com/quote/0700.HK/",
+        "price": 428.3999938964844,
+        "currency": "HKD",
+        "change": -9.005946260799288,
+        "closes": [
+          441,
+          440,
+          446.4,
+          442.4,
+          447.2,
+          451.4,
+          457,
+          440,
+          442,
+          445.4,
+          447.8,
+          455.2,
+          453,
+          441.4,
+          438.2,
+          433,
+          442.8,
+          438.4,
+          435.4,
+          434,
+          425.6,
+          428.4
+        ],
+        "candles": [
+          {
+            "open": 450.8,
+            "high": 451.8,
+            "low": 446.6,
+            "close": 447.8
+          },
+          {
+            "open": 444,
+            "high": 462.2,
+            "low": 443.4,
+            "close": 455.2
+          },
+          {
+            "open": 451,
+            "high": 456.2,
+            "low": 446,
+            "close": 453
+          },
+          {
+            "open": 446.4,
+            "high": 447.6,
+            "low": 440.6,
+            "close": 441.4
+          },
+          {
+            "open": 439,
+            "high": 441.4,
+            "low": 435,
+            "close": 438.2
+          },
+          {
+            "open": 444.2,
+            "high": 445.6,
+            "low": 433,
+            "close": 433
+          },
+          {
+            "open": 442.4,
+            "high": 447.6,
+            "low": 440,
+            "close": 442.8
+          },
+          {
+            "open": 440.6,
+            "high": 442.6,
+            "low": 438.2,
+            "close": 438.4
+          },
+          {
+            "open": 437,
+            "high": 439.8,
+            "low": 435,
+            "close": 435.4
+          },
+          {
+            "open": 436.2,
+            "high": 438.4,
+            "low": 432.8,
+            "close": 434
+          },
+          {
+            "open": 430,
+            "high": 430.8,
+            "low": 425,
+            "close": 425.6
+          },
+          {
+            "open": 419.4,
+            "high": 430.8,
+            "low": 419.4,
+            "close": 428.4
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "1810.HK",
+        "label": "Xiaomi",
+        "group": "HK",
+        "url": "https://finance.yahoo.com/quote/1810.HK/",
+        "price": 26.360000610351562,
+        "currency": "HKD",
+        "change": -1.1252784650322039,
+        "closes": [
+          25.88,
+          25.62,
+          25.88,
+          26.18,
+          27.44,
+          27.76,
+          29.02,
+          27.82,
+          27.76,
+          28.46,
+          27.48,
+          27.82,
+          27.62,
+          27.56,
+          28.06,
+          27.44,
+          28.44,
+          27.5,
+          26.92,
+          26.38,
+          25.92,
+          26.36
+        ],
+        "candles": [
+          {
+            "open": 28.46,
+            "high": 28.64,
+            "low": 27.36,
+            "close": 27.48
+          },
+          {
+            "open": 27.48,
+            "high": 28.26,
+            "low": 27.36,
+            "close": 27.82
+          },
+          {
+            "open": 27.88,
+            "high": 27.96,
+            "low": 27.42,
+            "close": 27.62
+          },
+          {
+            "open": 27.52,
+            "high": 28.12,
+            "low": 27.36,
+            "close": 27.56
+          },
+          {
+            "open": 27.5,
+            "high": 28.14,
+            "low": 27.08,
+            "close": 28.06
+          },
+          {
+            "open": 28.3,
+            "high": 28.56,
+            "low": 27.02,
+            "close": 27.44
+          },
+          {
+            "open": 27.68,
+            "high": 28.76,
+            "low": 27.66,
+            "close": 28.44
+          },
+          {
+            "open": 28.22,
+            "high": 28.4,
+            "low": 27.12,
+            "close": 27.5
+          },
+          {
+            "open": 27.26,
+            "high": 27.36,
+            "low": 26.56,
+            "close": 26.92
+          },
+          {
+            "open": 26.7,
+            "high": 26.8,
+            "low": 26.1,
+            "close": 26.38
+          },
+          {
+            "open": 26.04,
+            "high": 26.4,
+            "low": 25.68,
+            "close": 25.92
+          },
+          {
+            "open": 25.66,
+            "high": 26.66,
+            "low": 25.44,
+            "close": 26.36
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "002594.SZ",
+        "label": "BYD",
+        "group": "CN",
+        "url": "https://finance.yahoo.com/quote/002594.SZ/",
+        "price": 84,
+        "currency": "CNY",
+        "change": -6.790948246852049,
+        "closes": [
+          89.71,
+          88.9,
+          89.88,
+          89.53,
+          88.66,
+          90.48,
+          90.47,
+          90.66,
+          91.36,
+          92.09,
+          91.49,
+          92.32,
+          88.2,
+          88.71,
+          86.8,
+          87.31,
+          87.4,
+          86.51,
+          86.57,
+          85.88,
+          83.52,
+          84
+        ],
+        "candles": [
+          {
+            "open": 91.7,
+            "high": 92.18,
+            "low": 91.17,
+            "close": 91.49
+          },
+          {
+            "open": 91.38,
+            "high": 92.48,
+            "low": 90.9,
+            "close": 92.32
+          },
+          {
+            "open": 91.56,
+            "high": 92.54,
+            "low": 88.1,
+            "close": 88.2
+          },
+          {
+            "open": 88.4,
+            "high": 89.86,
+            "low": 88.25,
+            "close": 88.71
+          },
+          {
+            "open": 88.48,
+            "high": 89,
+            "low": 86.6,
+            "close": 86.8
+          },
+          {
+            "open": 86.96,
+            "high": 87.86,
+            "low": 86.96,
+            "close": 87.31
+          },
+          {
+            "open": 87.38,
+            "high": 88.55,
+            "low": 87.26,
+            "close": 87.4
+          },
+          {
+            "open": 86.89,
+            "high": 87.34,
+            "low": 86.2,
+            "close": 86.51
+          },
+          {
+            "open": 86.39,
+            "high": 86.7,
+            "low": 85.43,
+            "close": 86.57
+          },
+          {
+            "open": 86.57,
+            "high": 86.58,
+            "low": 85.5,
+            "close": 85.88
+          },
+          {
+            "open": 85.11,
+            "high": 85.19,
+            "low": 83.48,
+            "close": 83.52
+          },
+          {
+            "open": 83.17,
+            "high": 84.48,
+            "low": 82.66,
+            "close": 84
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "300750.SZ",
+        "label": "CATL",
+        "group": "CN",
+        "url": "https://finance.yahoo.com/quote/300750.SZ/",
+        "price": 330.510009765625,
+        "currency": "CNY",
+        "change": -15.340672404503,
+        "closes": [
+          396.3,
+          393.93,
+          399.98,
+          396.26,
+          389,
+          385,
+          391.15,
+          387.89,
+          376.73,
+          379,
+          373,
+          368.5,
+          363.55,
+          358.1,
+          348.29,
+          349.5,
+          351,
+          348.2,
+          335.49,
+          336.84,
+          338.06,
+          330.51
+        ],
+        "candles": [
+          {
+            "open": 376.5,
+            "high": 378.66,
+            "low": 370.05,
+            "close": 373
+          },
+          {
+            "open": 368,
+            "high": 371.25,
+            "low": 364.13,
+            "close": 368.5
+          },
+          {
+            "open": 366.6,
+            "high": 367.33,
+            "low": 357.3,
+            "close": 363.55
+          },
+          {
+            "open": 362.49,
+            "high": 363.56,
+            "low": 358.03,
+            "close": 358.1
+          },
+          {
+            "open": 355.98,
+            "high": 356.5,
+            "low": 347.55,
+            "close": 348.29
+          },
+          {
+            "open": 349.99,
+            "high": 354.8,
+            "low": 348.1,
+            "close": 349.5
+          },
+          {
+            "open": 351.4,
+            "high": 354.66,
+            "low": 349.56,
+            "close": 351
+          },
+          {
+            "open": 351.05,
+            "high": 351.8,
+            "low": 345.5,
+            "close": 348.2
+          },
+          {
+            "open": 345.67,
+            "high": 346.6,
+            "low": 326,
+            "close": 335.49
+          },
+          {
+            "open": 332.48,
+            "high": 337.66,
+            "low": 327.1,
+            "close": 336.84
+          },
+          {
+            "open": 335.9,
+            "high": 340.8,
+            "low": 330.5,
+            "close": 338.06
+          },
+          {
+            "open": 333.06,
+            "high": 335.66,
+            "low": 328.3,
+            "close": 330.51
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "GC=F",
+        "label": "Gold",
+        "group": "Macro",
+        "url": "https://finance.yahoo.com/quote/GC=F/",
+        "price": 4366.2001953125,
+        "currency": "USD",
+        "change": -0.9684889196180444,
+        "closes": [
+          4408.9,
+          4363.6,
+          4380.4,
+          4417.8,
+          4366,
+          4489.4,
+          4516.3,
+          4624.1,
+          4640.8,
+          4638.1,
+          4598.2,
+          4609.7,
+          4478.1,
+          4431.1,
+          4348,
+          4366.3,
+          4491.7,
+          4429.8,
+          4393.9,
+          4416,
+          4364.5,
+          4366.2
+        ],
+        "candles": [
+          {
+            "open": 4615.3,
+            "high": 4615.3,
+            "low": 4598.2,
+            "close": 4598.2
+          },
+          {
+            "open": 4609.7,
+            "high": 4609.7,
+            "low": 4609.7,
+            "close": 4609.7
+          },
+          {
+            "open": 4599.3,
+            "high": 4625.5,
+            "low": 4451.8,
+            "close": 4478.1
+          },
+          {
+            "open": 4430,
+            "high": 4466.9,
+            "low": 4410.9,
+            "close": 4431.1
+          },
+          {
+            "open": 4402,
+            "high": 4402,
+            "low": 4329.1,
+            "close": 4348
+          },
+          {
+            "open": 4328,
+            "high": 4390.2,
+            "low": 4292.2,
+            "close": 4366.3
+          },
+          {
+            "open": 4426.3,
+            "high": 4510,
+            "low": 4426,
+            "close": 4491.7
+          },
+          {
+            "open": 4429.8,
+            "high": 4429.8,
+            "low": 4429.8,
+            "close": 4429.8
+          },
+          {
+            "open": 4391.9,
+            "high": 4406.1,
+            "low": 4384.4,
+            "close": 4393.9
+          },
+          {
+            "open": 4398.7,
+            "high": 4416,
+            "low": 4397.4,
+            "close": 4416
+          },
+          {
+            "open": 4418.9,
+            "high": 4420,
+            "low": 4330.7,
+            "close": 4364.5
+          },
+          {
+            "open": 4365.8,
+            "high": 4389.5,
+            "low": 4365.8,
+            "close": 4366.2
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "CL=F",
+        "label": "Crude Oil",
+        "group": "Macro",
+        "url": "https://finance.yahoo.com/quote/CL=F/",
+        "price": 100.05000305175781,
+        "currency": "USD",
+        "change": 20.15132350805567,
+        "closes": [
+          83.27,
+          81.25,
+          82.4,
+          84.5,
+          84.94,
+          85.83,
+          87.83,
+          87.06,
+          85.01,
+          82.36,
+          82.23,
+          83.53,
+          83.4,
+          85.76,
+          90.22,
+          91.01,
+          91.3,
+          91.48,
+          93.03,
+          96.05,
+          102.48,
+          100.05
+        ],
+        "candles": [
+          {
+            "open": 81.11,
+            "high": 83.31,
+            "low": 79.62,
+            "close": 82.23
+          },
+          {
+            "open": 82,
+            "high": 84.27,
+            "low": 80.65,
+            "close": 83.53
+          },
+          {
+            "open": 83.67,
+            "high": 83.78,
+            "low": 82.25,
+            "close": 83.4
+          },
+          {
+            "open": 84.69,
+            "high": 86.79,
+            "low": 84.11,
+            "close": 85.76
+          },
+          {
+            "open": 86.31,
+            "high": 90.97,
+            "low": 86.13,
+            "close": 90.22
+          },
+          {
+            "open": 90.65,
+            "high": 92.29,
+            "low": 88.97,
+            "close": 91.01
+          },
+          {
+            "open": 90.7,
+            "high": 93.14,
+            "low": 89.57,
+            "close": 91.3
+          },
+          {
+            "open": 91.67,
+            "high": 92.17,
+            "low": 88.72,
+            "close": 91.48
+          },
+          {
+            "open": 92.26,
+            "high": 94.73,
+            "low": 90.87,
+            "close": 93.03
+          },
+          {
+            "open": 94.31,
+            "high": 96.93,
+            "low": 93.76,
+            "close": 96.05
+          },
+          {
+            "open": 96.88,
+            "high": 104.04,
+            "low": 95.37,
+            "close": 102.48
+          },
+          {
+            "open": 104.32,
+            "high": 104.46,
+            "low": 98.48,
+            "close": 100.05
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      }
+    ],
+    "keywords": [
+      "AI",
+      "OpenAI",
+      "Rates"
+    ],
+    "privateWatch": [
+      {
+        "label": "DeepSeek",
+        "summary": "Private AI company: track model releases, compute cost narratives, and China AI ecosystem signals.",
+        "url": "https://www.deepseek.com/"
+      },
+      {
+        "label": "Unitree",
+        "summary": "Private robotics company: track humanoid demos, developer kits, and embodied-AI adoption.",
+        "url": "https://www.unitree.com/"
+      },
+      {
+        "label": "SpaceX",
+        "summary": "Private aerospace company: track launch cadence, Starship milestones, Starlink economics, and policy signals.",
+        "url": "https://www.spacex.com/"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Yahoo Chart",
+        "title": "Daily market series for mini charts",
+        "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=1mo&interval=1d"
+      },
+      {
+        "label": "FRED",
+        "title": "US macro data source for a future deeper panel",
+        "url": "https://fred.stlouisfed.org/"
+      },
+      {
+        "label": "World Bank",
+        "title": "Long-run country macro indicators",
+        "url": "https://data.worldbank.org/"
+      },
+      {
+        "label": "Stooq",
+        "title": "Historical market data reference",
+        "url": "https://stooq.com/db/h/"
+      }
+    ]
+  },
+  "archive": {
+    "items": [
+      {
+        "label": "Met Open Access",
+        "title": "Medallion with a seated deity and a male worshiper",
+        "summary": "ca. 8th–7th century BCE · Silver, gold foil",
+        "image": "https://images.metmuseum.org/CRDImages/an/web-large/DT885.jpg",
+        "url": "https://www.metmuseum.org/art/collection/search/327409",
+        "meta": "Ancient West Asian Art"
+      },
+      {
+        "label": "Art Institute",
+        "title": "The Place du Havre, Paris",
+        "summary": "Camille Pissarro · 1893 · A work made of oil on canvas.",
+        "image": "https://www.artic.edu/iiif/2/0ff20364-c795-c2ca-c1e8-e5a848f09554/full/843,/0/default.jpg",
+        "url": "https://www.artic.edu/artworks/81551",
+        "meta": "Art Institute of Chicago"
+      },
+      {
+        "label": "NASA APOD",
+        "title": "Apollo 11: Catching Some Sun",
+        "summary": "Bright sunlight glints as long dark shadows mark this image of the surface of the Moon. It was taken on July 20, 1969, by Apollo 11 astronaut Neil Armstrong, the first to walk on the lunar ...",
+        "image": "https://apod.nasa.gov/apod/image/2609/AS11-40-5872HR1024.jpg",
+        "url": "https://apod.nasa.gov/apod/image/2609/AS11-40-5872HR.jpg",
+        "meta": "2026-09-12"
+      },
+      {
+        "label": "On This Day",
+        "title": "1985: Super Mario Bros.",
+        "summary": "Super Mario Bros., one of the most influential and best-selling video games in history, was first released in Japan for the Nintendo Entertainment System.",
+        "image": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        "url": "https://en.wikipedia.org/wiki/Super_Mario_Bros.",
+        "meta": "Wikipedia selected events"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Met Timeline",
+        "title": "Curator-written art history essays",
+        "summary": "Reliable long-form context for art, objects, places, and eras.",
+        "url": "https://www.metmuseum.org/toah/"
+      },
+      {
+        "label": "ArtIC API",
+        "title": "Public-domain artworks with IIIF images",
+        "summary": "Good for daily visual cards because metadata and images are structured.",
+        "url": "https://api.artic.edu/docs/"
+      },
+      {
+        "label": "Wikimedia",
+        "title": "On-this-day historical events",
+        "summary": "Daily historical hooks that can connect the page to memory and time.",
+        "url": "https://api.wikimedia.org/wiki/Feed_API/Reference/On_this_day"
+      },
+      {
+        "label": "NASA APOD",
+        "title": "Astronomy image and explanation",
+        "summary": "A daily image source that keeps the archive feeling open and planetary.",
+        "url": "https://api.nasa.gov/"
+      },
+      {
+        "label": "Public Domain Review",
+        "title": "Essays and collections from cultural archives",
+        "summary": "A human-curated reading source for strange, beautiful archival material.",
+        "url": "https://publicdomainreview.org/"
+      }
+    ]
+  },
+  "fallbackNotes": [
+    {
+      "title": "读一页纸，留一张图，记录一个问题。",
+      "summary": "A quiet fallback signal.",
+      "source": "Local",
+      "time": "2026-09-13",
+      "url": ""
+    },
+    {
+      "title": "世界每天给出许多信号，值得慢一点筛选。",
+      "summary": "A small note for attention.",
+      "source": "Local",
+      "time": "2026-09-13",
+      "url": ""
+    },
+    {
+      "title": "学术、风景、生活和历史，都可以在同一页相遇。",
+      "summary": "A useful page should breathe.",
+      "source": "Local",
+      "time": "2026-09-13",
+      "url": ""
+    }
+  ]
+}
