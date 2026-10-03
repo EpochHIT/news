@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>Field</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <header class="chrome">
+    <a href="../">NEWS / HOME</a>
+    <span>FIELD®</span>
+    <span id="progress">000</span>
+  </header>
+
+  <main>
+    <section class="intro panel-dark">
+      <div class="intro-lid intro-lid-top"></div>
+      <div class="intro-lid intro-lid-bottom"></div>
+      <div class="intro-grid" aria-hidden="true"></div>
+      <p class="intro-word" data-text="FIELD">FIELD</p>
+      <div class="intro-status">
+        <span>DAILY REFRESH</span>
+        <span id="machine-count">00 MACHINES</span>
+        <span id="file-count">00 FILES</span>
+      </div>
+      <p class="intro-count">000</p>
+    </section>
+
+    <section class="machines panel-dark" id="machines">
+      <div class="machines-pin">
+        <header>
+          <p class="section-tag">01 / MACHINES</p>
+          <div id="machine-kinds" class="machine-kinds"></div>
+        </header>
+        <div id="machine-track" class="machine-track"></div>
+      </div>
+    </section>
+
+    <section class="wall panel-dark" id="wall">
+      <div class="wall-pin">
+        <div class="wall-tilt">
+          <div class="wall-col"></div>
+          <div class="wall-col"></div>
+          <div class="wall-col"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="archive-field panel-dark" id="archive">
+      <div class="archive-pin">
+        <p class="section-tag archive-tag">02 / FILES + SOURCES</p>
+        <div class="archive-viewport" id="archive-viewport">
+          <div id="archive-orbit" class="archive-orbit"></div>
+          <button class="archive-core" id="archive-core" type="button">
+            <span>ARCHIVE</span>
+            <strong id="archive-count">00</strong>
+            <small>DRAG / CLICK</small>
+          </button>
+        </div>
+        <aside class="inspect-panel" id="inspect-panel" hidden>
+          <button id="inspect-close" type="button">CLOSE ×</button>
+          <span id="inspect-type"></span>
+          <h2 id="inspect-title"></h2>
+          <p id="inspect-date"></p>
+          <a id="inspect-open" target="_blank" rel="noreferrer">OPEN ORIGINAL ↗</a>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="panel-dark">
+      <span>FIELD®</span>
+      <a href="../">RETURN TO NEWS ↑</a>
+    </footer>
+  </main>
+</body>
+</html>
