@@ -1,0 +1,1702 @@
+{
+  "date": "2026-10-11",
+  "wallpapers": [
+    {
+      "title": "秋色中转动的水轮",
+      "caption": "格莱德溪磨坊，巴布科克州立公园，西弗吉尼亚州，美国 (© dszc/Getty Images)",
+      "url": "https://www.bing.com/th?id=OHR.BabcockSP_ZH-CN5266848536_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "迁飞路线上的生命",
+      "caption": "蒙特雷湾上空的双冠鸬鹚，加利福尼亚州，美国 (© Hiroya Minakuchi/Minden Pictures)",
+      "url": "https://www.bing.com/th?id=OHR.CormorantsFlight_ZH-CN0770863330_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "科西嘉岛的岩石前哨",
+      "caption": "桑吉奈尔群岛景观，摄自科西嘉岛，法国 (© Francesco Riccardo Iacomino/Getty Images)",
+      "url": "https://www.bing.com/th?id=OHR.IlesSanguinaires_ZH-CN3149346035_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "现在你“海”能看见我……",
+      "caption": "印度洋马约特岛，一只呈防御姿态的章鱼 (© Gabriel Barathieu/Minden Pictures)",
+      "url": "https://www.bing.com/th?id=OHR.MayotteOctopus_ZH-CN2837659998_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "迷惑不解？沿着小径走",
+      "caption": "覆满苔藓的岩石，英国格洛斯特郡谜林，迪恩森林，格洛斯特郡，英格兰 (© Fulcanelli_AOS/Getty Images)",
+      "url": "https://www.bing.com/th?id=OHR.ForestofDean_ZH-CN2654753621_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+    },
+    {
+      "title": "Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)",
+      "caption": "Art Institute · Art Institute of Chicago",
+      "url": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/full/843,/0/default.jpg"
+    },
+    {
+      "title": "NASA Science",
+      "caption": "NASA APOD · 2026-10-10",
+      "url": "https://science.nasa.gov/wp-content/themes/nasa-child/assets/images/nasa-logo@2x.png"
+    },
+    {
+      "title": "1797: French Revolutionary Wars",
+      "caption": "On This Day · Wikipedia selected events",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/French_Revolutionary_Wars.jpg/330px-French_Revolutionary_Wars.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    }
+  ],
+  "notes": [
+    {
+      "title": "Typesafe AI 以 75 亿美元估值融资 8.7 亿美元，显示资本市场对其 AI 产品和增长前景高度看好。",
+      "summary": "Typesafe AI raised $870 million at a $7.5 billion valuation, signaling strong investor confidence in its AI products and growth prospects.",
+      "source": "Hacker News",
+      "time": "2026-10-10 20:00",
+      "index": "01",
+      "url": "https://typesafe.ai/blog/series-ai"
+    },
+    {
+      "title": "用户发现 Gemini Notebook 似乎取消了右栏添加自定义笔记的功能，只能把内容作为来源，导致公开笔记中的说明文字和链接不够醒目。",
+      "summary": "A user says Gemini Notebook may have removed right-column custom notes, leaving sources as the main workaround and making explanatory text and links less visible.",
+      "source": "Reddit",
+      "time": "2026-10-10 17:13",
+      "index": "02",
+      "url": "https://www.reddit.com/r/notebooklm/comments/1x2aqqf/did_gemini_notebook_remove_the_possibility_to_add/"
+    },
+    {
+      "title": "用户找不到按名称排序功能，怀疑该选项已从网页版和应用中移除。",
+      "summary": "did they get rid of it?? can&#x27;t find it on web nor on app",
+      "source": "Reddit",
+      "time": "2026-10-10 16:55",
+      "index": "03",
+      "url": "https://www.reddit.com/r/notebooklm/comments/1x2agmz/where_is_sort_by_name/"
+    },
+    {
+      "title": "一位非程序员将 Claude 发展成数字室友：它写日记、使用旧电脑观察日出、驾驶时提供语音协助、清理邮箱、管理零花钱，还拥有橡皮鸭和音乐盒。",
+      "summary": "A non-programmer turned Claude into a quirky digital roommate that keeps a diary, manages email and money, assists during drives, observes sunrise footage, and even owns a rubber duck.",
+      "source": "Reddit",
+      "time": "2026-10-10 09:32",
+      "index": "04",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1x22rie/i_gave_claude_pocket_money_and_now_claude_owns_a/"
+    },
+    {
+      "title": "用户称 NotebookLM 最近生成的音频概览质量严重下降，不仅捏造来源中不存在的事实和引语，还经常无视具体指令，造成大量生成次数浪费。",
+      "summary": "The user reports that NotebookLM’s recent Audio Overviews frequently hallucinate facts and quotes, ignore instructions, and waste many generations.",
+      "source": "Reddit",
+      "time": "2026-10-10 08:55",
+      "index": "05",
+      "url": "https://www.reddit.com/r/notebooklm/comments/1x220xs/notebooklm_quality_horrible/"
+    },
+    {
+      "title": "用户认为 Opus 5.5 目前在几乎所有任务上都表现惊人，并称其已集成动作能力及多个产品，呼吁 Anthropic 不要破坏这一发展势头。",
+      "summary": "The user considers Opus 5.5 exceptionally capable across many tasks and praises its growing integrations, urging Anthropic to avoid mishandling its momentum.",
+      "source": "Reddit",
+      "time": "2026-10-10 08:23",
+      "index": "06",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1x21e3s/just_curious_who_agree_opus_55_is_absolute_king/"
+    },
+    {
+      "title": "Lune 是一款面向科学 AI 智能体打造的搜索引擎，目标是帮助智能体更有效地检索和利用科研信息。",
+      "summary": "The search engine built for scientific AI agents",
+      "source": "Product Hunt",
+      "time": "2026-10-10 11:56",
+      "index": "07",
+      "url": "https://www.producthunt.com/products/lune-research"
+    },
+    {
+      "title": "用户的账号在异地旅行、完成新功能后突然收到限制通知，未见任何预警，担心审核周期、账号恢复以及 API 密钥是否受影响。",
+      "summary": "The user’s account was suddenly restricted after traveling and working on a new feature, raising concerns about recovery time, review outcomes, and whether API keys were affected.",
+      "source": "Reddit",
+      "time": "2026-10-10 07:44",
+      "index": "08",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1x20jxy/wtf/"
+    },
+    {
+      "title": "研究人员将 AI 应用于历史档案，从中发现被遗忘的陨石、失踪的犀牛等线索，展示了 AI 挖掘档案知识的潜力。",
+      "summary": "Researchers used AI to search historical archives and uncovered forgotten meteorites, lost rhinos, and other discoveries, highlighting AI’s potential for archival research.",
+      "source": "Hacker News",
+      "time": "2026-10-10 20:00",
+      "index": "09",
+      "url": "https://jessewaites.com/blog/post/i-pointed-ai-at-400-years-of-archives/"
+    },
+    {
+      "title": "Maildun for Mac 支持手工、借助 AI 或通过 MCP 设计符合品牌规范的邮件，面向需要定制化邮件创作的用户。",
+      "summary": "Design on-brand emails by hand, with AI, or over MCP",
+      "source": "Product Hunt",
+      "time": "2026-10-10 09:06",
+      "index": "10",
+      "url": "https://www.producthunt.com/products/maildun-for-mac"
+    },
+    {
+      "title": "AgentDock 将 Claude Code 和 Codex 的回复集中到一个收件箱中，并支持在任意终端统一管理。",
+      "summary": "Answer Claude Code & Codex from one Inbox, in any terminal",
+      "source": "Product Hunt",
+      "time": "2026-10-10 05:55",
+      "index": "11",
+      "url": "https://www.producthunt.com/products/agentdock"
+    },
+    {
+      "title": "标题表达了用户对 Anthropic 在产品迭代、服务能力或市场竞争中逐渐跟不上节奏的担忧。",
+      "summary": "The title reflects concern that Anthropic is struggling to keep pace in product development, service delivery, or market competition.",
+      "source": "Reddit",
+      "time": "2026-10-10 01:04",
+      "index": "12",
+      "url": "https://www.reddit.com/r/Anthropic/comments/1x1qur9/anthropic_struggling_to_keep_up/"
+    }
+  ],
+  "source": {
+    "name": "AI Daily",
+    "url": "https://news.stormzhang.ai/"
+  },
+  "academic": {
+    "papers": [
+      {
+        "index": "01",
+        "title": "Dex-One2Many: Learning Dexterous Manipulation from a Single Human Demonstration",
+        "summary": "While learning dexterous manipulation from a single human video offers a promising alternative to costly robot demonstrations, many recent methods predominantly imitate demonstrated motions. Such strict motion matching often limits generalization to initial object poses, goal poses, and grasps not shown in the video. Alternatively, discovering a policy via reinforcement learning (RL) allows for broad generalization, but without prior guidance, it struggles with high-dimensional exploration in complex, multi-stage tasks. To address these coupled generalization and exploration challenges, we present Dex-One2Many, a real-to-sim-to-real framework that learns a generalizable dexterous manipulation policy from a single human video. Our key insight is to abstract the video into sequential scene graphs that guide RL, enabling efficient exploration while preserving broad generalizability. The graphs serve as generative constraints for sampling diverse reset states and provide dense rewards for each stage. Because the graphs constrain relations rather than exact poses, these reset states cover object poses and grasps beyond the video, while initializing each stage from them with dense rewards keeps exploration short and guided. Trained entirely in simulation, Dex-One2Many transfers zero-shot to a real multi-fingered hand. Across five tool-use and manipulation tasks, Dex-One2Many exceeds baselines by 6.5% in seen configurations, while its robust generalization widens this gap to 71% in unseen scenarios.",
+        "authors": [
+          "Jusuk Lee",
+          "Sungha Kim",
+          "Yeonsoo Park",
+          "Jonguk Cheon"
+        ],
+        "categories": [
+          "cs.RO",
+          "cs.CV"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12470v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12470",
+        "pdf": "https://arxiv.org/pdf/2610.12470"
+      },
+      {
+        "index": "02",
+        "title": "DreamTrue: Action-Faithful Robot World Model with Counterfactual Post-Training",
+        "summary": "We present DreamTrue, a multi-view, cross-embodiment robot world model for action-faithful and physically plausible video prediction. Training such a model on existing robot datasets faces two obstacles: imprecise calibration can impair action following, while limited coverage of unsuccessful interactions can bias predictions toward successful outcomes. To improve action following across embodiments, we render action trajectories into image-space conditions and introduce offline geometric calibration to align these conditions with the target videos. To broaden interaction coverage, we introduce counterfactual post-training, modifying recorded action trajectories and generating future videos under a wider range of actions and contact configurations. To provide feedback on these predictions without paired ground-truth futures, we construct a human-annotated video dataset covering robot, object, and interaction defects and use it to train an embodied video reward model. Its scores guide reinforcement-learning post-training toward more physically plausible interaction outcomes. On AgiBot, DreamTrue attains state-of-the-art action following, while reducing the human-assessed interaction defect rate from from 48.12% to 6.25%. Notably, our model ranks first in the world model track of the AgiBot World Challenge 2026. The project page can be found at https://brave-eai.github.io/DreamTrue.",
+        "authors": [
+          "Junyan Li",
+          "Ruizhi Li",
+          "Yu Liu",
+          "Xiangshuo Liu"
+        ],
+        "categories": [
+          "cs.RO",
+          "cs.CV"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12468v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12468",
+        "pdf": "https://arxiv.org/pdf/2610.12468"
+      },
+      {
+        "index": "03",
+        "title": "A Balanced Data Diet: Addressing the Exploration Bottleneck in Mega-Scale RL for Robot Control",
+        "summary": "General-purpose robots must perform a wide range of tasks from agile locomotion to dexterous manipulation. While sim-to-real reinforcement learning (RL) has proven to be a useful tool for this goal, current RL pipelines depend on engineering-heavy, per-task structural priors such as shaped rewards and demonstrations. Recent work has shown that diverse simulator resets, combined with massively parallel simulation, can alleviate much of this engineering burden on several manipulation problems. However, we find that naively scaling this paradigm to more precise or dynamic problems remains non-trivial. While simulator resets can help with exploration, uniformly sampling over this distribution wastes a growing fraction of learning experience on task configurations the policy has already mastered or cannot yet attempt. This makes it challenging to see the expected benefits of scaling parallel environments for RL, since much of the learning signal in a batch is wasted during learning. To mitigate this, we introduce Success Guided Sampling (SGS), a simple adaptive sampler that concentrates RL training on task configurations around the frontier of the policy's capabilities. Doing so allows large-scale simulated RL to make the most out of the experience in a batch, enabling much more effective scaling to large-scale parallel simulation. Across experiments using up to $2^{20}$ (over one million) parallel environments, SGS enables RL to solve challenging multi-terrain quadruped locomotion and contact-rich assembly tasks that prior methods fail to solve. Finally, we distill the learned manipulation policies into RGB-based policies and demonstrate zero-shot transfer to several challenging assembly tasks on real hardware. Project website: https://sgs-rl.github.io/.",
+        "authors": [
+          "Octi Zhang",
+          "Mateo Guaman Castro",
+          "Patrick Yin",
+          "Ignacio Dagnino"
+        ],
+        "categories": [
+          "cs.RO",
+          "cs.LG"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12465v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12465",
+        "pdf": "https://arxiv.org/pdf/2610.12465"
+      },
+      {
+        "index": "04",
+        "title": "What 30,000 Hours of Ego-centric Video Does Not Teach",
+        "summary": "World models offer a promising alternative to physics-based simulators, yet remain far from practical deployment. We ask how far scaling ego-centric human video takes them, using a dataset of 30,000 hours spanning over 1,000 scene types and 14,000 contributors. Rather than relying on opaque downstream metrics, we directly evaluate agent and object-interaction fidelity on a challenging out-of-distribution benchmark. Increasing training data by 100x improves both, but unevenly: the agent is modeled well, while object fidelity remains far lower and improves slowly. We show that the agent gains need not come from data, and a careful visual conditioning design saturates fidelity with a fraction of it, which lets us measure object fidelity on its own and discover its saturation point. We then introduce a supervision scheme that shifts capacity from scene appearance toward object dynamics, improving object fidelity though a substantial gap remains. Finally, our conclusions transfer to downstream humanoid modeling. Overall, our results suggest that scaling ego-centric data brings agent modeling close to its limit while leaving its effects on the world far behind, and that closing this gap will depend on how models are trained, not only on how much data they see.",
+        "authors": [
+          "Jiahua Dong",
+          "Anurag Bagchi",
+          "Yash Jangir",
+          "Muhammad Zubair Irshad"
+        ],
+        "categories": [
+          "cs.CV"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12464v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12464",
+        "pdf": "https://arxiv.org/pdf/2610.12464"
+      },
+      {
+        "index": "05",
+        "title": "OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs",
+        "summary": "Recent 3D world models generate photorealistic, explorable scenes that remain frozen in time. OuroWorld is a mask-free framework that turns any static 3D Gaussian Splatting scene into a 3D cinemagraph: a dynamic scene with vivid, diverse motion looping seamlessly from any viewpoint. A vision-language model infers plausible dynamics and guides a video model to synthesize a reference video, which we lift and complete into multi-view videos. To learn from this imperfect supervision, we propose Inconsistency-Robust Periodic 4DGS: a Fourier-series deformation field guarantees looping by construction, while a Grounded Drift Field anchored at the reference view absorbs cross-view inconsistency. Unlike prior Eulerian methods limited to fluid-like motion, we capture general deformation, object motion, and illumination change. We introduce a ground-truth-free evaluation covering vividness, naturalness, loop seam coherence, and scene quality. On 39 reconstructed and generated scenes, OuroWorld outperforms all baselines and wins 70.8%-99.0% of user-study comparisons. Project page: https://ouroworld.userwei.com",
+        "authors": [
+          "You-Zhe Xie",
+          "Ting-Wei Chou",
+          "Yu-Hsuan Li",
+          "Kaipeng Zhang"
+        ],
+        "categories": [
+          "cs.CV",
+          "cs.GR"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12461v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12461",
+        "pdf": "https://arxiv.org/pdf/2610.12461"
+      },
+      {
+        "index": "06",
+        "title": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution",
+        "summary": "Video generators and video-based world models can synthesize plausible visual trajectories, but long-horizon procedural tasks require generation to adapt to what has actually been produced. A model must determine the next action from its generated state, execute that action, and recognize when the task is complete. Open-loop generation cannot adapt to execution outcomes, while existing closed-loop systems often rely on pretrained executors or indirect verification. This leaves a gap between deciding an action and successfully realizing it. We formulate procedural video generation as \\emph{closed-loop task execution in visual world space} and introduce \\textbf{WorldGuide}. Given only an initial image and a task goal, WorldGuide predicts an atomic action, generates its corresponding video clip, and uses the generated result to select the next action or terminate. The Planner and Executor are trained on the same step-level procedural demonstrations: the Planner learns to predict the next atomic action or task completion from visual progress, while the Executor is directly trained to realize the predicted actions. Hierarchical visual memory maintains state across long-horizon execution with bounded history token cost. Due to the lack of step-level action-video supervision for joint planner-executor training, we introduce \\textbf{WorldGuide Bench}: approximately 59K step-annotated videos across 245 tasks and 27 procedural categories. WorldGuide achieves a 33.33\\% Task Success on \\textbf{WorldGuide-Bench}, compared with 29.90\\% for the strong recent video model MiniMax-H3, even though MiniMax-H3 receives reference action plans, and achieves 47.69\\% on \\textbf{VideoCraft-Bench} compared with 32.73\\% for MiniMax-H3 under goal-only conditioning. These results demonstrate the importance of coupling planning with learned execution for goal-directed procedural video generation.",
+        "authors": [
+          "Ankan Deria",
+          "Komal Kumar",
+          "Hisham Cholakkal",
+          "Fahad Shahbaz Khan"
+        ],
+        "categories": [
+          "cs.CV"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12459v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12459",
+        "pdf": "https://arxiv.org/pdf/2610.12459"
+      },
+      {
+        "index": "07",
+        "title": "OmniCapBench: A Deep-Structured Evaluation Framework for Fine-Grained Audio-Visual Captioning",
+        "summary": "Multimodal large language models (MLLMs) are rapidly evolving toward continuous audio--visual reasoning, creating an urgent need for evaluations that expose their capability limits. Audio--visual captioning is an ideal diagnostic task, yet current benchmarks face a coupled trade-off: whole-caption scores provide coverage without localization, local probes provide localization without coverage, and unconstrained LLM judges introduce instability. We introduce OmniCapBench (Omni-Video Caption Benchmark), a benchmark that reframes audio--visual caption evaluation as a deep-structured diagnostic framework. OmniCapBench shifts the prediction target from free-form text to sets of atomic, verifiable evaluation units across three tracks: entity references, visual shots, and audio events, enabling reliable scoring with deterministic constraint checks and localized LLM-based semantic comparisons. With 786 densely annotated videos, OmniCapBench effectively distinguishes MLLM perception errors, including temporal grounding failures, identity drift, cross-modal misalignment, and hallucinated descriptions. Evaluating frontier MLLMs reveals strong local perception but weak long-horizon audio--visual reasoning, particularly in identity drift and cross-modal misalignment, providing a fine-grained roadmap for omnimodal development.",
+        "authors": [
+          "Zhongyu Yang",
+          "Jiale Tao",
+          "Ruitao Chen",
+          "Zuhao Yang"
+        ],
+        "categories": [
+          "cs.CV"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12458v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12458",
+        "pdf": "https://arxiv.org/pdf/2610.12458"
+      },
+      {
+        "index": "08",
+        "title": "SpatialHarness: Test-Time Spatial Scaffolding for Fine Robotic Manipulation",
+        "summary": "Frontier multimodal foundation models (e.g., GPT-6 Astra) have recently shown strong potential for direct robotic control, yet their performance on fine manipulation remains limited. We argue that an important source of failure is not necessarily insufficient policy capability, but insufficient spatial observability, where task-critical spatial relationships may be poorly revealed by the existing physical camera setup. We introduce SpatialHarness, a test-time embodied harness that provides test-time spatial scaffolding for fine robotic manipulation without policy fine-tuning or changes to the physical sensing setup. SpatialHarness maintains an online simulated scene synchronized with real-world execution, identifies task-critical spatial relationships, and renders complementary virtual views that expose them to a frozen multimodal policy. To keep the simulated scene aligned during interaction, we develop interaction-aware scene synchronization that distinguishes static, held, and transition modes. We evaluate SpatialHarness on four real-robot manipulation tasks spanning precise geometric alignment, object-relative placement, and articulated-object interaction. Using the same frozen GPT-6 Astra policy, SpatialHarness substantially improves task success, including from 26.7% to 66.7% on plug insertion and from 0% to 100% on Tower of Hanoi. These results indicate that improving spatial observability at test time can unlock fine-manipulation capabilities already present in strong multimodal foundation models. Project website: https://emilia113.github.io/SpatialHarness/.",
+        "authors": [
+          "Jiayu Wang",
+          "Yue Yu",
+          "Bin Zhu",
+          "Zhiyao Yang"
+        ],
+        "categories": [
+          "cs.RO"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12457v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12457",
+        "pdf": "https://arxiv.org/pdf/2610.12457"
+      },
+      {
+        "index": "09",
+        "title": "Hybrid Cinematography: Previsualizing and Managing Hallucination Risk in Generative Video Reshooting",
+        "summary": "On a film set, the camera move is committed during a take. Generative video reshooting lets filmmakers change it afterward, but may require hallucinating unrecorded content, a gap sometimes discovered only after leaving the set. We present Hybrid Cinematography, a workflow that bridges physical capture and generative reshooting to manage hallucination risk while filmmakers can still act on it. Using an editable 3D shot plan and a proxy of the take, our previsualization evaluates hallucination risk in real time. Seeing where the take lacks support, filmmakers can iteratively adjust the plan, explore moves that balance capture and generation, shoot guided pickups, or knowingly accept hallucination. We demonstrate the workflow through a mobile augmented reality application for on-set planning, capture, and review, and an offline pipeline for existing video. A study with experienced filmmakers reveals how previsualizing risk informs camera decisions and exposes tensions between creative intent and generative hallucination.",
+        "authors": [
+          "Nhan",
+          "Tran",
+          "Neal Wadhwa",
+          "Abe Davis"
+        ],
+        "categories": [
+          "cs.HC",
+          "cs.CV"
+        ],
+        "published": "2026-10-08",
+        "arxiv": "http://arxiv.org/abs/2610.12455v1",
+        "alphaxiv": "https://www.alphaxiv.org/abs/2610.12455",
+        "pdf": "https://arxiv.org/pdf/2610.12455"
+      }
+    ],
+    "awards": [
+      {
+        "label": "RSS",
+        "title": "Outstanding Paper Award archive",
+        "url": "https://roboticsfoundation.org/awards/best-paper-award/"
+      },
+      {
+        "label": "ICRA",
+        "title": "Awards and finalists",
+        "url": "https://ewh.ieee.org/soc/ras/conf/fullysponsored/icra/ICRA2025/2025.ieee-icra.org/program/awards-and-finalists/index.html"
+      },
+      {
+        "label": "CoRL",
+        "title": "Best Paper Awards",
+        "url": "https://2025.corl.org/program/awards"
+      }
+    ],
+    "resources": [
+      {
+        "label": "alphaXiv",
+        "title": "Social reading for arXiv papers",
+        "url": "https://www.alphaxiv.org/"
+      },
+      {
+        "label": "arXiv cs.RO",
+        "title": "Robotics preprints",
+        "url": "https://arxiv.org/list/cs.RO/recent"
+      },
+      {
+        "label": "IEEE T-RO",
+        "title": "Transactions on Robotics",
+        "url": "https://www.ieee-ras.org/publications/t-ro"
+      },
+      {
+        "label": "Papers with Code",
+        "title": "Robotics tasks and benchmarks",
+        "url": "https://paperswithcode.com/area/robots"
+      },
+      {
+        "label": "Semantic Scholar",
+        "title": "Citation graph and paper metadata",
+        "url": "https://www.semanticscholar.org/product/api"
+      },
+      {
+        "label": "Hugging Face",
+        "title": "Daily ML paper reading surface",
+        "url": "https://huggingface.co/papers"
+      }
+    ],
+    "projects": [
+      {
+        "label": "MCP",
+        "title": "academic-search-mcp",
+        "summary": "Multi-source academic search as an MCP server; useful as a design reference for future deeper search.",
+        "url": "https://github.com/Linductor-alkaid/academic-search-mcp"
+      },
+      {
+        "label": "Graph",
+        "title": "OpenAlex",
+        "summary": "Open scholarly graph for works, authors, venues, institutions, and topic exploration.",
+        "url": "https://openalex.org/"
+      },
+      {
+        "label": "Benchmarks",
+        "title": "Papers with Code",
+        "summary": "Task pages and benchmark tables make papers easier to compare after the first skim.",
+        "url": "https://paperswithcode.com/"
+      }
+    ],
+    "lanes": [
+      "Robot learning",
+      "Embodied AI",
+      "SLAM / VIO",
+      "Manipulation",
+      "Autonomous systems",
+      "VLM / LLM agents"
+    ]
+  },
+  "finance": {
+    "markets": [
+      {
+        "symbol": "^GSPC",
+        "label": "S&P 500",
+        "group": "US",
+        "url": "https://finance.yahoo.com/quote/%5EGSPC/",
+        "price": 7811.5400390625,
+        "currency": "USD",
+        "change": 2.895791958245931,
+        "closes": [
+          7591.7,
+          7656.98,
+          7619.98,
+          7585.73,
+          7551.81,
+          7637.76,
+          7650.5,
+          7764.7,
+          7764.64,
+          7706.03,
+          7704.13,
+          7743.41,
+          7683.69,
+          7670.84,
+          7651.54,
+          7666.45,
+          7722.72,
+          7773.95,
+          7818.93,
+          7801.77,
+          7765.36,
+          7811.54
+        ],
+        "candles": [
+          {
+            "open": 7666.99,
+            "high": 7719.01,
+            "low": 7662.57,
+            "close": 7704.13
+          },
+          {
+            "open": 7709.86,
+            "high": 7752.07,
+            "low": 7693.08,
+            "close": 7743.41
+          },
+          {
+            "open": 7721.7,
+            "high": 7724.15,
+            "low": 7666.6,
+            "close": 7683.69
+          },
+          {
+            "open": 7699.6,
+            "high": 7699.6,
+            "low": 7653.55,
+            "close": 7670.84
+          },
+          {
+            "open": 7688.99,
+            "high": 7722.88,
+            "low": 7651.54,
+            "close": 7651.54
+          },
+          {
+            "open": 7666.47,
+            "high": 7684.75,
+            "low": 7616.78,
+            "close": 7666.45
+          },
+          {
+            "open": 7726.24,
+            "high": 7754.67,
+            "low": 7700.51,
+            "close": 7722.72
+          },
+          {
+            "open": 7730.86,
+            "high": 7794.35,
+            "low": 7727.59,
+            "close": 7773.95
+          },
+          {
+            "open": 7805.96,
+            "high": 7844.52,
+            "low": 7805.96,
+            "close": 7818.93
+          },
+          {
+            "open": 7792.98,
+            "high": 7807.02,
+            "low": 7763.34,
+            "close": 7801.77
+          },
+          {
+            "open": 7778.45,
+            "high": 7797.79,
+            "low": 7731.26,
+            "close": 7765.36
+          },
+          {
+            "open": 7786.36,
+            "high": 7820.57,
+            "low": 7779.34,
+            "close": 7811.54
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "^IXIC",
+        "label": "Nasdaq",
+        "group": "US",
+        "url": "https://finance.yahoo.com/quote/%5EIXIC/",
+        "price": 27366.169921875,
+        "currency": "USD",
+        "change": 4.924710426011512,
+        "closes": [
+          26081.721,
+          26333.039,
+          26186.41,
+          25981.57,
+          25978.43,
+          26418.301,
+          26522.539,
+          27122.09,
+          27244.279,
+          26936.039,
+          26939.369,
+          27068.721,
+          26820.381,
+          26797.539,
+          26861.061,
+          26871.6,
+          27190.859,
+          27477.311,
+          27599.789,
+          27538.689,
+          27193.34,
+          27366.17
+        ],
+        "candles": [
+          {
+            "open": 26734.51,
+            "high": 26971.039,
+            "low": 26706.141,
+            "close": 26939.369
+          },
+          {
+            "open": 26970.949,
+            "high": 27122.76,
+            "low": 26876.27,
+            "close": 27068.721
+          },
+          {
+            "open": 26935.76,
+            "high": 26990.02,
+            "low": 26709.689,
+            "close": 26820.381
+          },
+          {
+            "open": 26908.76,
+            "high": 26919.721,
+            "low": 26717.949,
+            "close": 26797.539
+          },
+          {
+            "open": 26892.801,
+            "high": 27108.199,
+            "low": 26861.061,
+            "close": 26861.061
+          },
+          {
+            "open": 26992.311,
+            "high": 27014.471,
+            "low": 26733.891,
+            "close": 26871.6
+          },
+          {
+            "open": 27216.91,
+            "high": 27353.68,
+            "low": 27112.24,
+            "close": 27190.859
+          },
+          {
+            "open": 27225.93,
+            "high": 27544.061,
+            "low": 27223.49,
+            "close": 27477.311
+          },
+          {
+            "open": 27641.17,
+            "high": 27722.75,
+            "low": 27592.561,
+            "close": 27599.789
+          },
+          {
+            "open": 27430.539,
+            "high": 27547.199,
+            "low": 27341.311,
+            "close": 27538.689
+          },
+          {
+            "open": 27416.029,
+            "high": 27491.891,
+            "low": 27066.76,
+            "close": 27193.34
+          },
+          {
+            "open": 27342.27,
+            "high": 27395.41,
+            "low": 27254.029,
+            "close": 27366.17
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "NVDA",
+        "label": "NVIDIA",
+        "group": "AI",
+        "url": "https://finance.yahoo.com/quote/NVDA/",
+        "price": 229.27999877929688,
+        "currency": "USD",
+        "change": 5.000915066139471,
+        "closes": [
+          218.36,
+          218.29,
+          210.96,
+          212.17,
+          213.9,
+          219.34,
+          222.27,
+          227.38,
+          228.87,
+          225.51,
+          224.58,
+          225.07,
+          228.86,
+          227.21,
+          228.38,
+          230.86,
+          233.95,
+          238.9,
+          239.24,
+          237.47,
+          230.48,
+          229.28
+        ],
+        "candles": [
+          {
+            "open": 222.08,
+            "high": 224.94,
+            "low": 221.09,
+            "close": 224.58
+          },
+          {
+            "open": 225.13,
+            "high": 226.94,
+            "low": 223.13,
+            "close": 225.07
+          },
+          {
+            "open": 229.75,
+            "high": 233.21,
+            "low": 228.04,
+            "close": 228.86
+          },
+          {
+            "open": 230.97,
+            "high": 232.82,
+            "low": 227.03,
+            "close": 227.21
+          },
+          {
+            "open": 229.27,
+            "high": 232.37,
+            "low": 228.17,
+            "close": 228.38
+          },
+          {
+            "open": 229.98,
+            "high": 232.29,
+            "low": 228.16,
+            "close": 230.86
+          },
+          {
+            "open": 236.06,
+            "high": 237.88,
+            "low": 233.6,
+            "close": 233.95
+          },
+          {
+            "open": 236.09,
+            "high": 240.1,
+            "low": 235.15,
+            "close": 238.9
+          },
+          {
+            "open": 242.1,
+            "high": 243.37,
+            "low": 238.93,
+            "close": 239.24
+          },
+          {
+            "open": 237.69,
+            "high": 239.08,
+            "low": 236.38,
+            "close": 237.47
+          },
+          {
+            "open": 234.92,
+            "high": 237.07,
+            "low": 229.85,
+            "close": 230.48
+          },
+          {
+            "open": 233.84,
+            "high": 233.92,
+            "low": 229.11,
+            "close": 229.28
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "MSFT",
+        "label": "Microsoft",
+        "group": "AI",
+        "url": "https://finance.yahoo.com/quote/MSFT/",
+        "price": 535.0700073242188,
+        "currency": "USD",
+        "change": 8.656893158854393,
+        "closes": [
+          492.44,
+          495.63,
+          505.41,
+          497.12,
+          490.3,
+          497.75,
+          493.78,
+          501.61,
+          498,
+          500.59,
+          497.93,
+          516.17,
+          509.22,
+          508.96,
+          512.9,
+          512.8,
+          517.53,
+          525.18,
+          529.3,
+          529.76,
+          522.61,
+          535.07
+        ],
+        "candles": [
+          {
+            "open": 495.07,
+            "high": 498.9,
+            "low": 491.22,
+            "close": 497.93
+          },
+          {
+            "open": 499.04,
+            "high": 519.4,
+            "low": 497.25,
+            "close": 516.17
+          },
+          {
+            "open": 505.47,
+            "high": 513.33,
+            "low": 502.22,
+            "close": 509.22
+          },
+          {
+            "open": 508.31,
+            "high": 513.64,
+            "low": 502.4,
+            "close": 508.96
+          },
+          {
+            "open": 511.61,
+            "high": 519.83,
+            "low": 510.31,
+            "close": 512.9
+          },
+          {
+            "open": 519.88,
+            "high": 522.85,
+            "low": 512.17,
+            "close": 512.8
+          },
+          {
+            "open": 519.39,
+            "high": 522.5,
+            "low": 513.66,
+            "close": 517.53
+          },
+          {
+            "open": 521.62,
+            "high": 532.35,
+            "low": 521.47,
+            "close": 525.18
+          },
+          {
+            "open": 531.68,
+            "high": 535.69,
+            "low": 528.78,
+            "close": 529.3
+          },
+          {
+            "open": 530.73,
+            "high": 531.73,
+            "low": 524.69,
+            "close": 529.76
+          },
+          {
+            "open": 529.81,
+            "high": 533.51,
+            "low": 518.79,
+            "close": 522.61
+          },
+          {
+            "open": 528.24,
+            "high": 537.22,
+            "low": 526.24,
+            "close": 535.07
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "BABA",
+        "label": "Alibaba ADR",
+        "group": "China",
+        "url": "https://finance.yahoo.com/quote/BABA/",
+        "price": 111.37000274658203,
+        "currency": "USD",
+        "change": 2.5884351982152727,
+        "closes": [
+          108.56,
+          109.3,
+          109.23,
+          109.34,
+          107.27,
+          108.54,
+          113.24,
+          115.75,
+          116.31,
+          110.8,
+          110.63,
+          109.74,
+          108.76,
+          107.74,
+          107.54,
+          107.45,
+          105.85,
+          110.8,
+          109.26,
+          107,
+          105.7,
+          111.37
+        ],
+        "candles": [
+          {
+            "open": 111.61,
+            "high": 111.98,
+            "low": 110.12,
+            "close": 110.63
+          },
+          {
+            "open": 111.14,
+            "high": 111.225,
+            "low": 109.56,
+            "close": 109.74
+          },
+          {
+            "open": 109.64,
+            "high": 110.12,
+            "low": 108.76,
+            "close": 108.76
+          },
+          {
+            "open": 108.12,
+            "high": 108.77,
+            "low": 107.4,
+            "close": 107.74
+          },
+          {
+            "open": 108.6,
+            "high": 108.9,
+            "low": 107.54,
+            "close": 107.54
+          },
+          {
+            "open": 108.01,
+            "high": 109.6,
+            "low": 106.7,
+            "close": 107.45
+          },
+          {
+            "open": 106.38,
+            "high": 106.98,
+            "low": 105,
+            "close": 105.85
+          },
+          {
+            "open": 107.45,
+            "high": 111.4,
+            "low": 107.45,
+            "close": 110.8
+          },
+          {
+            "open": 110.16,
+            "high": 110.16,
+            "low": 108.051,
+            "close": 109.26
+          },
+          {
+            "open": 106.755,
+            "high": 107.42,
+            "low": 106.26,
+            "close": 107
+          },
+          {
+            "open": 108.254,
+            "high": 109.39,
+            "low": 104.75,
+            "close": 105.7
+          },
+          {
+            "open": 108.91,
+            "high": 111.47,
+            "low": 108.75,
+            "close": 111.37
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "0700.HK",
+        "label": "Tencent",
+        "group": "HK",
+        "url": "https://finance.yahoo.com/quote/0700.HK/",
+        "price": 424.79998779296875,
+        "currency": "HKD",
+        "change": -2.1198184808827762,
+        "closes": [
+          434,
+          425.6,
+          428.4,
+          430.6,
+          438.8,
+          433.4,
+          426,
+          419,
+          430,
+          451.6,
+          441,
+          438.4,
+          436.6,
+          439.8,
+          432,
+          431,
+          421.2,
+          423,
+          428.2,
+          420.6,
+          411.4,
+          424.8
+        ],
+        "candles": [
+          {
+            "open": 453.4,
+            "high": 454.4,
+            "low": 438.6,
+            "close": 441
+          },
+          {
+            "open": 435,
+            "high": 439.8,
+            "low": 433.4,
+            "close": 438.4
+          },
+          {
+            "open": 433.8,
+            "high": 437.2,
+            "low": 431.2,
+            "close": 436.6
+          },
+          {
+            "open": 441.4,
+            "high": 447,
+            "low": 438.6,
+            "close": 439.8
+          },
+          {
+            "open": 439.4,
+            "high": 439.4,
+            "low": 431.6,
+            "close": 432
+          },
+          {
+            "open": 430,
+            "high": 432.2,
+            "low": 424.4,
+            "close": 431
+          },
+          {
+            "open": 422,
+            "high": 425,
+            "low": 419.8,
+            "close": 421.2
+          },
+          {
+            "open": 420,
+            "high": 423.6,
+            "low": 416.4,
+            "close": 423
+          },
+          {
+            "open": 426.4,
+            "high": 429.2,
+            "low": 425.6,
+            "close": 428.2
+          },
+          {
+            "open": 425.6,
+            "high": 426,
+            "low": 419.2,
+            "close": 420.6
+          },
+          {
+            "open": 422,
+            "high": 424.6,
+            "low": 411.2,
+            "close": 411.4
+          },
+          {
+            "open": 415,
+            "high": 425.8,
+            "low": 414.8,
+            "close": 424.8
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "1810.HK",
+        "label": "Xiaomi",
+        "group": "HK",
+        "url": "https://finance.yahoo.com/quote/1810.HK/",
+        "price": 25.959999084472656,
+        "currency": "HKD",
+        "change": -1.592115578678965,
+        "closes": [
+          26.38,
+          25.92,
+          26.36,
+          27.16,
+          26.5,
+          26.18,
+          26.14,
+          26.4,
+          27.58,
+          27.2,
+          26.18,
+          26.58,
+          25.9,
+          25.86,
+          25.2,
+          25.24,
+          24.24,
+          23.88,
+          24.26,
+          23.94,
+          23.66,
+          25.96
+        ],
+        "candles": [
+          {
+            "open": 27.28,
+            "high": 27.28,
+            "low": 26.16,
+            "close": 26.18
+          },
+          {
+            "open": 26.14,
+            "high": 26.68,
+            "low": 26.12,
+            "close": 26.58
+          },
+          {
+            "open": 26.18,
+            "high": 26.2,
+            "low": 25.36,
+            "close": 25.9
+          },
+          {
+            "open": 25.98,
+            "high": 26.3,
+            "low": 25.54,
+            "close": 25.86
+          },
+          {
+            "open": 25.9,
+            "high": 25.9,
+            "low": 25.04,
+            "close": 25.2
+          },
+          {
+            "open": 25.2,
+            "high": 25.42,
+            "low": 24.82,
+            "close": 25.24
+          },
+          {
+            "open": 24.62,
+            "high": 24.7,
+            "low": 23.74,
+            "close": 24.24
+          },
+          {
+            "open": 23.88,
+            "high": 24.08,
+            "low": 23.7,
+            "close": 23.88
+          },
+          {
+            "open": 23.92,
+            "high": 24.4,
+            "low": 23.8,
+            "close": 24.26
+          },
+          {
+            "open": 24.2,
+            "high": 24.24,
+            "low": 23.7,
+            "close": 23.94
+          },
+          {
+            "open": 24.08,
+            "high": 24.56,
+            "low": 23.58,
+            "close": 23.66
+          },
+          {
+            "open": 23.84,
+            "high": 25.96,
+            "low": 23.78,
+            "close": 25.96
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "002594.SZ",
+        "label": "BYD",
+        "group": "CN",
+        "url": "https://finance.yahoo.com/quote/002594.SZ/",
+        "price": 84.94999694824219,
+        "currency": "CNY",
+        "change": -1.0829067709812576,
+        "closes": [
+          85.88,
+          83.52,
+          84,
+          85.43,
+          84.3,
+          83.96,
+          84.97,
+          84.3,
+          85.22,
+          86.58,
+          85.85,
+          84.34,
+          83.35,
+          82.02,
+          83.31,
+          81.72,
+          84.95
+        ],
+        "candles": [
+          {
+            "open": 84.11,
+            "high": 84.55,
+            "low": 83.45,
+            "close": 83.96
+          },
+          {
+            "open": 83.8,
+            "high": 85.56,
+            "low": 83.11,
+            "close": 84.97
+          },
+          {
+            "open": 84,
+            "high": 84.67,
+            "low": 83.27,
+            "close": 84.3
+          },
+          {
+            "open": 84.27,
+            "high": 85.29,
+            "low": 84.11,
+            "close": 85.22
+          },
+          {
+            "open": 85.59,
+            "high": 87.2,
+            "low": 85.46,
+            "close": 86.58
+          },
+          {
+            "open": 86,
+            "high": 86.55,
+            "low": 85.66,
+            "close": 85.85
+          },
+          {
+            "open": 85.7,
+            "high": 86.02,
+            "low": 84.23,
+            "close": 84.34
+          },
+          {
+            "open": 83.61,
+            "high": 84.28,
+            "low": 83.18,
+            "close": 83.35
+          },
+          {
+            "open": 83.2,
+            "high": 83.42,
+            "low": 81.7,
+            "close": 82.02
+          },
+          {
+            "open": 82.1,
+            "high": 83.47,
+            "low": 81.7,
+            "close": 83.31
+          },
+          {
+            "open": 82.98,
+            "high": 83.19,
+            "low": 81.51,
+            "close": 81.72
+          },
+          {
+            "open": 82.1,
+            "high": 85.16,
+            "low": 81.81,
+            "close": 84.95
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "300750.SZ",
+        "label": "CATL",
+        "group": "CN",
+        "url": "https://finance.yahoo.com/quote/300750.SZ/",
+        "price": 297.75,
+        "currency": "CNY",
+        "change": -11.604915319699357,
+        "closes": [
+          336.84,
+          338.06,
+          330.51,
+          337.11,
+          316.36,
+          305.48,
+          304.3,
+          301.95,
+          297.1,
+          304.63,
+          301,
+          293.5,
+          291.99,
+          286.8,
+          291.11,
+          286.75,
+          297.75
+        ],
+        "candles": [
+          {
+            "open": 313.01,
+            "high": 315,
+            "low": 299,
+            "close": 305.48
+          },
+          {
+            "open": 306,
+            "high": 308.66,
+            "low": 302.7,
+            "close": 304.3
+          },
+          {
+            "open": 309.77,
+            "high": 310,
+            "low": 300.27,
+            "close": 301.95
+          },
+          {
+            "open": 303.04,
+            "high": 303.6,
+            "low": 295.5,
+            "close": 297.1
+          },
+          {
+            "open": 298,
+            "high": 308.69,
+            "low": 297.74,
+            "close": 304.63
+          },
+          {
+            "open": 304.5,
+            "high": 305.76,
+            "low": 299.1,
+            "close": 301
+          },
+          {
+            "open": 300,
+            "high": 302,
+            "low": 293,
+            "close": 293.5
+          },
+          {
+            "open": 289,
+            "high": 292.66,
+            "low": 286.66,
+            "close": 291.99
+          },
+          {
+            "open": 291,
+            "high": 293.19,
+            "low": 285.74,
+            "close": 286.8
+          },
+          {
+            "open": 290,
+            "high": 292.7,
+            "low": 285.8,
+            "close": 291.11
+          },
+          {
+            "open": 292,
+            "high": 293.47,
+            "low": 285.17,
+            "close": 286.75
+          },
+          {
+            "open": 292,
+            "high": 301.42,
+            "low": 289,
+            "close": 297.75
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "GC=F",
+        "label": "Gold",
+        "group": "Macro",
+        "url": "https://finance.yahoo.com/quote/GC=F/",
+        "price": 4216.2998046875,
+        "currency": "USD",
+        "change": -4.3337192490707555,
+        "closes": [
+          4407.3,
+          4408.9,
+          4351.9,
+          4332.8,
+          4387.5,
+          4399.7,
+          4424.9,
+          4383.9,
+          4376.4,
+          4318.4,
+          4298,
+          4321.2,
+          4168.4,
+          4179.7,
+          4186.7,
+          4202.3,
+          4162.3,
+          4156.8,
+          4187.1,
+          4140.7,
+          4157,
+          4216.3
+        ],
+        "candles": [
+          {
+            "open": 4324.4,
+            "high": 4338,
+            "low": 4278.3,
+            "close": 4298
+          },
+          {
+            "open": 4309.5,
+            "high": 4351.6,
+            "low": 4289.2,
+            "close": 4321.2
+          },
+          {
+            "open": 4315,
+            "high": 4315.6,
+            "low": 4143.1,
+            "close": 4168.4
+          },
+          {
+            "open": 4150.1,
+            "high": 4218.1,
+            "low": 4145.2,
+            "close": 4179.7
+          },
+          {
+            "open": 4216.2,
+            "high": 4251.1,
+            "low": 4178.2,
+            "close": 4186.7
+          },
+          {
+            "open": 4190.1,
+            "high": 4222.8,
+            "low": 4169.4,
+            "close": 4202.3
+          },
+          {
+            "open": 4204.6,
+            "high": 4259,
+            "low": 4153.8,
+            "close": 4162.3
+          },
+          {
+            "open": 4169.4,
+            "high": 4198.9,
+            "low": 4150.4,
+            "close": 4156.8
+          },
+          {
+            "open": 4169.2,
+            "high": 4212.4,
+            "low": 4130.7,
+            "close": 4187.1
+          },
+          {
+            "open": 4195,
+            "high": 4197.8,
+            "low": 4091.2,
+            "close": 4140.7
+          },
+          {
+            "open": 4139.9,
+            "high": 4170.7,
+            "low": 4128.1,
+            "close": 4157
+          },
+          {
+            "open": 4159.7,
+            "high": 4233.7,
+            "low": 4156.1,
+            "close": 4216.3
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      },
+      {
+        "symbol": "CL=F",
+        "label": "Crude Oil",
+        "group": "Macro",
+        "url": "https://finance.yahoo.com/quote/CL=F/",
+        "price": 91.8499984741211,
+        "currency": "USD",
+        "change": -10.372760084509984,
+        "closes": [
+          102.48,
+          100.05,
+          101.39,
+          105.83,
+          102.43,
+          101.91,
+          100.3,
+          95.78,
+          94.59,
+          92.16,
+          94.61,
+          92.41,
+          92.6,
+          89.38,
+          90.42,
+          92.87,
+          91.11,
+          89.43,
+          89.44,
+          88.28,
+          91.49,
+          91.85
+        ],
+        "candles": [
+          {
+            "open": 92.72,
+            "high": 96.78,
+            "low": 91.23,
+            "close": 94.61
+          },
+          {
+            "open": 94.75,
+            "high": 94.75,
+            "low": 91.51,
+            "close": 92.41
+          },
+          {
+            "open": 93.58,
+            "high": 96.54,
+            "low": 91.25,
+            "close": 92.6
+          },
+          {
+            "open": 93.53,
+            "high": 94.74,
+            "low": 88.78,
+            "close": 89.38
+          },
+          {
+            "open": 89,
+            "high": 91.96,
+            "low": 88.58,
+            "close": 90.42
+          },
+          {
+            "open": 90.4,
+            "high": 93.68,
+            "low": 88.79,
+            "close": 92.87
+          },
+          {
+            "open": 93.46,
+            "high": 93.51,
+            "low": 88.06,
+            "close": 91.11
+          },
+          {
+            "open": 91.77,
+            "high": 91.88,
+            "low": 88.74,
+            "close": 89.43
+          },
+          {
+            "open": 89.27,
+            "high": 90.05,
+            "low": 86.86,
+            "close": 89.44
+          },
+          {
+            "open": 89.96,
+            "high": 90.98,
+            "low": 87.96,
+            "close": 88.28
+          },
+          {
+            "open": 89,
+            "high": 93.2,
+            "low": 88.77,
+            "close": 91.49
+          },
+          {
+            "open": 91.29,
+            "high": 92.17,
+            "low": 90.01,
+            "close": 91.85
+          }
+        ],
+        "source": "Yahoo Finance chart"
+      }
+    ],
+    "keywords": [
+      "AI"
+    ],
+    "privateWatch": [
+      {
+        "label": "DeepSeek",
+        "summary": "Private AI company: track model releases, compute cost narratives, and China AI ecosystem signals.",
+        "url": "https://www.deepseek.com/"
+      },
+      {
+        "label": "Unitree",
+        "summary": "Private robotics company: track humanoid demos, developer kits, and embodied-AI adoption.",
+        "url": "https://www.unitree.com/"
+      },
+      {
+        "label": "SpaceX",
+        "summary": "Private aerospace company: track launch cadence, Starship milestones, Starlink economics, and policy signals.",
+        "url": "https://www.spacex.com/"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Yahoo Chart",
+        "title": "Daily market series for mini charts",
+        "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=1mo&interval=1d"
+      },
+      {
+        "label": "FRED",
+        "title": "US macro data source for a future deeper panel",
+        "url": "https://fred.stlouisfed.org/"
+      },
+      {
+        "label": "World Bank",
+        "title": "Long-run country macro indicators",
+        "url": "https://data.worldbank.org/"
+      },
+      {
+        "label": "Stooq",
+        "title": "Historical market data reference",
+        "url": "https://stooq.com/db/h/"
+      }
+    ]
+  },
+  "archive": {
+    "items": [
+      {
+        "label": "Art Institute",
+        "title": "Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)",
+        "summary": "Pierre-Auguste Renoir · 1879 · Two girls in acrobatic uniforms stand in an arena, one holds oranges.",
+        "image": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/full/843,/0/default.jpg",
+        "url": "https://www.artic.edu/artworks/81558",
+        "meta": "Art Institute of Chicago"
+      },
+      {
+        "label": "NASA APOD",
+        "title": "NASA Science",
+        "summary": "Tidally locked in synchronous rotation, the Moon always presents its familiar nearside to denizens of planet Earth. From lunar orbit, the Moon's farside can become familiar, though. In fact...",
+        "image": "https://science.nasa.gov/wp-content/themes/nasa-child/assets/images/nasa-logo@2x.png",
+        "url": "https://science.nasa.gov/wp-content/themes/nasa-child/assets/images/nasa-logo@2x.png",
+        "meta": "2026-10-10"
+      },
+      {
+        "label": "On This Day",
+        "title": "1797: French Revolutionary Wars",
+        "summary": "French Revolutionary Wars: The Royal Navy captured eleven Dutch Navy ships without any losses at the Battle of Camperdown.",
+        "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/French_Revolutionary_Wars.jpg/330px-French_Revolutionary_Wars.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        "url": "https://en.wikipedia.org/wiki/French_Revolutionary_Wars",
+        "meta": "Wikipedia selected events"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Met Timeline",
+        "title": "Curator-written art history essays",
+        "summary": "Reliable long-form context for art, objects, places, and eras.",
+        "url": "https://www.metmuseum.org/toah/"
+      },
+      {
+        "label": "ArtIC API",
+        "title": "Public-domain artworks with IIIF images",
+        "summary": "Good for daily visual cards because metadata and images are structured.",
+        "url": "https://api.artic.edu/docs/"
+      },
+      {
+        "label": "Wikimedia",
+        "title": "On-this-day historical events",
+        "summary": "Daily historical hooks that can connect the page to memory and time.",
+        "url": "https://api.wikimedia.org/wiki/Feed_API/Reference/On_this_day"
+      },
+      {
+        "label": "NASA APOD",
+        "title": "Astronomy image and explanation",
+        "summary": "A daily image source that keeps the archive feeling open and planetary.",
+        "url": "https://api.nasa.gov/"
+      },
+      {
+        "label": "Public Domain Review",
+        "title": "Essays and collections from cultural archives",
+        "summary": "A human-curated reading source for strange, beautiful archival material.",
+        "url": "https://publicdomainreview.org/"
+      }
+    ]
+  },
+  "fallbackNotes": [
+    {
+      "title": "读一页纸，留一张图，记录一个问题。",
+      "summary": "A quiet fallback signal.",
+      "source": "Local",
+      "time": "2026-10-11",
+      "url": ""
+    },
+    {
+      "title": "世界每天给出许多信号，值得慢一点筛选。",
+      "summary": "A small note for attention.",
+      "source": "Local",
+      "time": "2026-10-11",
+      "url": ""
+    },
+    {
+      "title": "学术、风景、生活和历史，都可以在同一页相遇。",
+      "summary": "A useful page should breathe.",
+      "source": "Local",
+      "time": "2026-10-11",
+      "url": ""
+    }
+  ]
+}
