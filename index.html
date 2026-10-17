@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1115">
+    <title>News</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="aurora" aria-hidden="true"></div>
+    <main class="shell" id="top">
+      <header class="topbar">
+        <a class="brand" href=".">NEWS</a>
+        <nav class="topbar-nav">
+          <a href="index/">FIELD</a>
+          <time id="today"></time>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live Briefing</p>
+          <h1>Signal, context, and a little weather for the mind.</h1>
+          <p class="lede">AI, research, product shifts, image fields, and small daily fragments gathered into one calm surface.</p>
+        </div>
+        <aside class="signal-card">
+          <p class="eyebrow">Brief</p>
+          <h2>Today in view.</h2>
+          <nav class="brief-nav" aria-label="Page sections">
+            <a href="#lead" data-tip="Lead story and daily image field.">Lead</a>
+            <a href="#hot-notes" data-tip="Readable links from the daily news stream.">Notes</a>
+            <a href="#markets" data-tip="Global market pulse, China-US economy, AI companies, and macro instruments.">Markets</a>
+            <a href="#research" data-tip="arXiv robotics and AI papers refreshed by workflow.">Research</a>
+            <a href="#study-archive" data-tip="Study sources, open projects, artworks, history, and daily archive signals.">Trace</a>
+            <button id="light-toggle" type="button" data-tip="Hover to preview daylight. Click to keep the bright field.">Light</button>
+          </nav>
+          <div class="signal-lines" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <dl>
+            <div><dt>Stories</dt><dd id="story-count">--</dd></div>
+            <div><dt>Papers</dt><dd id="paper-count">--</dd></div>
+            <div><dt>Visuals</dt><dd id="visual-count">--</dd></div>
+            <div><dt>Markets</dt><dd id="market-count">--</dd></div>
+          </dl>
+        </aside>
+      </section>
+
+      <section id="birthday-signal" class="birthday-signal" hidden>
+        <div>
+          <p class="eyebrow">Signal</p>
+          <h2 id="birthday-heading">Upcoming notes</h2>
+        </div>
+        <div id="birthday-list" class="birthday-list"></div>
+      </section>
+
+      <section class="lead-grid" id="lead">
+        <article class="feature-news" id="feature-news">
+          <p class="eyebrow">Top Story</p>
+          <a id="feature-link" href="https://news.stormzhang.ai/" target="_blank" rel="noreferrer">
+            <h2 id="feature-title">Loading today's lead story</h2>
+            <p id="feature-summary"></p>
+            <span id="feature-meta"></span>
+          </a>
+        </article>
+
+        <section class="visual-board" aria-label="Daily image board">
+          <div class="image-main" id="image-main">
+            <div>
+              <p class="eyebrow">Image Field</p>
+              <h2 id="image-title">Daily view</h2>
+              <p id="image-caption"></p>
+            </div>
+          </div>
+          <div class="thumb-row" id="thumb-row"></div>
+        </section>
+      </section>
+
+      <section class="section-title" id="hot-notes">
+        <div>
+          <p class="eyebrow">Hot Notes</p>
+          <h2>Readable events, not just links.</h2>
+        </div>
+        <a href="https://news.stormzhang.ai/" target="_blank" rel="noreferrer">Open source</a>
+      </section>
+
+      <section class="news-grid" id="notes"></section>
+
+      <section class="section-title market-title" id="markets">
+        <div>
+          <p class="eyebrow">World Economy</p>
+          <h2>Markets, companies, and macro signals.</h2>
+        </div>
+        <a href="https://finance.yahoo.com/markets/" target="_blank" rel="noreferrer">Open markets</a>
+      </section>
+
+      <section class="market-grid">
+        <article class="market-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">K-Line Pulse</p>
+              <h2>AI, China, US, Hong Kong, commodities.</h2>
+            </div>
+            <span id="market-updated">Daily refresh</span>
+          </div>
+          <div class="ticker-grid" id="ticker-grid"></div>
+        </article>
+
+        <aside class="market-side">
+          <article>
+            <p class="eyebrow">News Coupling</p>
+            <h3>Keywords from today's stream.</h3>
+            <div class="lane-list finance-keywords" id="finance-keywords"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Private Watch</p>
+            <h3>Not listed, still important.</h3>
+            <div class="link-stack compact" id="private-watch"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Data Sources</p>
+            <div class="link-stack compact" id="finance-sources"></div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="section-title research-title" id="research">
+        <div>
+          <p class="eyebrow">Research Lens</p>
+          <h2>Robotics, embodied AI, and systems worth tracking.</h2>
+        </div>
+        <a href="https://www.alphaxiv.org/" target="_blank" rel="noreferrer">Open alphaXiv</a>
+      </section>
+
+      <section class="academic-grid">
+        <article class="paper-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Paper Stream</p>
+              <h2>Recent signals from arXiv.</h2>
+            </div>
+            <a href="https://arxiv.org/list/cs.RO/recent" target="_blank" rel="noreferrer">cs.RO</a>
+          </div>
+          <div class="paper-list" id="paper-list"></div>
+        </article>
+
+        <aside class="academic-side">
+          <article>
+            <p class="eyebrow">Study Trace</p>
+            <h3>Where to keep digging.</h3>
+            <div class="link-stack" id="resource-list"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Open Projects</p>
+            <h3>Ideas worth borrowing carefully.</h3>
+            <div class="link-stack compact" id="project-list"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Best Paper Watch</p>
+            <h3>Awards, finalists, and benchmark taste.</h3>
+            <div class="link-stack compact" id="award-list"></div>
+          </article>
+          <article>
+            <p class="eyebrow">Lanes</p>
+            <div class="lane-list" id="lane-list"></div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="study-archive" id="study-archive">
+        <article class="trace-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Study Trace</p>
+              <h2>Automation, perception, systems.</h2>
+              <p>Keep one line of curiosity open: a paper, a tool, a dataset, a walk outside.</p>
+            </div>
+            <a href="#research">Back to research</a>
+          </div>
+          <div class="source-grid" id="study-source-grid"></div>
+        </article>
+        <article class="archive-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Archive</p>
+              <h2>Art · history · life</h2>
+              <p>Small fragments age well when they are arranged with care.</p>
+            </div>
+            <a href="https://publicdomainreview.org/" target="_blank" rel="noreferrer">Open archive</a>
+          </div>
+          <div class="archive-grid" id="archive-grid"></div>
+          <div class="source-grid compact" id="archive-source-grid"></div>
+        </article>
+      </section>
+    </main>
+
+    <a class="public-index-gate" id="public-index" href="index/" aria-label="Open Field">
+      <span>Visual archive</span>
+      <strong>FIELD</strong>
+      <em>Funds · machines · files ↗</em>
+    </a>
+
+    <div id="birthday-modal" class="birthday-modal" hidden>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button id="modal-close" class="modal-close" type="button" aria-label="Close">×</button>
+        <p class="eyebrow">Today</p>
+        <h2 id="modal-title">Birthday signal</h2>
+        <div id="modal-list" class="modal-list"></div>
+      </div>
+    </div>
+    <a class="view-counter" href="https://hits.sh/epochhit.github.io/news/" target="_blank" rel="noreferrer" aria-label="News page views">
+      <img src="https://hits.sh/epochhit.github.io/news.svg?label=views&color=72c7ff&labelColor=10171a" alt="News page views">
+    </a>
+  </body>
+</html>
